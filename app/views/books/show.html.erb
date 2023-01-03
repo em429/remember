@@ -1,0 +1,10 @@
+<h1 class="mb-8 text-2xl font-bold"><%= link_to @book.title %></h1>
+
+<div class="flex flex-wrap">
+  <% @book.annotations.each do |a| %>
+    <div class="p-4 drop-shadow-md mb-8">
+      <%= a.highlighted_text %>
+    </div>
+  <% end %>
+</div>
+

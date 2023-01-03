@@ -68,6 +68,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    archive-zip (0.12.0)
+      io-like (~> 0.3.0)
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
@@ -87,6 +89,13 @@ GEM
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    epub-cfi (0.1.2)
+    epub-parser (0.4.6)
+      addressable (>= 2.3.5)
+      archive-zip
+      epub-cfi
+      rchardet (>= 1.6.1)
+      rexml
     erubi (1.12.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -96,6 +105,7 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
+    io-like (0.3.1)
     irb (1.6.2)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
@@ -161,6 +171,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    rchardet (1.8.0)
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -214,6 +225,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  epub-parser (~> 0.4.6)
   importmap-rails
   jbuilder
   puma (~> 5.0)

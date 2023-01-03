@@ -1,0 +1,17 @@
+<div class="flex flex-wrap">
+  <%= form_with model: @book do |f| %>
+    <%= f.label :epub_file, class: "block" %>
+    <%= f.file_field :epub_file %>
+
+    <%= f.label :title, class: "block" %>
+    <%= f.text_field :title %>
+
+    <%= f.label :author, class: "block" %>
+    <%= f.text_field :author %>
+  <% end %>
+</div>
+
+<style>
+  form label { margin-bottom:10px};
+  form input { margin-bottom:10px};
+</style>

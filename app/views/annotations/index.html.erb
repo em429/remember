@@ -1,0 +1,7 @@
+<% @annotations.each do |a| %>
+<div class="p-4 shadow-md mb-8" >
+  Book: <%= a.book.title %> <br>
+  <hr>
+  <%= a.highlighted_text %>
+</div>
+<% end %>
