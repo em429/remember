@@ -3,7 +3,7 @@
 
   <div class="p-4 mt-8 shadow-md">
     <% @books.each do |book| %>
-      by <%= link_to book.title, book %><br>
+      <%= link_to book.title, book %><br>
     <% end %>
   </div>
 
