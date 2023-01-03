@@ -3,8 +3,7 @@
 
   <div class="p-4 mt-8 shadow-md">
     <% @books.each do |book| %>
-      <%= link_to book.title, book %><br>
-      <span class="text-xs"><%= book.author %></span>
+      by <%= link_to book.title, book %><br>
     <% end %>
   </div>
 
