@@ -4,6 +4,9 @@
     <span class="text-sm"><%= @book.author %></span>
     <hr class="mt-6">
     <%= link_to "Edit", edit_book_path(@book) %>
+    <%= button_to "Delete", book_path(@book), method: :delete, data:
+        { "turbo_method": :delete, "turbo_confirm": "Sure?" }
+    %>
   </div>
   
   <div class="max-w-[200px]">
@@ -17,4 +20,5 @@
       </div>
     <% end %>
   </div>
+
 </div>
