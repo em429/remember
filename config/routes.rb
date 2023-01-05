@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'imports/index'
-  get 'imports/create'
   resources :annotations
-  resources :books
+  resources :books do
+    post 'text_extractions/start', as: 'start_text_extraction'
+    get 'full_text'
+  end
   get 'import', to: 'imports#index'
   post 'import', to: 'imports#create'
 

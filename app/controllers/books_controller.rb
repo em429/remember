@@ -30,6 +30,10 @@ class BooksController < ApplicationController
     redirect_to books_path, alert: 'Book successfully deleted'
   end
 
+  def full_text
+    @book = Book.find(params[:book_id])
+  end
+
   private
 
   def book_params
