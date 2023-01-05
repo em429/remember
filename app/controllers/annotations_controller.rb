@@ -1,5 +1,5 @@
 class AnnotationsController < ApplicationController
   def index
-    @annotations = Annotation.all
+    @annotations = Annotation.all.order('RANDOM()')
   end
 end
