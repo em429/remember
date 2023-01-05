@@ -1,24 +1,41 @@
-<div class="flex justify-between">
-  <div class="mb-8">
-    <h1 class="text-2xl mb-4 font-bold"><%= link_to @book.title %></h1>
-    by <span class="text-sm"><%= @book.author %></span>
-    <hr class="mt-6">
-    <%= link_to "Edit", edit_book_path(@book) %>
-    <%= button_to "Delete", book_path(@book), method: :delete, data:
-        { "turbo_method": :delete, "turbo_confirm": "Sure?" }
-    %>
+<div class="mb-8 w-full">
+  <h1 class="text-2xl mb-4 font-bold"><%= link_to @book.title %></h1>
+  by <span class="text-sm"><%= @book.author %></span>
+</div>
+  
+<div class="flex justify-between gap-8">
+
+  <%# Left side: book info, cover and actions %>
+  <div class="mb-8 basis-1/3">
+    
+    <div class="mb-8 max-w-[230px] border border-8">
+      <%= book_cover(@book) %>
+    </div>
+    
+    <% if not @book.full_text.blank? %>
+      <%= link_to "Extracted full text is available in the database for this book.", book_full_text_path(@book) %>
+    <% else %>
+      <%= button_to "Extract Text", book_start_text_extraction_path(@book), method: :post %> 
+    <% end %>
+    <%# Edit and Delete buttons %>
+    <div class="my-4 flex flex-wrap space-x-4">
+      <%= link_to "Edit", edit_book_path(@book) %>
+      <%= button_to "Delete", book_path(@book), method: :delete, data:
+          { "turbo_method": :delete, "turbo_confirm": "Sure?" }
+      %>
+    </div>
+    
   </div>
   
-  <div class="max-w-[200px]">
-    <%= book_cover(@book) %>
-  </div>
 
-  <div class="flex flex-wrap">
+  <%# Right side: Annotations %>
+  <div class="basis-2/3">
     <% @book.annotations.each do |a| %>
-      <div class="p-4 drop-shadow-md mb-8">
+      <div class="p-6 mb-8 shadow-md border " >
         <%= a.highlighted_text %>
       </div>
     <% end %>
   </div>
 
 </div>
+

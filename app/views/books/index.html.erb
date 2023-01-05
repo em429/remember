@@ -1,10 +1,14 @@
-<div>
+<%= render "books/form" %>
+
+<div class="mt-8">
   <h1 class="font-bold text-4xl">Annotated Books</h1>
 
-  <div class="p-4 mt-8 shadow-md">
-    <% @books.each do |book| %>
-      <%= link_to book.title, book %><br>
-    <% end %>
+  <div class=" mt-8 shadow-md">
+    <ul class="list-disc px-12 py-8">
+      <% @books.each do |book| %>
+        <li class="mb-4"><%= link_to book.title, book %></li>
+      <% end %>
+    </ul>
   </div>
 
 </div>
