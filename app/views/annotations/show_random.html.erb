@@ -1,0 +1,12 @@
+<h1 class="mb-8 text-3xl font-bold">Spaced Repetition</h1>
+<div class="p-6 mb-8 shadow-md border " >
+  <p class="mb-4"><%= @annotation.highlighted_text %></p>
+  <hr class="mb-2">
+  <section class="text-xs">
+    <%= link_to @annotation.book.title,
+                @annotation.book,
+                class: "text-indigo-700"
+    %>
+    by <%= @annotation.book.author %>
+  </section>
+</div>
