@@ -3,7 +3,7 @@
   by <span class="text-sm"><%= @book.author %></span>
 </div>
   
-<div class="flex justify-between gap-8">
+<div class="flex justify-between gap-4">
 
   <%# Left side: book info, cover and actions %>
   <div class="mb-8 basis-1/3">
@@ -11,22 +11,28 @@
     <div class="mb-4 max-w-[230px] border border-8">
       <%= book_cover(@book) %>
     </div>
-    <div class="mb-4 p-2 text-xs font-medium w-fit bg-gray-200">
+    
+    <div class="mb-8 tag">
       <%= fiction_or_not_tag(@book) %>
     </div>
     
-    <% if not @book.full_text.blank? %>
-      <%= link_to "Extracted full text is available in the database for this book.", book_full_text_path(@book) %>
-    <% else %>
-      <%= button_to "Extract Text", book_start_text_extraction_path(@book), method: :post %> 
-    <% end %>
+    <div class="mb-8">
+      <%= full_text_extract_form(@book) %>
+    </div>
+    
     <%# Edit and Delete buttons %>
-    <div class="my-4 flex flex-wrap space-x-4">
-      <%= link_to "Edit", edit_book_path(@book) %>
+    <div class="mb-8 flex flex-wrap space-x-4">
+      <%= link_to "Edit", edit_book_path(@book), class: "btn" %>
       <%= button_to "Delete", book_path(@book), method: :delete, data:
-          { "turbo_method": :delete, "turbo_confirm": "Sure?" }
+          { "turbo_method": :delete, "turbo_confirm": "Sure?" },
+          class: "btn"
       %>
     </div>
+    
+    <div class="mb-4">
+      <%= render 'annotations/form', book: @book %>
+    </div>
+    
     
   </div>
   
