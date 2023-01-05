@@ -15,5 +15,6 @@ class ImportsController < ApplicationController
         book_id: params[:book_id]
       )
     end
+    redirect_to root_path
   end
 end
