@@ -1,4 +1,3 @@
-<h1 class="font-bold text-4xl">Add Book</h1>
 <div class="flex flex-wrap">
   <%= form_with model: @book do |f| %>
   
@@ -14,12 +13,15 @@
     <%= f.label :author, class: "block" %>
     <%= f.text_field :author %>
 
+    <%= f.label :fiction, "Fiction or Non-Fiction?", class: "block" %>
+    <%= f.select :fiction, {"Non-Fiction": false, "Fiction": true } %>
+
     <br>
-    <%= f.submit "Add Book" %>
+    <%= f.submit "Add Book", class: "mt-4" %>
   <% end %>
 </div>
 
 <style>
-  form label { margin-bottom:10px };
+  form label { margin:10px 0 10px 0 };
   form input { margin-bottom:10px };
 </style>

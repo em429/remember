@@ -8,8 +8,11 @@
   <%# Left side: book info, cover and actions %>
   <div class="mb-8 basis-1/3">
     
-    <div class="mb-8 max-w-[230px] border border-8">
+    <div class="mb-4 max-w-[230px] border border-8">
       <%= book_cover(@book) %>
+    </div>
+    <div class="mb-4 p-2 text-xs font-medium w-fit bg-gray-200">
+      <%= fiction_or_not_tag(@book) %>
     </div>
     
     <% if not @book.full_text.blank? %>

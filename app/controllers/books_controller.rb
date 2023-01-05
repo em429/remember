@@ -46,6 +46,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(%i[title author epub cover])
+    params.require(:book).permit(%i[title author epub cover fiction])
   end
 end
