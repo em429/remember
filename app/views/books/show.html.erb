@@ -15,21 +15,25 @@
     <div class="mb-8 tag">
       <%= fiction_or_not_tag(@book) %>
     </div>
+    <hr class="h-px mb-8 bg-gray-200 border-0 dark:bg-gray-700">
     
+  
     <div class="mb-8">
       <%= full_text_extract_form(@book) %>
     </div>
     
+    
     <%# Edit and Delete buttons %>
-    <div class="mb-8 flex flex-wrap space-x-4">
+    <div class="mb-8 mt-8 flex flex-wrap space-x-4">
       <%= link_to "Edit", edit_book_path(@book), class: "btn" %>
       <%= button_to "Delete", book_path(@book), method: :delete, data:
           { "turbo_method": :delete, "turbo_confirm": "Sure?" },
           class: "btn"
       %>
     </div>
+    <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
     
-    <div class="mb-4">
+    <div class="mb-4 mt-8 ">
       <%= render 'annotations/form', book: @book %>
     </div>
     
