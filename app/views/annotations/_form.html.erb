@@ -1,9 +1,10 @@
 <%= form_with url: '/import' do |f| %>
-  <%= f.label :opf_file, "Import Annotations (.opf)", class:"font-bold" %><br>
-  <%= f.file_field :opf_file, class: "mb-4 mt-2" %>
+  <%= f.label :opf_file, "Import Annotations", class:"block mb-2 text-md font-medium text-gray-900" %>
+  <%= f.file_field :opf_file, class: "block mb-1 w-full text-sm text-gray-900 border rounded-md border-gray-300 p-1 cursor-pointer bg-gray-50 focus:outline-none" %>
+  <p class="text-xs text-gray-500" id="file_input_help">Calibre OPF Metadata File (.opf)</p>
 
   <%= f.hidden_field :book_id, { value: book.id } %>
   
-  <%= f.submit "Import", class: "btn" %>
+  <%= f.submit "Import", class: "btn mt-4" %>
 <% end %>
 

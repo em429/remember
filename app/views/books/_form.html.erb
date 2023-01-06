@@ -1,27 +1,33 @@
-<div class="flex flex-wrap">
+<div class="flex flex-wrap nice-form">
   <%= form_with model: book do |f| %>
-  
-    <%= f.label :epub, class: "block" %>
-    <%= f.file_field :epub %>
-    
-    <%= f.label :cover, class: "block" %>
-    <%= f.file_field :cover %>
 
-    <%= f.label :title, class: "block" %>
-    <%= f.text_field :title %>
+    <div class="flex justify-between gap-2">
+      <div class="w-full">
+        <%= f.label :epub, "Epub File", class: "" %>
+        <%= f.file_field :epub %>
+      </div>
+      
+      <div class="w-full">
+        <%= f.label :cover, class: "block" %>
+        <%= f.file_field :cover %>
+      </div>
+    </div>
 
-    <%= f.label :author, class: "block" %>
-    <%= f.text_field :author %>
+    <div class="flex justify-between gap-2">
+      <div class="w-full">
+        <%= f.label :title, class: "block" %>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="w-full">
+        <%= f.label :author, class: "block" %>
+        <%= f.text_field :author %>
+      </div>
+    </div>
 
     <%= f.label :fiction, "Fiction or Non-Fiction?", class: "block" %>
     <%= f.select :fiction, {"Non-Fiction": false, "Fiction": true } %>
-
-    <br>
-    <%= f.submit "Add Book", class: "mt-4 btn" %>
+    
+    <%= f.submit "Add Book", class: "btn-lg" %>
   <% end %>
 </div>
-
-<style>
-  form label { margin:10px 0 10px 0 };
-  form input { margin-bottom:10px };
-</style>
