@@ -1,4 +1,8 @@
 module BooksHelper
+  def random_highlight(book)
+    book.annotations.all.order('RANDOM()').first.highlighted_text
+  end
+
   def fiction_or_not_tag(book)
     if book.fiction
       'Fiction'
