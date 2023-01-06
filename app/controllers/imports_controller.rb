@@ -12,6 +12,8 @@ class ImportsController < ApplicationController
         notes: e['annotation']['notes'],
         start_cfi: e['annotation']['start_cfi'],
         end_cfi: e['annotation']['end_cfi'],
+        timestamp: e['annotation']['timestamp'],
+        toc_family_titles: JSON.generate(e['annotation']['toc_family_titles']),
         book_id: params[:book_id]
       )
     end

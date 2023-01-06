@@ -1,10 +1,29 @@
 <div class="p-6 mb-8 shadow-md border " >
-  <p class="mb-6 main-text"><%= annotation.highlighted_text %></p>
-  <section class="text-md text-gray-500 flex justify-between">
+  <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
     <span>
-      <%= link_to annotation.book.title, annotation.book, class: "text-indigo-500" %>
+      <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
       by <%= annotation.book.author %>
     </span>
+
+    <%# Show current highlight's chapter info, if nested, then show all in order: %>
+    <span>
+      <% annotation.chapters.each_with_index do |a, index| %>
+        <span><%= a %></span> 
+        <% unless index == annotation.chapters.size - 1  %>
+           &bull;
+         <% end %>
+      <% end %>
+    </span>
+
+  </section>
+  
+  <p class="mb-6 main-text"><%= annotation.highlighted_text %></p>
+  <section class="text-sm text-gray-500 flex gap-2 justify-between">
+    <span>
+      <%= time_ago_in_words(annotation.timestamp) %> ago
+    </span>
+    
+    
     <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
   </section>
 </div>
