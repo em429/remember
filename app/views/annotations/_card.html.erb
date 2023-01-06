@@ -1,0 +1,10 @@
+<div class="p-6 mb-8 shadow-md border " >
+  <p class="mb-6 main-text"><%= annotation.highlighted_text %></p>
+  <section class="text-md text-gray-500 flex justify-between">
+    <span>
+      <%= link_to annotation.book.title, annotation.book, class: "text-indigo-500" %>
+      by <%= annotation.book.author %>
+    </span>
+    <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
+  </section>
+</div>

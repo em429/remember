@@ -4,10 +4,16 @@
 
 @layer components {
   .tag {
-    @apply p-1 text-white text-xs font-medium w-fit bg-gray-500
+    @apply p-1 text-white text-xs font-medium w-fit bg-gray-400
   }
 
   .btn {
     @apply py-1 px-2 bg-gray-200;
   }
+
+  .main-text {
+    @apply text-gray-700 text-lg
+  }
+
+  .smallcaps { font-variant: small-caps; }  
 }

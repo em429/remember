@@ -19,7 +19,7 @@ module BooksHelper
     if !book.full_text.blank?
       link_to 'Extracted full text is available in the database for this book.', book_full_text_path(book)
     else
-      button_to 'Extract Text', book_start_text_extraction_path(book), method: :post, class: "btn"
+      button_to 'Extract Text', book_start_text_extraction_path(book), method: :post, class: 'btn'
     end
   end
 end

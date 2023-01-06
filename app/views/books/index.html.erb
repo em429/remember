@@ -1,12 +1,29 @@
-<div class="mt-8">
-  <h1 class="font-bold text-4xl">Annotated Books</h1>
+  <h1 class="mb-12 font-bold text-4xl">Annotated Books</h1>
 
-  <div class=" mt-8 shadow-md">
-    <ul class="list-disc px-12 py-8 border">
+  <div class="">
+    <ul class="">
       <% @books.each do |book| %>
-        <li class="mb-4"><%= link_to book.title, book %></li>
+        <li class="mb-12 border p-8 shadow-md flex justify-between">
+          <div class="basis-2/3">
+            <%= link_to book.title, book, class: "font-medium text-2xl" %>
+            <section class="mb-6 mt-2 ">
+              <span class="text-sm">by <%= book.author %></span>
+            </section>
+            <section class="mb-6 text-md text-gray-600 ">
+              <h5 class="mb-1 p-1 smallcaps bg-gray-100">Random Highlight</h5>
+              <p class="p-2 italic"><%= random_highlight(book).truncate(200) %></p>
+            </section>
+            <section class="tag">
+              <%= fiction_or_not_tag(book) %>
+            </section>
+          </div>
+          <section>
+
+            <%= link_to book do %>
+              <%= image_tag book.cover, class: "border border-4 max-w-[150px]" %>
+            <% end %>
+          </section>
+        </li>
       <% end %>
     </ul>
   </div>
-
-</div>
