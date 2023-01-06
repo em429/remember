@@ -11,9 +11,18 @@
     @apply py-1 px-2 bg-gray-200;
   }
 
+  .btn-lg {
+    @apply text-lg font-medium px-4 py-2 bg-gray-200;
+  }
+
   .main-text {
     @apply text-gray-700 text-lg
   }
 
-  .smallcaps { font-variant: small-caps; }  
+  .smallcaps { font-variant: small-caps; }
+
+  .nice-form label { @apply block mb-2 font-medium text-lg;  }
+  .nice-form input { @apply mb-6; }
+  .nice-form select { @apply block mb-6; }
+  
 }
