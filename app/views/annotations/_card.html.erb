@@ -21,17 +21,16 @@
   <div data-controller="context" data-context-hidden-class="hidden">
 
     <%# Shown by default, the highlighted text, without extra context %>
-    <p data-context-target="item" class="mb-6 main-text">
+    <p data-action="click->context#toggle" data-context-target="item" class="mb-6 main-text cursor-pointer">
       <%= annotation.highlighted_text %>
     </p>
 
     <%# Hidden by default, the full paragraph the highlight was made in,
         this is the first level of context. %>
-    <p data-context-target="item" class="hidden mb-6 main-text">
+    <p data-action="click->context#toggle" data-context-target="item" class="hidden mb-6 main-text cursor-pointer">
       <%= show_paragraph_of(annotation) %>
     </p>
     
-    <button data-action="click->context#toggle" class="btn" type="button">Show Context</button>
   </div>
   
   <section class="text-sm text-gray-500 flex gap-2 justify-between">
