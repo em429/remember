@@ -45,10 +45,19 @@
   <div class="basis-2/3">
     <% @book.annotations.each do |a| %>
       <div class="p-6 mb-8 shadow-md border " >
-        <%= a.highlighted_text %>
+        <p class="prose mb-6">
+        <%= show_paragraph_of(a) %>
+        </p>
+        <%= link_to a do %>
+          <%= time_ago_in_words(a.timestamp) %> ago
+        <% end %>
+        
       </div>
     <% end %>
   </div>
 
 </div>
 
+<style>
+  p { white-space: pre-line; }
+</style>
