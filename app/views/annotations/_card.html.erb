@@ -17,7 +17,9 @@
 
   </section>
   
-  <p class="mb-6 main-text"><%= annotation.highlighted_text %></p>
+  <p class="mb-6 main-text">
+      <%= show_paragraph_of(annotation) %>
+  </p>
   <section class="text-sm text-gray-500 flex gap-2 justify-between">
     <span>
       <%= link_to annotation do %>
