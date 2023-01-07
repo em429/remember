@@ -20,7 +20,9 @@
   <p class="mb-6 main-text"><%= annotation.highlighted_text %></p>
   <section class="text-sm text-gray-500 flex gap-2 justify-between">
     <span>
-      <%= time_ago_in_words(annotation.timestamp) %> ago
+      <%= link_to annotation do %>
+        <%= time_ago_in_words(annotation.timestamp) %> ago
+      <% end %>
     </span>
     
     
