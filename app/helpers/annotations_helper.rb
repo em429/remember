@@ -53,16 +53,12 @@ module AnnotationsHelper
     # We split and only search for the first part, before the newline
     original_hl_split = original_hl.split("\n")
 
-    first_half = original_hl_split[0].remove("\n")
-    second_half = original_hl_split[1..].join(' ').remove("\n")
+    first_half = original_hl_split[0]
+    second_half = original_hl_split[1..].join(' ')
     original_hl_without_newline = "#{first_half}#{second_half}"
 
     regexp = /.*#{Regexp.escape(first_half)}.*/
     full_text =~ /#{regexp}/
-
-    # FIXME: -- very buggy, repeats itself.. etc
-    # One of the bugs are caused by newlines, (\n) in text
-    # i was using 726 as one of the examples
 
     # Here we re-add the second half
     matched_paragraph = "#{Regexp.last_match}#{second_half}"
