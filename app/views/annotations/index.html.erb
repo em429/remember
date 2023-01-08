@@ -3,3 +3,8 @@
 <% @annotations.each do |a| %>
   <%= render 'annotations/card', annotation: a %>
 <% end %>
+<div class="mb-24 mt-24 w-full">
+  <div class="w-fit mx-auto">
+    <%== pagy_nav(@pagy) %>
+  </div>
+</div>

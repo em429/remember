@@ -24,5 +24,45 @@
   .nice-form label { @apply block mb-2 font-medium text-lg;  }
   .nice-form input { @apply mb-6; }
   .nice-form select { @apply block mb-6; }
+
+
+  .pagy-nav {
+    @apply flex space-x-2;
+  }
+
+  .pagy-nav .page a,
+  .pagy-nav .page.active,
+  .pagy-nav .page.prev.disabled,
+  .pagy-nav .page.next.disabled {
+    @apply px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-50 border shadow-md;
+    &:hover{
+      @apply bg-gray-300;
+    }
+    &:active{
+      @apply bg-gray-400 text-white;
+    }
+  }
+
+  .pagy-nav .page.prev.disabled,
+  .pagy-nav .page.next.disabled {
+    @apply text-gray-400 cursor-default;
+    &:hover {
+      @apply text-gray-400 bg-gray-50 border;
+    }
+    &:active {
+      @apply text-gray-400 bg-gray-50 border;
+    }
+  }
+
+  .pagy-nav .page.active {
+    @apply text-white cursor-default bg-gray-400;
+    &:hover {
+      @apply text-white bg-gray-400;
+    }
+    &:active {
+      @apply bg-gray-400 text-white;
+    }
+
+  }
   
 }
