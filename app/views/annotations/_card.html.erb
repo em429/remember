@@ -1,3 +1,4 @@
+<div data-controller="paragraph neighbors">
 <div class="p-6 mb-8 shadow-md border " >
   <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
     <span>
@@ -16,22 +17,23 @@
     </span>
 
   </section>
-  
-  
-  <div data-controller="context" data-context-hidden-class="hidden">
 
     <%# Shown by default, the highlighted text, without extra context %>
-    <p data-action="click->context#toggle" data-context-target="item" class="mb-6 main-text cursor-pointer">
+    <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="mb-6 main-text cursor-pointer">
       <%= annotation.highlighted_text %>
     </p>
 
     <%# Hidden by default, the full paragraph the highlight was made in,
         this is the first level of context. %>
-    <p data-action="click->context#toggle" data-context-target="item" class="hidden mb-6 main-text cursor-pointer">
+    <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="hidden mb-6 main-text cursor-pointer">
       <%= show_paragraph_of(annotation) %>
     </p>
-    
-  </div>
+
+    <%# Even more context: show the previous and subsequent lines as well %>
+    <p class="hidden mb-6 cursor-pointer main-text" data-action="click->neighbors#hide click->paragraph#show_first click->neighbors#show_button" data-neighbors-target="item">
+      <%= show_neighbors_of(annotation) %>
+    </p>
+
   
   <section class="text-sm text-gray-500 flex gap-2 justify-between">
     <span>
@@ -39,7 +41,12 @@
         <%= time_ago_in_words(annotation.timestamp) %> ago
       <% end %>
     </span>
+    <button data-neighbors-target="button" data-action="click->neighbors#show click->paragraph#hide" class="text-xs px-2 border text-gray-600">
+      + more context +
+    </button>
         
     <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
   </section>
+  
+  </div>
 </div>

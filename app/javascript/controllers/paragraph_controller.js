@@ -6,4 +6,9 @@ export default class extends Reveal {
     super.toggle()
     // Add anythinge extra here
   }
+
+  // Show only the first paragrpah
+  show_first() {
+    this.itemTarget.classList.toggle(this.class)
+  }
 }
