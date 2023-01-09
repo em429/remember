@@ -1,10 +1,12 @@
 <h1 class="mb-8 font-bold text-4xl">All Annotations</h1>
 
 <% @annotations.each do |a| %>
-  <%= render 'annotations/card', annotation: a %>
+  <%= render_annotation_card(a) %>
 <% end %>
+
 <div class="mb-24 mt-24 w-full">
   <div class="w-fit mx-auto">
     <%== pagy_nav(@pagy) %>
   </div>
 </div>
+

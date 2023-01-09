@@ -8,7 +8,7 @@
 
     <%# Show current highlight's chapter info, if nested, then show all in order: %>
     <span>
-      <% annotation.chapters.each_with_index do |a, index| %>
+      <% annotation.chapters&.each_with_index do |a, index| %>
         <span><%= a %></span> 
         <% unless index == annotation.chapters.size - 1  %>
            &bull;

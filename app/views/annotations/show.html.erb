@@ -1,4 +1,6 @@
-<%= render 'annotations/card', annotation: @annotation, class: "mb-8" %>
+<div class="mb-8"
+  <%= render_annotation_card(@annotation) %>
+</div>
 
 <%# Display notes if there are any %>
 <%= display_notes(@annotation) %>

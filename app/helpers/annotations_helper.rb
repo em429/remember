@@ -2,6 +2,14 @@ module AnnotationsHelper
   # def show_context
   #
   # end
+  #
+  def render_paragraph_card(annotation)
+    render 'annotations/paragraph_card', annotation: annotation unless annotation.highlighted_text.blank?
+  end
+
+  def render_annotation_card(annotation)
+    render 'annotations/card', annotation: annotation unless annotation.highlighted_text.blank?
+  end
 
   # Displays notes if there are any
   def display_notes(annotation)
@@ -9,8 +17,10 @@ module AnnotationsHelper
   end
 
   def show_neighbors_of(annotation)
+    return 'No highlights' if annotation.highlighted_text.blank?
+
     full_text = annotation.book.full_text
-    original_hl = annotation.highlighted_text.strip
+    original_hl = annotation.highlighted_text&.strip
 
     # We split and only search for the first part, before the newline
     original_hl_split = original_hl.split("\n")
@@ -47,11 +57,13 @@ module AnnotationsHelper
   #   - Because of this, we split by \n and only search for the first part
   #   - We re-add the consequential parts to the output after search matched
   def show_paragraph_of(annotation)
+    return 'No highlights' if annotation.highlighted_text.blank?
+
     full_text = annotation.book.full_text
-    original_hl = annotation.highlighted_text.strip
+    original_hl = annotation.highlighted_text&.strip
 
     # We split and only search for the first part, before the newline
-    original_hl_split = original_hl.split("\n")
+    original_hl_split = original_hl&.split("\n")
 
     first_half = original_hl_split[0]
     second_half = original_hl_split[1..].join(' ')
