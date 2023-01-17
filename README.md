@@ -1,24 +1,9 @@
-# README
+This app presents all the stuff you ever highlighted from books as a 'remember feed' with a spaced-repetition algorithm baked in.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The goal is to help you remember the most important knowledge you come across in books.
 
-Things you may want to cover:
+The app displays additional context upon clicking a highlight: the full paragraph where the it was made, and if you still need more context, it displays the lines before and after the paragraph.
 
-* Ruby version
+Each highlight displays some useful metadata: the date the it was made, which book and which chapter and subchapter, the author ..etc 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It's like a self-hosted Readwise alternative, still in very early stages.
