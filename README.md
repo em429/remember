@@ -10,7 +10,7 @@ Context matters. Clicking the highlight pops up the full paragraph where the it 
 
 Additionally, the book, the chapter (and subchapters if any) are displayed on each highlight's card.
 
-It's like a self-hosted Readwise alternative, still in very early stages.
+My self-hosted Readwise alternative. Currently in PoC state, with only Calibre annotation import support and some hacky code.
 
 ### Roadmap
 - [X] add book import feature with full text extract
