@@ -6,10 +6,9 @@ The goal is to help you remember (and hopefully apply) the most important knowle
 
 ### Explore the context of annotations
 
-Context matters. Clicking the highlight pops up the full paragraph where the it was made, and if you still need more context, there is a button to displays the lines before and after the paragraph. (think `grep -C 1`).
+Context matters. Clicking the highlight pops up the full paragraph where the it was made, and if you still need more context, there is a button to displays the lines before and after the paragraph (think `grep -C 1`).
 
 Additionally, the book, the chapter (and subchapters if any) are displayed on each highlight's card.
-
 
 It's like a self-hosted Readwise alternative, still in very early stages.
 
@@ -20,3 +19,5 @@ It's like a self-hosted Readwise alternative, still in very early stages.
 - [ ] add hypothes.is import features
 - [ ] add spaced repetition
 - [ ] make context features more versatile (current implementation has some caveats)
+- [ ] implement an adapter layer for easily adding annotation sources later
+- [ ] write import adapters: kindle, ibooks, sioyek ..etc
