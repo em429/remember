@@ -1,8 +1,4 @@
 module AnnotationsHelper
-  # def show_context
-  #
-  # end
-  #
   def render_paragraph_card(annotation)
     render 'annotations/paragraph_card', annotation: annotation unless annotation.highlighted_text.blank?
   end
