@@ -1,6 +1,15 @@
-<nav class="flex font-bold text-xl space-x-8 ">
-  <%= link_to "Home", root_path %>
-  <%= link_to "Annotations", annotations_path %>
-  <%= link_to "Books", books_path %>
-  <%= link_to "Add Book", new_book_path %>
+<nav class="flex items-center text-xl justify-between">
+  <div class="space-x-8 font-bold">
+    <%= nav_link_to "Random", filtered_annotations_path(:random) %>
+    <%= nav_link_to "Recent", filtered_annotations_path(:recent) %>
+    <%= nav_link_to "All", filtered_annotations_path(:all) %>
+  </div>
+
+  <%= link_to 're-mem-ber', root_path,
+      class: "px-2 border border-4 border-dashed border-gray-300" %> 
+
+  <div class="space-x-8 font-bold">
+    <%= nav_link_to "Books", books_path %>
+    <%= nav_link_to "Add Book", new_book_path %>
+  </div>
 </nav>

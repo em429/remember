@@ -25,7 +25,10 @@
   .nice-form input { @apply mb-6; }
   .nice-form select { @apply block mb-6; }
 
+  .active { @apply underline; }
 
+
+  /*** Start of Pagy ***/
   .pagy-nav {
     @apply flex space-x-2;
   }
@@ -62,7 +65,7 @@
     &:active {
       @apply bg-gray-400 text-white;
     }
-
   }
+  /*** END of Pagy ***/
   
 }
