@@ -39,8 +39,14 @@ class BooksController < ApplicationController
     redirect_to books_path, alert: 'Book successfully deleted'
   end
 
-  def full_text
+  def show_plain_text
     @book = Book.find(params[:book_id])
+  end
+
+  def extract_plain_text
+    @book = Book.find(params[:book_id])
+    @book.epub_to_text
+    redirect_to @book
   end
 
   private

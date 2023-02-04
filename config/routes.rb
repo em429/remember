@@ -3,15 +3,13 @@ Rails.application.routes.draw do
   
   resources :annotations do
     get 'filter/:filter' => 'annotations#index',
-    on: :collection, as: 'filtered'
+        on: :collection,
+        as: 'filtered'
   end
   
-  # get '/filter/:filter' => 'annotations#index', as: 'filtered_annotations'
- 
-  
   resources :books do
-    post 'text_extractions/start', as: 'start_text_extraction'
-    get 'full_text'
+    get 'show_plain_text'
+    post 'extract_plain_text'
   end
   
   get 'import', to: 'annotations#import'
