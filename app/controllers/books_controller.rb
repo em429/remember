@@ -1,3 +1,5 @@
+# require 'converters'
+
 class BooksController < ApplicationController
   def index
     @books = Book.all
@@ -13,7 +15,12 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    
     if @book.save
+      # We do the epub->plaintext conversion after the save, otherwise
+      # the epub is not yet on disk.
+      @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
+      @book.save
       redirect_to @book, notice: 'Book added'
     else
       render :new, status: :unprocessable_entity
@@ -39,14 +46,8 @@ class BooksController < ApplicationController
     redirect_to books_path, alert: 'Book successfully deleted'
   end
 
-  def show_plain_text
+  def show_plaintext
     @book = Book.find(params[:book_id])
-  end
-
-  def extract_plain_text
-    @book = Book.find(params[:book_id])
-    @book.epub_to_text
-    redirect_to @book
   end
 
   private

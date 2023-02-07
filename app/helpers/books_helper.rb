@@ -18,13 +18,5 @@ module BooksHelper
       image_tag('book-cover-placeholder.jpg')
     end
   end
-
-  def full_text_extract_form(book)
-    if !book.full_text.blank?
-      link_to 'Extracted full text is available in the database for this book.',
-        book_show_plain_text_path(book)
-    else
-      button_to 'Extract Text', book_extract_plain_text_path(book), method: :post, class: 'btn'
-    end
-  end
+  
 end

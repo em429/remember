@@ -1,4 +1,4 @@
-require 'extract_highlights'
+#require 'converters'
 
 class AnnotationsController < ApplicationController
   def index
@@ -20,16 +20,16 @@ class AnnotationsController < ApplicationController
   end
 
   def import
-    extracted = extract_highlights(params[:opf_file])
-    extracted.each do |e|
-      # Rails.logger.debug "Creating #{e['annotation']['highlighted_text']}"
+    metadata_hashes = calibre_metadata_to_json(params[:opf_file])
+    metadata_hashes.each do |hash|
+      annotation_hash = hash['annotation']
       Annotation.create!(
-        highlighted_text: e['annotation']['highlighted_text'],
-        notes: e['annotation']['notes'],
-        start_cfi: e['annotation']['start_cfi'],
-        end_cfi: e['annotation']['end_cfi'],
-        timestamp: e['annotation']['timestamp'],
-        toc_family_titles: JSON.generate(e['annotation']['toc_family_titles']),
+        highlighted_text: annotation_hash['highlighted_text'],
+        notes: annotation_hash['notes'],
+        start_cfi: annotation_hash['start_cfi'],
+        end_cfi: annotation_hash['end_cfi'],
+        timestamp: annotation_hash['timestamp'],
+        toc_family_titles: JSON.generate(annotation_hash['toc_family_titles']),
         book_id: params[:book_id]
       )
     end

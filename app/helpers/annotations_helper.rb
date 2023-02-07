@@ -15,7 +15,7 @@ module AnnotationsHelper
   def show_neighbors_of(annotation)
     return 'No highlights' if annotation.highlighted_text.blank?
 
-    full_text = annotation.book.full_text
+    plaintext = annotation.book.plaintext
     original_hl = annotation.highlighted_text&.strip
 
     # We split and only search for the first part, before the newline
@@ -30,7 +30,7 @@ module AnnotationsHelper
     context = "((?:.*#{eol}){#{context_lines}})"
 
     regexp = /.*#{Regexp.escape(first_half)}.*#{eol}/
-    full_text =~ /^#{context}(#{regexp})#{context}/
+    plaintext =~ /^#{context}(#{regexp})#{context}/
 
     before = Regexp.last_match(1)
     # Here we don't readd the second half, (unlike in show_paragraph_of),
@@ -55,7 +55,7 @@ module AnnotationsHelper
   def show_paragraph_of(annotation)
     return 'No highlights' if annotation.highlighted_text.blank?
 
-    full_text = annotation.book.full_text
+    plaintext = annotation.book.plaintext
     original_hl = annotation.highlighted_text&.strip
 
     # We split and only search for the first part, before the newline
@@ -66,7 +66,7 @@ module AnnotationsHelper
     original_hl_without_newline = "#{first_half}#{second_half}"
 
     regexp = /.*#{Regexp.escape(first_half)}.*/
-    full_text =~ /#{regexp}/
+    plaintext =~ /#{regexp}/
 
     # Here we re-add the second half
     matched_paragraph = "#{Regexp.last_match}#{second_half}"

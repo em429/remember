@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   end
   
   resources :books do
-    get 'show_plain_text'
-    post 'extract_plain_text'
+    get 'show_plaintext'
   end
   
   get 'import', to: 'annotations#import'
