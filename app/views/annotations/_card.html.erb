@@ -26,12 +26,12 @@
     <%# Hidden by default, the full paragraph the highlight was made in,
         this is the first level of context. %>
     <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="hidden mb-6 main-text cursor-pointer">
-      <%= show_paragraph_of(annotation) %>
+      <%= show_context(annotation, 400) %>
     </p>
 
-    <%# Even more context: show the previous and subsequent lines as well %>
+    <%# Even more context %>
     <p class="hidden mb-6 cursor-pointer main-text" data-action="click->neighbors#hide click->paragraph#show_first click->neighbors#show_button" data-neighbors-target="item">
-      <%= show_neighbors_of(annotation) %>
+      <%= show_context(annotation, 800) %>
     </p>
 
   

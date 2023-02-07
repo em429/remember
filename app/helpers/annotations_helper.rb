@@ -12,74 +12,17 @@ module AnnotationsHelper
     render 'annotations/notes', annotation: annotation if annotation.notes
   end
 
-  def show_neighbors_of(annotation)
+  def show_context(annotation, radius)
     return 'No highlights' if annotation.highlighted_text.blank?
-
-    plaintext = annotation.book.plaintext
-    original_hl = annotation.highlighted_text&.strip
-
-    # We split and only search for the first part, before the newline
-    original_hl_split = original_hl.split("\n")
-
-    first_half = original_hl_split[0]
-    second_half = original_hl_split[1..].join(' ')
-    original_hl_without_newline = "#{first_half}#{second_half}"
-
-    eol = "\n"
-    context_lines = 2
-    context = "((?:.*#{eol}){#{context_lines}})"
-
-    regexp = /.*#{Regexp.escape(first_half)}.*#{eol}/
-    plaintext =~ /^#{context}(#{regexp})#{context}/
-
-    before = Regexp.last_match(1)
-    # Here we don't readd the second half, (unlike in show_paragraph_of),
-    # as it will be contained in $after regex match, so it would produce
-    # a duplicate line.
-    matched_paragraph = Regexp.last_match(2).to_s
-    after = Regexp.last_match(3)
-
-    # Return match with neighboring lines
-    if !matched_paragraph.blank?
-      # We split by the original highlight's first half
-      split = "#{before}#{matched_paragraph}#{after}".split(first_half)
-      raw("#{split[0]}<span class=\"bg-yellow-100\">#{first_half}</span>#{split[1]}")
+    context = highlight(
+      excerpt(annotation.book.plaintext, annotation.highlighted_text, radius: radius),
+      annotation.highlighted_text
+    )
+    if context.blank?
+      "Couldn't find a match for this annotation in the book."
     else
-      "Couldn't load extra context."
+      context
     end
   end
 
-  # Grep wouldn't find 'cross-boundary' highlights; e.g. anything with newlines (\n) in them.
-  #   - Because of this, we split by \n and only search for the first part
-  #   - We re-add the consequential parts to the output after search matched
-  def show_paragraph_of(annotation)
-    return 'No highlights' if annotation.highlighted_text.blank?
-
-    plaintext = annotation.book.plaintext
-    original_hl = annotation.highlighted_text&.strip
-
-    # We split and only search for the first part, before the newline
-    original_hl_split = original_hl&.split("\n")
-
-    first_half = original_hl_split[0]
-    second_half = original_hl_split[1..].join(' ')
-    original_hl_without_newline = "#{first_half}#{second_half}"
-
-    regexp = /.*#{Regexp.escape(first_half)}.*/
-    plaintext =~ /#{regexp}/
-
-    # Here we re-add the second half
-    matched_paragraph = "#{Regexp.last_match}#{second_half}"
-    if !matched_paragraph.blank?
-      split = matched_paragraph.to_s.split(original_hl_without_newline)
-      # Add yellow color to the original highlighted text (without newlines now :) )
-      raw("#{split[0]}<span class=\"bg-yellow-100\">#{original_hl_without_newline}</span>#{split[1]}")
-
-    else
-      # FIXME: If the highlight doesn't match due to other errors, show original for now.
-      #   - e.g. nokogiri strips some special chars when converting epub to text,
-      #     but the highlights have it still..
-      "Couldn't load containing paragraph, likely due to HTML entity character mismatch."
-    end
-  end
 end

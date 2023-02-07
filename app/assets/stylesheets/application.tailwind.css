@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* When showing context of annotations, the original text gets highlighted using
+     the Rails built-in highlight helper, which adds a <mark> tag by default. */
+  mark { @apply bg-yellow-200; }
+}
+
 @layer components {
   .tag {
-    @apply p-1 text-gray-400 text-xs font-medium w-fit border
+    @apply p-1 text-gray-400 text-xs font-medium w-fit border;
   }
 
   .btn {
