@@ -19,7 +19,7 @@ module AnnotationsHelper
       annotation.highlighted_text
     )
     if context.blank?
-      "Couldn't find a match for this annotation in the book."
+      "Couldn't match the highlight in the book. This is a known bug caused by very slight whitespace mismatches, working on a fix."
     else
       context
     end
