@@ -21,8 +21,11 @@
     @apply text-lg font-medium px-4 py-2 bg-gray-200;
   }
 
-  .main-text {
-    @apply text-gray-700 text-lg
+  .card-text {
+    white-space: pre-line;
+    /* IMPORTANT: The negative margin below is set to compensate for the effect of
+       the pre-line white space setting above. */
+    @apply mt-[-25px] text-gray-700 text-lg;
   }
 
   .smallcaps { font-variant: small-caps; }

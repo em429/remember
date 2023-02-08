@@ -1,5 +1,5 @@
 <div data-controller="paragraph neighbors">
-<div class="p-6 mb-8 shadow-md border " >
+<div class="p-6 mb-8 shadow-md border" >
   <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
     <span>
       <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
@@ -19,18 +19,20 @@
   </section>
 
     <%# Shown by default, the highlighted text, without extra context %>
-    <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="mb-6 main-text cursor-pointer">
+    <p
+      class="mb-6 card-text cursor-pointer"
+      data-action="click->paragraph#toggle" data-paragraph-target="item">
       <%= annotation.highlighted_text %>
     </p>
 
     <%# Hidden by default, the full paragraph the highlight was made in,
         this is the first level of context. %>
-    <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="hidden mb-6 main-text cursor-pointer">
+    <p data-action="click->paragraph#toggle" data-paragraph-target="item" class="hidden mb-6 card-text cursor-pointer">
       <%= show_context(annotation, 400) %>
     </p>
 
     <%# Even more context %>
-    <p class="hidden mb-6 cursor-pointer main-text" data-action="click->neighbors#hide click->paragraph#show_first click->neighbors#show_button" data-neighbors-target="item">
+    <p class="hidden mb-6 cursor-pointer card-text" data-action="click->neighbors#hide click->paragraph#show_first click->neighbors#show_button" data-neighbors-target="item">
       <%= show_context(annotation, 800) %>
     </p>
 

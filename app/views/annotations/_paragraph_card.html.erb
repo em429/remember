@@ -1,6 +1,6 @@
 <div class="p-6 mb-8 shadow-md border " >
-  <p class="prose mb-6">
-  <%= show_context(annotation, 300) %>
+  <p class="card-text mb-6">
+    <%= show_context(annotation, 300) %>
   </p>
   <%= link_to annotation do %>
     <%= time_ago_in_words(annotation.timestamp) %> ago
