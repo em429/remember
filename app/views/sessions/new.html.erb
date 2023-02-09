@@ -1,0 +1,24 @@
+<h1 class="mb-8 text-4xl font-bold">Log in</h1>
+
+<%= form_with(url: login_path) do |form| %>
+
+  <div class="mb-5">
+    <%= form.label :email %>
+    <%= form.text_field :email,
+        class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password %>
+    <%= form.password_field :password,
+        class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  </div>
+
+  <div class="my-5">
+    <%= form.submit "Log in", class: "btn-primary" %>
+  </div>
+
+  <p>New user? <%= link_to "Sign up now!", signup_path,
+     class: "text-gray-600 underline" %></p>
+  
+<% end %>

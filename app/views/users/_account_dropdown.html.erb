@@ -1,0 +1,28 @@
+<div data-controller="dropdown" class="relative">
+  
+    <button data-action="dropdown#toggle click@window->dropdown#hide"
+            class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 md:w-auto"
+    >
+      logged in as <%= current_user.email %> <%= render 'svgs/chevron-down' %>
+    </button>
+    
+  <div
+    data-dropdown-target="menu"
+    class="hidden transition transform font-normal bg-white divide-y divide-gray-200 rounded shadow w-44 origin-top-right right-0 absolute "
+    data-transition-enter-from="opacity-0 scale-95"
+    data-transition-enter-to="opacity-100 scale-100"
+    data-transition-leave-from="opacity-100 scale-100"
+    data-transition-leave-to="opacity-0 scale-95"
+  >
+    <a href="#" data-action="dropdown#toggle">
+      <%= link_to current_user, class: "block px-4 py-2 hover:bg-gray-100" do %>
+        Profile
+      <% end %>
+    </a>
+    <a href="#" data-action="dropdown#toggle">
+      <%= link_to logout_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", data: { "turbo-method": :delete } do %>
+        Log out
+      <% end %>
+    </a>
+  </div>
+</div>
