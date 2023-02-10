@@ -1,5 +1,3 @@
-#require 'converters'
-
 class AnnotationsController < ApplicationController
   def index
     case params[:filter]
