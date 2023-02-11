@@ -1,12 +1,11 @@
 <% flash.each do |flash_type, message| %>
-  <%# IMPORTANT: We do an explicit remvoe on animationend above using a simple stimulus controller.
-      The reason is that even after fading out, the element remains there, causing glitches like
-      changing the cursor when hovering around that idea.
+  <%# IMPORTANT: The animation is set-up in the flash stimulus controller.
+      We explicitly remove the DOM element when the animation is over, to
+      avoid glitches like the cursor changing when hovering over it.
   %>
   <div
-    class="p-2 text-lg border animate-appear_then_fade shadow-md bg-gray-50 border-gray-200"
-    data-controller="removals"
-    data-action="animationend->removals#remove"
+    data-controller="flash"
+    class="p-2 text-lg border shadow-md bg-gray-50 border-gray-200"
   >
     <%= message %>
   </div>
