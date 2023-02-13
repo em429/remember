@@ -2,19 +2,19 @@ class AnnotationsController < ApplicationController
   def index
     case params[:filter]
     when "random"
-      @annotations = Annotation.random_single
+      @annotations = current_user.annotations.random_single
     when "all"
-      @pagy, @annotations = pagy(Annotation.random_all)
+      @pagy, @annotations = pagy(current_user.annotations.random_all)
     when "recent"
-      @pagy, @annotations = pagy(Annotation.recent)
+      @pagy, @annotations = pagy(current_user.annotations.recent)
     else # only show a random one by default
-      @annotations = Annotation.random_single
+      @annotations = current_user.annotations.random_single
       
     end
   end
 
   def show
-    @annotation = Annotation.find(params[:id])
+    @annotation = current_user.annotations.find(params[:id])
   end
 
   def import

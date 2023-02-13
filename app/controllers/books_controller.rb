@@ -2,19 +2,18 @@ require 'converters'
 
 class BooksController < ApplicationController
   # Index is already rendered by user's own page, create and new needs id so we skip
-  #before_action :check_user_owns_page, except: %i[index create new]
+  before_action :check_user_owns_page, except: %i[index create new show_plaintext]
   
   def index
-    #@books = current_user.books
-    @books = Book.all
+    @books = current_user.books
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
   end
 
   def new
-    @book = Book.new
+    @book = current_user.books.new
   end
 
   def create
@@ -32,11 +31,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
     if @book.update(book_params)
       redirect_to @book
     else
@@ -45,13 +44,13 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
     @book.destroy
     redirect_to books_path, alert: 'Book successfully deleted'
   end
 
   def show_plaintext
-    @book = Book.find(params[:book_id])
+    @book = current_user.books.find(params[:book_id])
   end
 
   private
@@ -61,8 +60,13 @@ class BooksController < ApplicationController
   end
 
   def check_user_owns_page
-    @book = current_user.books.find(params[:id])
-    redirect_to(root_url, status: :see_other) if @book.nil?
+    @book = current_user.books.find_by_id(params[:id])
+    if @book.nil?
+      redirect_to(
+        root_url,
+        status: :see_other,
+        notice: "Couldn't find book with id #{params[:id]}")
+    end
   end
   
 end
