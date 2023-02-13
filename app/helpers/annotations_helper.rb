@@ -1,10 +1,10 @@
 module AnnotationsHelper
-  def render_paragraph_card(annotation)
-    render 'annotations/paragraph_card', annotation: annotation unless annotation.highlighted_text.blank?
+  def render_simple_card(annotation)
+    render 'annotations/simple_card', annotation: annotation unless annotation.highlighted_text.blank?
   end
 
-  def render_annotation_card(annotation)
-    render 'annotations/card', annotation: annotation unless annotation.highlighted_text.blank?
+  def render_full_card(annotation)
+    render 'annotations/full_card', annotation: annotation unless annotation.highlighted_text.blank?
   end
 
   # Displays notes if there are any
