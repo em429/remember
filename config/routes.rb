@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'annotations#index'
 
   ### Users & Signup
-  resources :users, param: :user_id
+  resources :users, param: :user_id, except: [:index]
   get 'signup', to: 'users#new'
   ###
 
@@ -15,13 +15,12 @@ Rails.application.routes.draw do
   
 
   ### Annotations
-  resources :annotations do
+  resources :annotations, only: [:index, :show] do
     get 'filter/:filter' => 'annotations#index',
         on: :collection,
         as: 'filtered'
+    post 'import', on: :collection, to: 'annotations#import'
   end
-  get 'import', to: 'annotations#import'
-  post 'import', to: 'annotations#import'
   ###
 
   ### Books

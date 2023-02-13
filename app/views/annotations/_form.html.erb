@@ -1,4 +1,4 @@
-<%= form_with url: '/import' do |f| %>
+<%= form_with url: import_annotations_path do |f| %>
   <%= f.label :opf_file, "Import Annotations", class:"block mb-2 text-md font-medium text-gray-900" %>
   <%= f.file_field :opf_file, class: "block mb-1 w-full text-sm text-gray-900 border border-gray-300 p-1 cursor-pointer bg-gray-50 focus:outline-none" %>
   <p class="text-xs text-gray-500" id="file_input_help">Calibre OPF Metadata File (.opf)</p>
