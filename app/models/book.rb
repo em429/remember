@@ -1,5 +1,9 @@
 class Book < ApplicationRecord
+  ## Relations
+  belongs_to :user
   has_many :annotations, dependent: :destroy
+
+  ## Attachments
   has_one_attached :epub
   has_one_attached :cover
   

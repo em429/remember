@@ -1,5 +1,11 @@
+require 'converters'
+
 class BooksController < ApplicationController
+  # Index is already rendered by user's own page, create and new needs id so we skip
+  #before_action :check_user_owns_page, except: %i[index create new]
+  
   def index
+    #@books = current_user.books
     @books = Book.all
   end
 
@@ -12,7 +18,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
     
     if @book.save
       # We do the epub->plaintext conversion after the save, otherwise
@@ -51,6 +57,12 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(%i[title author epub cover fiction])
+    params.require(:book).permit(%i[title author epub cover fiction user_id])
   end
+
+  def check_user_owns_page
+    @book = current_user.books.find(params[:id])
+    redirect_to(root_url, status: :see_other) if @book.nil?
+  end
+  
 end
