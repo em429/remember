@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   ## Relations
   has_many :books, dependent: :destroy
+  has_many :annotations, through: :books
 
   ## Callbacks
   before_save do
