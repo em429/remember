@@ -45,6 +45,6 @@ processes = []
 
 [build]  
   [build.args]
-    BUNDLER_VERSION = "2.3.9"
+    BUNDLER_VERSION = "2.3.7"
     NODE_VERSION = "16" 
-    RUBY_VERSION = "3.0.4"
+    RUBY_VERSION = "3.1.0"
