@@ -10,14 +10,15 @@ Context matters. Clicking the highlight pops up the full paragraph where the it 
 
 Additionally, the book, the chapter (and subchapters if any) are displayed on each highlight's card.
 
-My self-hosted Readwise alternative. Currently in PoC state, with only Calibre annotation import support and some hacky code.
+My self-hosted Readwise alternative. Currently in PoC state, with only Calibre annotation import support.
 
 ### Roadmap
 - [X] add book import feature with full text extract
 - [X] import Calibre .opf and extract highlights from it
 - [X] add PoC context features
-- [ ] add hypothes.is import features
+- [X] rewrite context features (PoC implementation had some ..uhh.. caveats :))
+- [X] convert html entities when importing epubs
 - [ ] add spaced repetition
-- [ ] make context features more versatile (current implementation has some caveats)
+- [ ] add hypothes.is import features
 - [ ] implement an adapter layer for easily adding annotation sources later
 - [ ] write import adapters: kindle, ibooks, sioyek ..etc
