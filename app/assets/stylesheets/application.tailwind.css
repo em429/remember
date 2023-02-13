@@ -21,6 +21,8 @@
     @apply text-lg font-medium px-4 py-2 bg-gray-200 border border-gray-300 ;
   }
 
+  .link { @apply text-gray-600 underline; }
+
   .card-text {
     white-space: pre-line;
     /* IMPORTANT: The negative margin below is set to compensate for the effect of
