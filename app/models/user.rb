@@ -17,4 +17,14 @@ class User < ApplicationRecord
                     format: { with: /\S+@\S+/ },
                     uniqueness: { case_sensitive: false }
   
+  PASSWORD_REQUIREMENTS = /\A
+    (?=.{8,}) # At least 8 characters long
+    (?=.*\d) # At least one number
+    (?=.*[a-z]) # At least one lowercase
+  /x
+  validates :password, format: {
+    with: PASSWORD_REQUIREMENTS,
+    message: 'must be 8+ characters and must include a number'
+  }
+  
 end
