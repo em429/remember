@@ -37,6 +37,8 @@ class BooksController < ApplicationController
   def update
     @book = current_user.books.find(params[:id])
     if @book.update(book_params)
+      @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
+      @book.save
       redirect_to @book
     else
       render :new, status: :unprocessable_entity
