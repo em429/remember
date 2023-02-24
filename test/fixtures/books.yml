@@ -15,7 +15,7 @@ two:
   user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
 
 missingtext:
-  title: "Missing Text Book"
+  title: "Missing Attachments Book"
   author: "Mary Doe"
   fiction: false
   user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
