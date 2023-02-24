@@ -22,8 +22,10 @@ class BooksController < ApplicationController
     if @book.save
       # We do the epub->plaintext conversion after the save, otherwise
       # the epub is not yet on disk.
-      @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
-      @book.save
+      if @book.epub_on_disk.present?
+        @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
+        @book.save
+      end
       redirect_to @book, notice: 'Book added'
     else
       render :new, status: :unprocessable_entity
@@ -36,9 +38,12 @@ class BooksController < ApplicationController
 
   def update
     @book = current_user.books.find(params[:id])
+    # Same as in create, we convert after update
     if @book.update(book_params)
-      @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
-      @book.save
+      if @book.epub_on_disk.present?
+        @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
+        @book.save
+      end
       redirect_to @book
     else
       render :new, status: :unprocessable_entity
