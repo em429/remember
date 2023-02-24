@@ -2,12 +2,20 @@
 
 one:
   title: "Test book 1"
-  author: "John Doe"
+  author: "Jane Doe"
   plaintext: MyText
   fiction: true
+  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
 
 two:
   title: "How to do everything"
-  author: "John Doe"
+  author: "Mary Doe"
   plaintext: MyText
-  fiction: true
+  fiction: false
+  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
+
+missingtext:
+  title: "Missing Text Book"
+  author: "Mary Doe"
+  fiction: false
+  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
