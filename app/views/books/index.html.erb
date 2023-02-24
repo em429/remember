@@ -20,9 +20,9 @@
           </div>
 
           <%# Right side: book cover image %>
-          <section>
+          <section class="max-w-[150px]">
             <%= link_to book do %>
-              <%= image_tag book.cover, class: "max-w-[150px]" %>
+              <%= book_cover(book) %>
             <% end %>
           </section>
           
