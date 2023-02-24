@@ -19,9 +19,13 @@
     
   
     <div class="mb-8">
-      <%=
-        link_to 'Extracted full text is available in the database for this book.', book_show_plaintext_path(@book)
-      %>
+      <% if @book.plaintext.blank? %>
+          No plaintext available for this book. Upload an epub on the edit page.
+      <% else %>
+        <%=
+          link_to 'Extracted plaintext is available in the database for this book.', book_show_plaintext_path(@book)
+        %>
+      <% end %>
       
     </div>
     
