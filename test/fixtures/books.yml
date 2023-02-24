@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  author: MyString
-  full_text: MyText
+  title: "Test book 1"
+  author: "John Doe"
+  plaintext: MyText
+  fiction: true
 
 two:
-  title: MyString
-  author: MyString
-  full_text: MyText
+  title: "How to do everything"
+  author: "John Doe"
+  plaintext: MyText
+  fiction: true
