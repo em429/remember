@@ -9,6 +9,8 @@ class Book < ApplicationRecord
   
   def epub_on_disk
     ActiveStorage::Blob.service.path_for(epub.key)
+    rescue NoMethodError
+      nil
   end
 
 end

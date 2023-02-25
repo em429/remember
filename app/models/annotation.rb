@@ -6,6 +6,10 @@ class Annotation < ApplicationRecord
   scope :recent, -> { all.order(timestamp: :desc) }
 
   def chapters
-    JSON.parse(toc_family_titles)
+    if toc_family_titles.present?
+      JSON.parse(toc_family_titles)
+    else
+      nil
+    end
   end
 end
