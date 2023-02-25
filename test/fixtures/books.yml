@@ -1,21 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: "Test book 1"
-  author: "Jane Doe"
+  title: "Test Book 1"
+  author: "John Doe"
   plaintext: MyText
   fiction: true
-  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
 
 two:
-  title: "How to do everything"
+  title: "Test Book 2"
   author: "Mary Doe"
   plaintext: MyText
   fiction: false
-  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
 
 missingtext:
   title: "Missing Attachments Book"
   author: "Mary Doe"
   fiction: false
-  user_id: <%= ActiveRecord::FixtureSet.identify(:three) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
+

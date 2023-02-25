@@ -4,11 +4,11 @@ class BooksTest < ApplicationSystemTestCase
   setup do
     @book = books(:one)
     @missing_attachments_book = Book.find_by(title: "Missing Attachments Book")
-    @user = User.find_by(email: "default-test@test.com")
+    @user = User.find_by(email: "mary@test.com")
 
     # Login
     visit root_url
-    fill_in 'Email', with: 'default-test@test.com'
+    fill_in 'Email', with: 'mary@test.com'
     fill_in 'Password', with: 'asdf1234'
     click_button "Log in"
     assert page.has_content? 'Profile' 
@@ -23,12 +23,12 @@ class BooksTest < ApplicationSystemTestCase
     visit books_url
     click_link 'Add Book'
     assert page.has_content? 'Title'
-    attach_file('book[epub]', "#{Rails.root}/test/fixtures/files/book.epub")
+    attach_file('book[epub]', "#{Rails.root}/test/fixtures/files/genius.epub")
     attach_file('book[cover]', "#{Rails.root}/test/fixtures/files/cover.jpg")
-    fill_in 'Title', with: 'Test Book'
+    fill_in 'Title', with: 'Test Uploaded Book'
     fill_in 'Author', with: 'John Doe'
     click_button 'Add Book'
-    assert page.has_content? 'Test Book'
+    assert page.has_content? 'Test Uploaded Book'
     assert page.has_content? 'by John Doe'
     assert page.has_content? 'Non-Fiction'
     assert page.has_content? 'Extracted plaintext is available in the database for this book.'
@@ -46,7 +46,7 @@ class BooksTest < ApplicationSystemTestCase
     click_link 'Edit'
     assert page.has_content? 'Editing Missing Attachments Book'
     attach_file('book[cover]', "#{Rails.root}/test/fixtures/files/cover.jpg")
-    attach_file('book[epub]', "#{Rails.root}/test/fixtures/files/book.epub")
+    attach_file('book[epub]', "#{Rails.root}/test/fixtures/files/genius.epub")
     fill_in "Author", with: "Mary Doh"
     click_button 'Add Book'
     assert page.has_content? 'Mary Doh'

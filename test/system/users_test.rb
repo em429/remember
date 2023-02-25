@@ -1,7 +1,4 @@
 require "application_system_test_case"
-# Make sure to also set WD_CHROME_PATH chrome / chromium the same version as chromedriver
-Selenium::WebDriver::Chrome::Service.driver_path = ENV['WD_CHROMEDRIVER_PATH']
-
 
 class UsersTest < ApplicationSystemTestCase
   test "should let successful signup" do
@@ -17,10 +14,10 @@ class UsersTest < ApplicationSystemTestCase
 
   test "should let valid login" do
     visit root_url
-    fill_in 'Email', with: 'default-test@test.com'
+    fill_in 'Email', with: 'mary@test.com'
     fill_in 'Password', with: 'asdf1234'
     click_button "Log in"
-    assert page.has_content? 'default-test@test.com' 
+    assert page.has_content? 'mary@test.com' 
   end
 
   test "should not let invalid login" do
