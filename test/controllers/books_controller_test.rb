@@ -5,8 +5,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @book = books(:one)
     @user = users(:mary)
 
-    # Log-in
-    post session_url, params: { email: "mary@test.com", password: "asdf1234" }
+    sign_in_as(@user)
     assert_redirected_to @user
   end
 
