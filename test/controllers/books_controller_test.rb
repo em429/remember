@@ -3,10 +3,10 @@ require "test_helper"
 class BooksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @book = books(:one)
-    @user = User.find_by(email: "default-test@test.com")
+    @user = users(:mary)
 
     # Log-in
-    post session_url, params: { email: "default-test@test.com", password: "asdf1234" }
+    post session_url, params: { email: "mary@test.com", password: "asdf1234" }
     assert_redirected_to @user
   end
 
