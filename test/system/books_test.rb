@@ -3,8 +3,8 @@ require "application_system_test_case"
 class BooksTest < ApplicationSystemTestCase
   setup do
     @book = books(:one)
-    @missing_attachments_book = Book.find_by(title: "Missing Attachments Book")
-    @user = User.find_by(email: "mary@test.com")
+    @missing_attachments_book = books(:missing_attachments)
+    @user = users(:mary)
 
     # Login
     visit root_url
@@ -19,7 +19,7 @@ class BooksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Books"
   end
 
-  test "should create book" do
+  test "should create Book" do
     visit books_url
     click_link 'Add Book'
     assert page.has_content? 'Title'
@@ -36,10 +36,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test "should update Book" do
-    visit book_url(@book)
-
-    click_link 'My Books'
-    click_link 'Missing Attachments Book'
+    visit book_url(@missing_attachments_book)
     assert page.has_content? 'No plaintext'
     
     # Add missing cover and epub, change Author
@@ -55,17 +52,20 @@ class BooksTest < ApplicationSystemTestCase
 
   test "should destroy Book" do
     visit book_url(@book)
-    click_button "Delete", match: :first
-
-    assert_text "Book was successfully destroyed"
+    accept_alert do
+      click_button "Delete", match: :first
+    end
+    assert_text "Book successfully deleted"
   end
 
   test "should show index with missing attachments" do
     visit books_url
+    assert page.has_content? "Test Book 1"
     assert page.has_content? "Missing Attachments Book"
+    assert page.has_content? "Book With Attachments"
   end
 
-  test "should show book with missing attachments" do
+  test "should show Book with missing attachments" do
     visit book_url(@missing_attachments_book)
     assert page.has_content? 'No plaintext'
   end

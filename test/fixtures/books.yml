@@ -5,18 +5,24 @@ one:
   author: "John Doe"
   plaintext: MyText
   fiction: true
-  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
+  user: mary
 
 two:
   title: "Test Book 2"
   author: "Mary Doe"
   plaintext: MyText
   fiction: false
-  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
+  user: mary
 
-missingtext:
+missing_attachments:
   title: "Missing Attachments Book"
   author: "Mary Doe"
   fiction: false
-  user_id: <%= ActiveRecord::FixtureSet.identify(:mary) %>
+  user: mary
 
+with_attachments:
+  title: "Book With Attachments"
+  author: "Rudolf Doe"
+  plaintext: "By writing continuously, you force the edit-crazy part of your mind into a subordinate position, so the idea-producing part can keep spitting out words."
+  fiction: true
+  user: mary
