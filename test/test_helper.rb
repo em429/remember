@@ -15,3 +15,14 @@ class ActiveSupport::TestCase
   end
   
 end
+
+module SignInHelper
+  def sign_in_as(user)
+    post session_url(email: user.email, password: "asdf1234")
+    # TODO: add assert for flash: Welcome back #{user}
+  end
+end
+
+class ActionDispatch::IntegrationTest
+  include SignInHelper
+end
