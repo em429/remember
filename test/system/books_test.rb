@@ -7,11 +7,12 @@ class BooksTest < ApplicationSystemTestCase
     @user = users(:mary)
 
     # Login
-    visit root_url
-    fill_in 'Email', with: 'mary@test.com'
-    fill_in 'Password', with: 'asdf1234'
-    click_button "Log in"
-    assert page.has_content? 'Profile' 
+    # visit root_url
+    # fill_in 'Email', with: 'mary@test.com'
+    # fill_in 'Password', with: 'asdf1234'
+    # click_button "Log in"
+    # assert page.has_content? 'Profile'
+    capybara_log_in_as(@user)
   end
 
   test "visiting the index" do
