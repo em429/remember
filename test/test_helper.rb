@@ -16,13 +16,12 @@ class ActiveSupport::TestCase
   
 end
 
-module SignInHelper
-  def sign_in_as(user)
-    post session_url(email: user.email, password: "asdf1234")
-    # TODO: add assert for flash: Welcome back #{user}
+# There is another login helper defined for system tests in application_system_test_case.rb
+# called capybara_log_in_as()
+class ActionDispatch::IntegrationTest
+  def log_in_as(user, password: 'asdf1234')
+    post session_url(email: user.email, password: password)
+    assert_equal "Welcome back, #{user.username}!", flash[:notice]
   end
 end
 
-class ActionDispatch::IntegrationTest
-  include SignInHelper
-end

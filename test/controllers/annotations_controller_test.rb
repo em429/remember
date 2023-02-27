@@ -5,7 +5,7 @@ class AnnotationsControllerTest < ActionDispatch::IntegrationTest
     @annotation = annotations(:one)
     @user = users(:mary)
     
-    sign_in_as(@user)
+    log_in_as(@user)
     assert_redirected_to @user
   end
 

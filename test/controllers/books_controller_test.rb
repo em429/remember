@@ -5,7 +5,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @book = books(:one)
     @user = users(:mary)
 
-    sign_in_as(@user)
+    log_in_as(@user)
     assert_redirected_to @user
   end
 
