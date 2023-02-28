@@ -25,8 +25,8 @@
               modules = [
                 {
                   languages.ruby.enable = true;
-
                   languages.ruby.versionFile = ./.ruby-version;
+                  difftastic.enable = true;
                   
                   # https://devenv.sh/reference/options/
                   packages = [
