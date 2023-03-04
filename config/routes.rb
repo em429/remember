@@ -1,32 +1,35 @@
 Rails.application.routes.draw do
   root 'annotations#index'
 
-  ### Users & Signup
-  resources :users, param: :user_id, except: [:index]
-  get 'signup', to: 'users#new'
-  ###
 
-  ### Sessions
-  resource :session, only: [:new, :create, :destroy]
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-  ###
-  
+  resources :users, except: [ :index ]
 
-  ### Annotations
-  resources :annotations, only: [:index, :show] do
+
+  resource :session, only: [ :new, :create, :destroy ]
+
+
+  resources :books do
+    # Add plaintext nested inside member to keep it's param as id, not book_id
+    member do
+      resource :plaintext, only: [ :show ],
+        controller: 'book_plaintexts', as: 'book_plaintext'
+    end
+  end
+
+
+  resources :annotations, only: [ :index, :show ] do
     get 'filter/:filter' => 'annotations#index',
         on: :collection,
         as: 'filtered'
     post 'import', on: :collection, to: 'annotations#import'
   end
-  ###
 
-  ### Books
-  resources :books do
-    get 'show_plaintext'
-  end
-  ###
+
+  # URL aliases, must map to an existing canonical URL.
+  # This is strictly for aesthetics, use the canonical paths in code, always.
+  get 'signup', to: 'users#new'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
 end

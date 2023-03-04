@@ -23,7 +23,7 @@
           No plaintext available for this book. Upload an epub on the edit page.
       <% else %>
         <%=
-          link_to 'Extracted plaintext is available in the database for this book.', book_show_plaintext_path(@book)
+          link_to 'Extracted plaintext is available in the database for this book.', book_plaintext_path(@book)
         %>
       <% end %>
       

@@ -1,0 +1,2 @@
+module BookPlaintextsHelper
+end

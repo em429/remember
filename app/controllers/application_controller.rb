@@ -13,6 +13,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_user_owns_page
+    @book = current_user.books.find(params[:id])
+    if @book.nil?
+      redirect_to(
+        root_url,
+        status: :see_other,
+        notice: "Couldn't find book with id #{params[:id]}")
+    end
+  end
+
   helper_method :current_user
 
 end
