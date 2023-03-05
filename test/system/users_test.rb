@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
+  setup do
+    @user = FactoryBot.create(:user)
+  end
+
   test "should let successful signup" do
     visit root_url
     click_on 'Sign up now!'
@@ -14,16 +18,16 @@ class UsersTest < ApplicationSystemTestCase
 
   test "should let valid login" do
     visit root_url
-    fill_in 'Email', with: 'mary@test.com'
-    fill_in 'Password', with: 'asdf1234'
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
     click_button "Log in"
-    assert page.has_content? 'mary@test.com' 
+    assert page.has_content? @user.email 
   end
 
   test "should not let invalid login" do
     visit root_url
     fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'asdf'
+    fill_in 'Password', with: 'asdfasdf123'
     click_on 'Log in'
     assert page.has_content? 'Invalid' 
   end

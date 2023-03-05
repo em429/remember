@@ -1,9 +1,0 @@
-test_epub:
-  name: epub
-  record: with_attachments (Book)
-  blob: book_epub_blob
-
-test_cover:
-  name: cover
-  record: with_attachments (Book)
-  blob: book_cover_blob

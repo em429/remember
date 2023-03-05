@@ -1,2 +1,0 @@
-book_epub_blob: <%= ActiveStorage::FixtureSet.blob filename: "genius.epub", service_name: "test_fixtures" %>
-book_cover_blob: <%= ActiveStorage::FixtureSet.blob filename: "cover.jpg", service_name: "test_fixtures" %>
