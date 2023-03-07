@@ -77,7 +77,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
+
+  # Disable auto-update of webdrivers: this would cause issues with the nix based setup.
+  # We install chromedriver and set the necessary env var in flake.nix
+  # gem 'webdrivers'
 end
 
 gem "tailwindcss-rails", "~> 2.0"

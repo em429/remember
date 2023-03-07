@@ -42,6 +42,7 @@
                   ];
 
                   enterShell = ''
+                    export WD_CHROME_PATH=${pkgs.ungoogled-chromium}/bin/chromium
                     bundle
                   '';
                 }
