@@ -17,12 +17,13 @@ class AnnotationsController < ApplicationController
     @annotation = current_user.annotations.find(params[:id])
   end
 
+  # FIXME: move this to it's own model
   def import
     metadata_hashes = calibre_metadata_to_json(params[:opf_file])
     metadata_hashes.each do |hash|
       annotation_hash = hash['annotation']
       Annotation.create!(
-        highlighted_text: annotation_hash['highlighted_text'],
+        highlighted_text: normalize_text(annotation_hash['highlighted_text']),
         notes: annotation_hash['notes'],
         start_cfi: annotation_hash['start_cfi'],
         end_cfi: annotation_hash['end_cfi'],

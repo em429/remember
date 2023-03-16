@@ -15,7 +15,11 @@ module AnnotationsHelper
   def show_context(annotation, radius)
     return 'No highlights' if annotation.highlighted_text.blank?
     context = highlight(
-      excerpt(annotation.book.plaintext, annotation.highlighted_text, radius: radius),
+      excerpt(
+        annotation.book.plaintext,
+        annotation.highlighted_text,
+        radius: radius
+      ),
       annotation.highlighted_text
     )
     if context.blank?

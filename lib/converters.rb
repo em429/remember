@@ -11,6 +11,10 @@ def calibre_metadata_to_json(opf_file)
   annotations
 end
 
+def normalize_text(target)
+  target.gsub(/[\r\n\t]/, " ").squeeze(" ")
+end
+
 def epub_to_plaintext(file)
   full_string = ''
 
@@ -22,5 +26,6 @@ def epub_to_plaintext(file)
     parsed_page.css('style, script').remove
     full_string += parsed_page
   end
-  full_string
+
+  normalize_text(full_string)
 end
