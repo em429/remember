@@ -22,6 +22,7 @@ class AnnotationsController < ApplicationController
     metadata_hashes = calibre_metadata_to_json(params[:opf_file])
     metadata_hashes.each do |hash|
       annotation_hash = hash['annotation']
+      next if annotation_hash['highlighted_text'].blank?
       Annotation.create!(
         highlighted_text: normalize_text(annotation_hash['highlighted_text']),
         notes: annotation_hash['notes'],
