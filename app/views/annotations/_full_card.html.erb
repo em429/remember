@@ -19,25 +19,27 @@
 
   </section>
 
-    <%# Shown by default, the highlighted text, without extra context %>
+    <%# Excerpt Index 0: Shown by default, the highlighted text, without extra context %>
     <p
       class="mb-6 card-text cursor-pointer"
       data-context-target="excerpt" data-action="">
       <%= annotation.highlighted_text %>
     </p>
 
+    <%# Excerpt Index 1: Hidden by default, context excerpt with radius of 400 %>
     <p data-context-target="excerpt" data-action=""
        class="mb-6 card-text cursor-pointer">
       <%= show_context(annotation, 400) %>
     </p>
 
-    <%# Even more context %>
+    <%# Excerpt Index 2: Hidden by default, even more context using excerpt %>
     <p data-context-target="excerpt" data-action=""
        class="mb-6 cursor-pointer card-text">
       <%= show_context(annotation, 800) %>
     </p>
 
   
+  <%# Bottom metadata and context section %>
   <section class="text-sm text-gray-500 flex gap-2 justify-between">
     <span>
       <%= link_to annotation do %>
@@ -45,10 +47,12 @@
       <% end %>
     </span>
     
-    <button data-action="context#less" class="text-xs px-2 border text-gray-600">
+    <%# Context buttons %>
+    <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border text-gray-600">
       + less context +
     </button>
-    <button data-action="context#more" class="text-xs px-2 border text-gray-600">
+
+    <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border text-gray-600">
       + more context +
     </button>
         
