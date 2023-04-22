@@ -1,9 +1,11 @@
 require "test_helper"
 
+# TODO: fix outdated tests, all failing now
+
 class BooksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @book = books(:one)
-    @user = users(:mary)
+    @book = FactoryBot.create(:book)
+    @user = FactoryBot.create(:user)
 
     log_in_as(@user)
     assert_redirected_to @user

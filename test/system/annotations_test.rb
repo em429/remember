@@ -5,8 +5,6 @@ class AnnotationsTest < ApplicationSystemTestCase
   setup do
     @user = FactoryBot.create(:user)
     genius_book_path = "#{Rails.root}/test/factories/files/genius/book.epub"
-    genius_matching_annotation =
-      'By writing continuously, you force the edit-crazy part of your mind into a subordinate position'
     @genius = FactoryBot.create(:book,
       user: @user,
       epub_path: genius_book_path,
@@ -29,6 +27,8 @@ class AnnotationsTest < ApplicationSystemTestCase
     # Import annotations
      attach_file('opf_file', "#{Rails.root}/test/factories/files/genius/metadata.opf")
      click_button 'Import'
+    genius_matching_annotation =
+      'By writing continuously, you force the edit-crazy part of your mind into a subordinate position'
      assert page.has_content? genius_matching_annotation
      
      # Visit a single annotation

@@ -10,6 +10,10 @@ FactoryBot.define do
       notes { Faker::Lorem.sentence }
     end
 
+    trait :without_highlight do
+      highlighted_text { }
+    end
+
     # start_cfi { }
     # end_cfi { }
     

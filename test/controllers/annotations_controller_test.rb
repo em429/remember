@@ -1,9 +1,11 @@
 require "test_helper"
 
+# TODO: fix outdated tests, all failing now
+
 class AnnotationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @annotation = annotations(:one)
-    @user = users(:mary)
+    @annotation = FactoryBot.create(:annotation)
+    @user = FactoryBot.create(:user)
     
     log_in_as(@user)
     assert_redirected_to @user
