@@ -7,9 +7,10 @@ class AnnotationsController < ApplicationController
       @pagy, @annotations = pagy(current_user.annotations.random_all)
     when "recent"
       @pagy, @annotations = pagy(current_user.annotations.recent)
+    when "spaced"
+      @annotations = current_user.annotations.spaced
     else # only show a random one by default
       @annotations = current_user.annotations.random_single
-      
     end
   end
 
