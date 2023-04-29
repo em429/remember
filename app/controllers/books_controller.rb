@@ -20,8 +20,8 @@ class BooksController < ApplicationController
     @book = current_user.books.build(book_params)
     
     if @book.save
-      # We do the epub->plaintext conversion after the save, otherwise
-      # the epub is not yet on disk.
+      # We do the epub->plaintext conversion after the first save, otherwise
+      # the epub is not yet on disk, then we save again.
       if @book.epub_on_disk.present?
         @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
         @book.save
@@ -38,7 +38,7 @@ class BooksController < ApplicationController
 
   def update
     @book = current_user.books.find(params[:id])
-    # Same as in create, we convert after update
+    # Same as in create, we convert after update, and save again.
     if @book.update(book_params)
       if @book.epub_on_disk.present?
         @book.plaintext = epub_to_plaintext(@book.epub_on_disk)
