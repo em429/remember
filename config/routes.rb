@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     post 'import', on: :collection, to: 'annotations#import'
   end
 
+  resources :annotation_repetitions, only: [ :update ]
 
   # URL aliases, must map to an existing canonical URL.
   # This is strictly for aesthetics, use the canonical paths in code, always.

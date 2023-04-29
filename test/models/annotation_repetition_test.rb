@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AnnotationPriorityTest < ActiveSupport::TestCase
+class AnnotationRepetitionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

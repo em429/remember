@@ -55,8 +55,35 @@
     <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border text-gray-600">
       + more context +
     </button>
-        
+
+    <%# Spaced-repetition scoring buttons TODO: move it to separate partial, and only include if we are on spaced page %>
+    <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 0 } },
+       class: "text-xs px-2 py-1 border border-red-200 bg-red-100" %>
+
+    <%= button_to "1", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 1 } },
+       class: "text-xs px-2 py-1 border border-orange-200 bg-orange-100" %>
+
+    <%= button_to "2", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 2 } },
+       class: "text-xs px-2 py-1 border border-yellow-200 bg-yellow-100" %>
+
+    <%= button_to "3", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 3 } },
+       class: "text-xs px-2 py-1 border border-blue-200 bg-blue-100" %>
+      
+    <%= button_to "4", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 4 } },
+       class: "text-xs px-2 py-1 border border-green-200 bg-green-100" %>
+
+    <%= button_to "5", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+       method: :put, params: { annotation_repetition: { score: 5 } },
+       class: "text-xs px-2 py-1 border border-green-300 bg-green-200" %>
+    <%# END of spaced repetition scoring part %>
+
     <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
+
   </section>
   
 </div>
