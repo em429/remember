@@ -5,12 +5,16 @@
 @layer base {
   /* When showing context of annotations, the original text gets highlighted using
      the Rails built-in highlight helper, which adds a <mark> tag by default. */
-  mark { @apply bg-yellow-200; }
+  mark { @apply bg-yellow-100; }
 }
 
 @layer components {
   .tag {
     @apply p-1 text-gray-400 text-xs font-medium w-fit border;
+  }
+
+  .timestamp {
+    @apply p-1 text-gray-400 text-xs font-medium;
   }
 
   .btn {
@@ -48,7 +52,7 @@
   .pagy-nav .page.active,
   .pagy-nav .page.prev.disabled,
   .pagy-nav .page.next.disabled {
-    @apply px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-50 border shadow-md;
+    @apply px-3 py-1 text-sm text-gray-500 bg-gray-50 border shadow-md;
     &:hover{
       @apply bg-gray-300;
     }
