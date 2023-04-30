@@ -20,69 +20,74 @@
   </section>
 
     <%# Excerpt Index 0: Shown by default, the highlighted text, without extra context %>
-    <p
-      class="mb-6 card-text cursor-pointer"
-      data-context-target="excerpt" data-action="">
+    <p class="mb-6 card-text" data-context-target="excerpt">
       <%= annotation.highlighted_text %>
     </p>
 
     <%# Excerpt Index 1: Hidden by default, context excerpt with radius of 400 %>
-    <p data-context-target="excerpt" data-action=""
-       class="mb-6 card-text cursor-pointer">
+    <p data-context-target="excerpt" class="mb-6 card-text">
       <%= show_context(annotation, 400) %>
     </p>
 
     <%# Excerpt Index 2: Hidden by default, even more context using excerpt %>
-    <p data-context-target="excerpt" data-action=""
-       class="mb-6 cursor-pointer card-text">
+    <p data-context-target="excerpt" class="mb-6 card-text">
       <%= show_context(annotation, 800) %>
     </p>
 
   
   <%# Bottom metadata and context section %>
-  <section class="text-sm text-gray-500 flex gap-2 justify-between">
-    <span>
-      <%= link_to annotation do %>
-        <%= time_ago_in_words(annotation.timestamp) %> ago
-      <% end %>
-    </span>
-    
+  <section class="text-sm flex gap-2 justify-between">
     <%# Context buttons %>
-    <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border text-gray-600">
-      + less context +
+    <section class="flex gap-3">
+    <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border border-gray-300 text-gray-600">
+      - less context -
     </button>
 
-    <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border text-gray-600">
+    <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border border-gray-300 text-gray-600">
       + more context +
     </button>
+    </section>
 
-    <%# Spaced-repetition scoring buttons TODO: move it to separate partial, and only include if we are on spaced page %>
+    <%# Spaced-repetition scoring buttons TODO: move it to separate partial %>
+    <%# FIXME: is there a shorter way of doing annotation.annotation_repetition.annotation_id?
+        seems convulated.
+        FIXME: Also, the whole thing could be thrown in a partial/helper with arguments. %>
+    <section class="flex text-gray-500 border border-gray-300">
     <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 0 } },
-       class: "text-xs px-2 py-1 border border-red-200 bg-red-100" %>
+       class: "text-xs px-3 py-1 bg-gray-50" %>
 
     <%= button_to "1", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 1 } },
-       class: "text-xs px-2 py-1 border border-orange-200 bg-orange-100" %>
+       class: "text-xs px-3 py-1 bg-gray-100" %>
 
     <%= button_to "2", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 2 } },
-       class: "text-xs px-2 py-1 border border-yellow-200 bg-yellow-100" %>
+       class: "text-xs px-3 py-1 bg-gray-200" %>
 
     <%= button_to "3", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 3 } },
-       class: "text-xs px-2 py-1 border border-blue-200 bg-blue-100" %>
+       class: "text-xs px-3 py-1 bg-gray-300" %>
       
     <%= button_to "4", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 4 } },
-       class: "text-xs px-2 py-1 border border-green-200 bg-green-100" %>
+       class: "text-xs text-gray-100 px-3 py-1 bg-gray-400" %>
 
     <%= button_to "5", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 5 } },
-       class: "text-xs px-2 py-1 border border-green-300 bg-green-200" %>
+       class: "text-xs text-white px-3 py-1 bg-gray-500" %>
+    </section>
     <%# END of spaced repetition scoring part %>
 
+
+    <section class="flex gap-3">
     <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
+
+    <%= link_to annotation, class:"timestamp" do %>
+        <%= time_ago_in_words(annotation.timestamp) %> ago
+    <% end %>
+    </section>
+    
 
   </section>
   
