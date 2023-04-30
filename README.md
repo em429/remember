@@ -2,7 +2,7 @@
 
 See all the stuff you ever highlighted from books and articles in one feed, with a spaced-repetition algorithm.
 
-The goal is to help you remember (and hopefully apply) the most important knowledge you came across.
+The goal is to help you remember (and hopefully apply) the most important knowledge you came across while reading.
 
 ### Explore the context of annotations
 
@@ -10,7 +10,7 @@ Context matters. Clicking the highlight pops up the full paragraph where the it 
 
 Additionally, the book, the chapter (and subchapters if any) are displayed on each highlight's card.
 
-My self-hosted Readwise alternative. Currently in PoC state, with only Calibre annotation import support.
+My self-hosted Readwise alternative. Currently in PoC state, with only Calibre annotation import support. An plugin based import system is on the roadmap, which would allow the easy addition of any source, like kindle, ibooks ..etc
 
 ### Roadmap
 - [X] add book import feature with full text extract
@@ -18,7 +18,10 @@ My self-hosted Readwise alternative. Currently in PoC state, with only Calibre a
 - [X] add PoC context features
 - [X] rewrite context features (PoC implementation had some ..uhh.. caveats :))
 - [X] convert html entities when importing epubs
-- [ ] add spaced repetition
-- [ ] add hypothes.is import features
-- [ ] implement an adapter layer for easily adding annotation sources later
-- [ ] write import adapters: kindle, ibooks, sioyek ..etc
+- [X] add spaced repetition
+- [ ] implement an adapter layer for easily adding different adaptation sources
+- [ ] write import adapters:
+  + [ ] hypothes.is
+  + [ ] okular
+  + [ ] iBooks
+  + [ ] kindle
