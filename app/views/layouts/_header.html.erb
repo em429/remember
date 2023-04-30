@@ -12,10 +12,8 @@
 
 <nav class="flex items-center text-xl justify-between">
   <div class="space-x-8 font-bold">
-    <%= nav_link_to "Spaced", filtered_annotations_path(:spaced) %>
-    <%= nav_link_to "Random", filtered_annotations_path(:random) %>
-    <%= nav_link_to "Recent", filtered_annotations_path(:recent) %>
-    <%= nav_link_to "All", filtered_annotations_path(:all) %>
+    <%= nav_link_to "Flashcards", mode_annotations_path(:flashcard_mode) %>
+    <%= nav_link_to "All", mode_annotations_path(:all) %>
   </div>
 
 

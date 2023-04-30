@@ -18,9 +18,9 @@ Rails.application.routes.draw do
 
 
   resources :annotations, only: [ :index, :show ] do
-    get 'filter/:filter' => 'annotations#index',
+    get 'mode/:mode' => 'annotations#index',
         on: :collection,
-        as: 'filtered'
+        as: 'mode'
     post 'import', on: :collection, to: 'annotations#import'
   end
 
