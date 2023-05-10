@@ -10,7 +10,7 @@ class Annotation < ApplicationRecord
     joins(:annotation_repetition).where("next_repetition_date IS NULL") }
 
   scope :filter_by_due, -> { 
-    joins(:annotation_repetition).where("next_repetition_date >= ?", Date.today) }
+    joins(:annotation_repetition).where("next_repetition_date <= ?", Date.today) }
 
   scope :filter_by_fiction, -> { 
     joins(:book).where("books.fiction == TRUE") }
@@ -26,7 +26,7 @@ class Annotation < ApplicationRecord
     joins(:annotation_repetition).order("next_repetition_date ASC") }
 
   ## Modes - Shortcut filter and sort combinations
-  scope :flashcards_due, -> { filter_by_due.sort_by_due_date.limit(1) }
+  scope :flashcards_due, -> { filter_by_due.sort_by_random.limit(1) }
   scope :flashcards_fresh, -> { filter_by_fresh.sort_by_random.limit(1) }
 
   validates :highlighted_text, presence: true, allow_blank: false

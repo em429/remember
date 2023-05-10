@@ -23,9 +23,8 @@ class AnnotationRepetitionsController < ApplicationController
 
     @annotation_repetition.save
 
-    # TODO: check if I could set a default parameter for this 'Due Next' redirect
-    #redirect_to annotations_path(due: 1, limit: 1)
-    redirect_to annotations_path
+    redirect_back(fallback_location: annotations_path)
+
   end
 
   private
