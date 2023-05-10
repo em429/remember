@@ -1,14 +1,27 @@
 class AnnotationsController < ApplicationController
   def index
-    case params[:mode]
-    # Go to flashcard mode by default
-    when "all"
-      @pagy, @annotations = pagy(current_user.annotations.all)
-    when "flashcard_mode"
-      @annotations = current_user.annotations.flashcard_mode
-    else
-      @annotations = current_user.annotations.flashcard_mode
+
+    @annotations = current_user.annotations.where(nil)
+    
+    # Filters
+    @annotations = @annotations.filter_by_book_title(params[:title]) if params[:title].present?
+    @annotations = @annotations.filter_by_fiction if params[:fiction].to_i == 1
+    @annotations = @annotations.filter_by_non_fiction if params[:non_fiction].to_i == 1
+    # Sorts
+    @annotations = @annotations.sort_by_due_date if params[:sort_by] == "Due"
+    @annotations = @annotations.sort_by_random if params["sort_by"] == "Random"
+    @annotations = @annotations.sort_by_recent if params["sort_by"] == "Recent"
+    # Limit
+    @annotations = @annotations.limit(params[:limit].to_i) if params[:limit].present?
+    # Modes
+    @annotations = @annotations.flashcards_due if params[:mode] == "flashcards_due"
+    @annotations = @annotations.flashcards_fresh if params[:mode] == "flashcards_fresh"
+
+    # If we are not using any mode or limit, turn on pagination:
+    unless params[:mode].present? or params[:limit].present?
+      @pagy, @annotations = pagy(@annotations)
     end
+   
   end
 
   def show

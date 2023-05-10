@@ -3,23 +3,77 @@
   <%= link_to 're-mem-ber', root_path,
       class: "px-2 border border-4 border-dashed border-gray-300" %>
       
-      
   <div class="space-x-8 font-bold justify-self-end">
     <%= render_account_dropdown %>
   </div>
   
 </nav>
 
-<nav class="flex items-center text-xl justify-between">
-  <div class="space-x-8 font-bold">
-    <%= nav_link_to "Flashcards", mode_annotations_path(:flashcard_mode) %>
-    <%= nav_link_to "All", mode_annotations_path(:all) %>
+ <nav class="flex items-center text-xl justify-between">
+    <div class="space-x-8 font-bold">
+      <%= nav_link_to "All", annotations_path %>
+
+      <span class="space-x-1">
+        <%= nav_link_to "Due", annotations_path(mode: "flashcards_due") %>
+        <span class="text-gray-300">
+          <span class=""><%= current_user.annotations.filter_by_due.count %></span>
+        </span>
+      </span>
+
+      <span class="space-x-1">
+        <%= nav_link_to "Fresh", annotations_path(mode: "flashcards_fresh") %>
+        <span class="text-gray-300">
+          <span class=""><%= current_user.annotations.filter_by_fresh.count %></span>
+        </span
+      </span>
+
+    </div>
+    <div class="space-x-8 font-bold">
+      <%= nav_link_to "My Books", books_path %>
+      <%= link_to "Add Book", new_book_path %>
+    </div>
+ </nav>
+
+<section class="mt-8 p-3 bg-gray-50">
+  <%= form_with url: annotations_path, method: :get, class: "flex justify-between" do |f| %>
+  <div class="flex space-x-6 ">
+
+    <div>
+      <%= f.label :title, class: "myform-label" %>
+      <%= f.select :title, Book.pluck(:title),
+        {}, { class: "h-11 myform-select" } %>
+    </div>
+
+    <div>
+      <%= f.label :sort_by, class: "myform-label" %>
+      <%= f.select :sort_by, [ "Due", "Random", "Recent" ],
+        {}, { class: "h-11 myform-select" } %>
+
+    </div>
+<!--
+    <div>
+      <span class="myform-label">Genre</span>
+      <div class="h-11 p-2">
+      
+        <%#= f.check_box :fiction, class: "myform-checkbox" %>
+        <%#= f.label :fiction, "Fiction", class: "myform-checkbox-label w-full mx-2 text-xs font-medium text-gray-900 dark:text-gray-300" %>
+
+        <%#= f.check_box :non_fiction, class: "myform-checkbox" %>
+        <%#= f.label :non_fiction, "Non-Fiction", class: "myform-checkbox-label w-full mx-2 text-xs font-medium text-gray-900 dark:text-gray-300" %>
+      </div>
+    </div>
+-->
+    
+    <div>
+      <%= f.label :limit, class: "myform-label" %>
+      <%= f.number_field :limit, in: 1..100, step: 1, class:"h-11 myform-select w-16" %>
+    </div>
+
   </div>
 
-
-  <div class="space-x-8 font-bold">
-    <%= nav_link_to "My Books", books_path %>
-    <%= link_to "Add Book", new_book_path %>
+  <div class="flex items-end">
+    <%= f.submit "Filter", class: "h-11 text-xs px-4 py-2 bg-gray-50 border border-gray-300 " %>
   </div>
-  
-</nav>
+
+  <% end %>
+</section>

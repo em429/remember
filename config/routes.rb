@@ -18,11 +18,9 @@ Rails.application.routes.draw do
 
 
   resources :annotations, only: [ :index, :show ] do
-    get 'mode/:mode' => 'annotations#index',
-        on: :collection,
-        as: 'mode'
     post 'import', on: :collection, to: 'annotations#import'
   end
+
 
   resources :annotation_repetitions, only: [ :update ]
 

@@ -23,7 +23,9 @@ class AnnotationRepetitionsController < ApplicationController
 
     @annotation_repetition.save
 
-    redirect_to annotations_path(mode: 'flashcard_mode')
+    # TODO: check if I could set a default parameter for this 'Due Next' redirect
+    #redirect_to annotations_path(due: 1, limit: 1)
+    redirect_to annotations_path
   end
 
   private
