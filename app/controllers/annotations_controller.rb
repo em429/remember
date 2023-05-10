@@ -1,6 +1,7 @@
 class AnnotationsController < ApplicationController
   def index
     case params[:mode]
+    # Go to flashcard mode by default
     when "all"
       @pagy, @annotations = pagy(current_user.annotations.all)
     when "flashcard_mode"

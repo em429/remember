@@ -49,9 +49,8 @@
     </section>
 
     <%# Spaced-repetition scoring buttons TODO: move it to separate partial %>
-    <%# FIXME: is there a shorter way of doing annotation.annotation_repetition.annotation_id?
-        seems convulated.
-        FIXME: Also, the whole thing could be thrown in a partial/helper with arguments. %>
+    <%# FIXME: shorten annotation.annotation_repetition.annotation_id
+        FIXME: the whole thing could be thrown in a partial/helper with arguments. %>
     <section class="flex text-gray-500 border border-gray-300">
     <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
        method: :put, params: { annotation_repetition: { score: 0 } },

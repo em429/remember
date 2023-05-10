@@ -23,7 +23,7 @@ class AnnotationRepetitionsController < ApplicationController
 
     @annotation_repetition.save
 
-    redirect_to annotations_path(filter: 'flashcard_mode')
+    redirect_to annotations_path(mode: 'flashcard_mode')
   end
 
   private
