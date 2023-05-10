@@ -1,0 +1,43 @@
+<section class="mb-8 mt-[-40px] p-3 bg-gray-50">
+  <%= form_with url: annotations_path, method: :get, class: "flex justify-between" do |f| %>
+  <div class="flex space-x-6 ">
+
+    <div>
+      <%= f.label :title, class: "myform-label" %>
+      <%= f.select :title, Book.pluck(:title),
+        {}, { class: "h-11 myform-select" } %>
+    </div>
+
+    <div>
+      <%= f.label :sort_by, class: "myform-label" %>
+      <%= f.select :sort_by, [ "Due", "Random", "Recent" ],
+        {}, { class: "h-11 myform-select" } %>
+
+    </div>
+<!--
+    <div>
+      <span class="myform-label">Genre</span>
+      <div class="h-11 p-2">
+      
+        <%#= f.check_box :fiction, class: "myform-checkbox" %>
+        <%#= f.label :fiction, "Fiction", class: "myform-checkbox-label w-full mx-2 text-xs font-medium text-gray-900 dark:text-gray-300" %>
+
+        <%#= f.check_box :non_fiction, class: "myform-checkbox" %>
+        <%#= f.label :non_fiction, "Non-Fiction", class: "myform-checkbox-label w-full mx-2 text-xs font-medium text-gray-900 dark:text-gray-300" %>
+      </div>
+    </div>
+-->
+    
+    <div>
+      <%= f.label :limit, class: "myform-label" %>
+      <%= f.number_field :limit, in: 1..100, step: 1, class:"h-11 myform-select w-16" %>
+    </div>
+
+  </div>
+
+  <div class="flex items-end">
+    <%= f.submit "Filter", class: "h-11 text-xs px-4 py-2 bg-gray-50 border border-gray-300 " %>
+  </div>
+
+  <% end %>
+</section>
