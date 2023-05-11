@@ -9,7 +9,7 @@
 }
 
 @layer components {
-  .content_page { @apply p-12 m-auto bg-gray-50 border border-gray-200 }
+  .content_page { @apply px-12 py-6 m-auto bg-gray-50 border border-gray-200 }
   .content_page h1 {
     @apply mb-10 text-4xl font-extrabold
   }
