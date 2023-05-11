@@ -9,22 +9,22 @@
   
 </nav>
 
+<% unless current_user.blank? %>
 <nav class="flex items-center text-xl justify-between">
   <div class="space-x-8 font-bold">
-    <%= nav_link_to "All", annotations_path %>
+    <span class="space-x-1">
+      <%= nav_link_to "All", annotations_path(mode: "all") %>
+      <span class="text-gray-300"><%= current_user.annotations.count %></span>
+    </span>
 
     <span class="space-x-1">
       <%= nav_link_to "Due", annotations_path(mode: "flashcards_due") %>
-      <span class="text-gray-300">
-        <span class=""><%= current_user.annotations.filter_by_due.count %></span>
-      </span>
+      <span class="text-gray-300"><%= current_user.annotations.filter_by_due.count %></span>
     </span>
 
     <span class="space-x-1">
       <%= nav_link_to "Fresh", annotations_path(mode: "flashcards_fresh") %>
-      <span class="text-gray-300">
-        <span class=""><%= current_user.annotations.filter_by_fresh.count %></span>
-      </span
+      <span class="text-gray-300"><%= current_user.annotations.filter_by_fresh.count %></span>
     </span>
 
   </div>
@@ -33,4 +33,5 @@
     <%= link_to "Add Book", new_book_path %>
   </div>
 </nav>
+<% end %>
 

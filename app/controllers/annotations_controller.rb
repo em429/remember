@@ -1,4 +1,8 @@
 class AnnotationsController < ApplicationController
+  def root
+    redirect_to(annotations_path(mode: "all"))
+  end
+
   def index
 
     @annotations = current_user.annotations.where(nil)
@@ -13,7 +17,9 @@ class AnnotationsController < ApplicationController
     @annotations = @annotations.sort_by_recent if params["sort_by"] == "Recent"
     # Limit
     @annotations = @annotations.limit(params[:limit].to_i) if params[:limit].present?
-    # Modes
+
+    # Modes - shortcut filter + sort combos
+    @pagy, @annotations = pagy(@annotations.all) if params[:mode] == "all"
     @annotations = @annotations.flashcards_due if params[:mode] == "flashcards_due"
     @annotations = @annotations.flashcards_fresh if params[:mode] == "flashcards_fresh"
 

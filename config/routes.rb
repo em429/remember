@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'annotations#index'
+  root 'content_pages#intro'
+
+  get 'intro', to: 'content_pages#intro'
 
 
   resources :users, except: [ :index ]
