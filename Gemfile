@@ -83,7 +83,14 @@ group :test do
   # gem 'webdrivers'
 end
 
+# Essentials
 gem "tailwindcss-rails", "~> 2.0"
 
+# Parsing text from epubs
 gem "epub-parser", "~> 0.4.6"
+
+# Paging
 gem "pagy", "~> 6.0"
+
+# Sorting & Filtering
+gem "ransack"
