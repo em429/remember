@@ -1,0 +1,5 @@
+<%= render "annotations/filter_bar" %>
+
+<% @annotations.each do |a| %>
+  <%= render_full_card(a) %>
+<% end %>

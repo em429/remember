@@ -20,9 +20,10 @@ Rails.application.routes.draw do
 
 
   resources :annotations, only: [ :index, :show ] do
+    get 'flashcard_fresh', on: :collection, to: 'annotations#flashcard_fresh'
+    get 'flashcard_due', on: :collection, to: 'annotations#flashcard_due'
     post 'import', on: :collection, to: 'annotations#import'
   end
-
 
   resources :annotation_repetitions, only: [ :update ]
 

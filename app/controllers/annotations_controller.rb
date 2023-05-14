@@ -1,33 +1,34 @@
 class AnnotationsController < ApplicationController
-  def root
-    redirect_to(annotations_path(mode: "all"))
+
+  def flashcard_due
+    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
+    @q = current_user.annotations.filter_by_due.ransack(params[:q])
+    #@q.sorts = "RANDOM()" if @q.sorts.empty?
+
+    scope = @q.result(distinct: true)
+    @pagy, @annotations = pagy(scope, items: 1)
+
+    render :flashcard
+  end
+
+  def flashcard_fresh
+    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
+    @q = current_user.annotations.filter_by_fresh.ransack(params[:q])
+    #@q.sorts = "RANDOM()" if @q.sorts.empty?
+
+    scope = @q.result(distinct: true)
+    @pagy, @annotations = pagy(scope, items: 1)
+
+    render :flashcard
   end
 
   def index
+    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
+    @q = current_user.annotations.all.ransack(params[:q])
+    #@q.sorts = "RANDOM()" if @q.sorts.empty?
 
-    @annotations = current_user.annotations.where(nil)
-    
-    # Filters
-    @annotations = @annotations.filter_by_book_title(params[:title]) if params[:title].present?
-    @annotations = @annotations.filter_by_fiction if params[:fiction].to_i == 1
-    @annotations = @annotations.filter_by_non_fiction if params[:non_fiction].to_i == 1
-    # Sorts
-    @annotations = @annotations.sort_by_due_date if params[:sort_by] == "Due"
-    @annotations = @annotations.sort_by_random if params["sort_by"] == "Random"
-    @annotations = @annotations.sort_by_recent if params["sort_by"] == "Recent"
-    # Limit
-    @annotations = @annotations.limit(params[:limit].to_i) if params[:limit].present?
-
-    # Modes - shortcut filter + sort combos
-    @pagy, @annotations = pagy(@annotations.all) if params[:mode] == "all"
-    @annotations = @annotations.flashcards_due if params[:mode] == "flashcards_due"
-    @annotations = @annotations.flashcards_fresh if params[:mode] == "flashcards_fresh"
-
-    # If we are not using any mode or limit, turn on pagination:
-    unless params[:mode].present? or params[:limit].present?
-      @pagy, @annotations = pagy(@annotations)
-    end
-   
+    scope = @q.result(distinct: true)
+    @pagy, @annotations = pagy(scope, items: 10)
   end
 
   def show
@@ -54,5 +55,5 @@ class AnnotationsController < ApplicationController
     end
     redirect_to book_path(params[:book_id])
   end
-  
+
 end
