@@ -10,12 +10,20 @@ class Annotation < ApplicationRecord
     ["highlighted_text", "notes", "timestamp", "toc_family_titles", "updated_at"]
   end
   
-  # TODO: replace w ransack too
+  # These are safeguard filters that come before ransack, to make sure
+  # flashcard mode shows only:
+  #   "fresh cards" --> cards that haven't been scored
+  #   "due cards" --> cards that are either due today, or are overdue
   scope :filter_by_fresh, -> {
     joins(:annotation_repetition).where("next_repetition_date IS NULL") }
 
   scope :filter_by_due, -> { 
     joins(:annotation_repetition).where("next_repetition_date <= ?", Date.today) }
+
+  scope :order_by_due_first, -> {
+    order("annotation_repetition.next_repetition_date ASC")
+  }
+  scope :order_by_random, -> { order("RANDOM()") }
 
   validates :highlighted_text, presence: true, allow_blank: false
 

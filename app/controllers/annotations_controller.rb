@@ -3,9 +3,8 @@ class AnnotationsController < ApplicationController
   def flashcard_due
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @q = current_user.annotations.filter_by_due.ransack(params[:q])
-    #@q.sorts = "RANDOM()" if @q.sorts.empty?
 
-    scope = @q.result(distinct: true)
+    scope = @q.result(distinct: true).order_by_due_first
     @pagy, @annotations = pagy(scope, items: 1)
 
     render :flashcard
@@ -14,9 +13,8 @@ class AnnotationsController < ApplicationController
   def flashcard_fresh
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @q = current_user.annotations.filter_by_fresh.ransack(params[:q])
-    #@q.sorts = "RANDOM()" if @q.sorts.empty?
 
-    scope = @q.result(distinct: true)
+    scope = @q.result(distinct: true).order_by_random
     @pagy, @annotations = pagy(scope, items: 1)
 
     render :flashcard
