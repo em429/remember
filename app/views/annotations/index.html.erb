@@ -1,5 +1,13 @@
 <%= render "annotations/filter_bar" %>
 
+<div class="mb-4 p-2 space-x-4 bg-gray-50 text-sm">
+  <span class="font-medium">Sort by:</span>
+  <%= sort_link(@q, :book_title) %>
+  <%= sort_link(@q, :book_author) %>
+  <%= sort_link(@q, :timestamp) %>
+  <%= sort_link(@q, :annotation_repetition_next_repetition_date) %>
+</div>
+
 <% @annotations.each do |a| %>
   <%= render_full_card(a) %>
 <% end %>
