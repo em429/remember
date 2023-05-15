@@ -10,7 +10,7 @@
 
     <div>
       <%= f.label :book_author_cont, "Author", class: "myform-label" %>
-      <%= f.search_field :book_author_cont %>
+      <%= f.search_field :book_author_cont, class: "border border-gray-300" %>
     </div>
 
     <div>
@@ -32,4 +32,10 @@
   </div>
 
   <% end %>
+
+  <div class="mt-3">
+    Current filter returns <%= @pagy.count %> items total
+  </div>
+
+
 </section>
