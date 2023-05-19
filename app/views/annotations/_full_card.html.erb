@@ -8,6 +8,7 @@
       <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
       by <%= annotation.book.author %>
     </span>
+
     <%# Highlight color indicator %>
     <div class="mx-2 grow w-14 h-3 border-b-2 <%= color_to_tailwind_border(annotation.color) %>">
     </div>
@@ -87,6 +88,8 @@
            method: :put, params: { annotation_repetition: { score: 5 } },
            class: "text-xs text-white px-3 py-1 bg-gray-500" %>
       </section>
+    <% elsif annotation.annotation_repetition.next_repetition_date > Date.today %>
+      <span class="text-gray-400"> due <%= annotation.annotation_repetition.next_repetition_date %> </span>
     <% end %>
     <%# END of spaced repetition scoring part %>
 
