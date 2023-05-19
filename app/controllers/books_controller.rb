@@ -10,6 +10,7 @@ class BooksController < ApplicationController
 
   def show
     @book = current_user.books.find(params[:id])
+    @pagy, @annotations = pagy(@book.annotations, items: 10)
   end
 
   def new

@@ -4,8 +4,7 @@
 </div>
   
 <div class="flex justify-between gap-4">
-
-  <%# Left side: book info, cover and actions %>
+  <%# START Left side: book info, cover and actions %>
   <div class="mb-8 basis-1/3">
     
     <div class="mb-4 max-w-[230px]">
@@ -26,7 +25,6 @@
           link_to 'Extracted plaintext is available in the database for this book.', book_plaintext_path(@book)
         %>
       <% end %>
-      
     </div>
     
     
@@ -38,25 +36,31 @@
           class: "btn"
       %>
     </div>
+
     <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
     
+    <%# Import annotations %>
     <div class="mb-4 mt-8 ">
       <%= render 'annotations/form', book: @book %>
     </div>
-    
-    
+        
   </div>
-  <%# End of left side %>
+  <%# END of left side %>
   
-
-  <%# Right side: Annotations %>
+  <%# START Right side: Annotations %>
   <div class="basis-2/3">
-    <% @book.annotations.each do |a| %>
-
+    <% if @pagy.present? %>
+      <div class="mb-8 w-full">
+        <div class="w-fit mx-auto">
+          <%== pagy_nav(@pagy) %>
+        </div>
+      </div>
+    <% end %>
+    <% @annotations.each do |a| %>
       <%= render_simple_card(a) %>
-    
     <% end %>
   </div>
+  <%# END Right side: Annotations %>
 
 </div>
 
