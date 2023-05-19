@@ -49,6 +49,7 @@
   
   <%# START Right side: Annotations %>
   <div class="basis-2/3">
+    <%# Top paging control %>
     <% if @pagy.present? %>
       <div class="mb-8 w-full">
         <div class="w-fit mx-auto">
@@ -63,6 +64,15 @@
   <%# END Right side: Annotations %>
 
 </div>
+
+<%# Bottom paging control %>
+<% if @pagy.present? %>
+  <div class="mb-20 mt-10 w-full">
+    <div class="w-fit mx-auto">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </div>
+<% end %>
 
 <style>
   p { white-space: pre-line; }
