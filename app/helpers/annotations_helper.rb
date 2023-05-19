@@ -18,7 +18,7 @@ module AnnotationsHelper
     when "yellow"
       "bg-yellow-100"
     when "red"
-      "hover:bg-red-100"
+      "bg-red-100"
     when "green"
       "bg-green-100"
     when "purple"
