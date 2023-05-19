@@ -1,6 +1,9 @@
-<!-- Full-featured card, showing metadata about the book and context can be expanded -->
+<%# Full-featured card: showing book metadata, context can be expanded. %>
+<%# START Outermost container of card %> 
 <div data-controller="context" data-context-index-value="0"
-     class="p-6 mb-8 shadow-md border" >
+     class="p-6 mb-8 shadow-md border">
+
+  <%# START Top of card: Author and Table of Contents %> 
   <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
     <span>
       <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
@@ -16,80 +19,82 @@
          <% end %>
       <% end %>
     </span>
-
   </section>
+  <%# END Top of card %> 
 
-    <%# Excerpt Index 0: Shown by default, the highlighted text, without extra context %>
-    <p class="mb-6 card-text" data-context-target="excerpt">
-      <%= annotation.highlighted_text %>
-    </p>
+  <%# START Main highlight content %> 
+  <%# Excerpt Index 0: Shown by default, the highlighted text, without extra context %>
+  <p class="mb-6 card-text" data-context-target="excerpt">
+    <%= annotation.highlighted_text %>
+  </p>
 
-    <%# Excerpt Index 1: Hidden by default, context excerpt with radius of 400 %>
-    <p data-context-target="excerpt" class="mb-6 card-text">
-      <%= show_context(annotation, 400) %>
-    </p>
+  <%# Excerpt Index 1: Hidden by default, context excerpt with radius of 400 %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 400) %>
+  </p>
 
-    <%# Excerpt Index 2: Hidden by default, even more context using excerpt %>
-    <p data-context-target="excerpt" class="mb-6 card-text">
-      <%= show_context(annotation, 800) %>
-    </p>
+  <%# Excerpt Index 2: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 800) %>
+  </p>
+  <%# END Main highlight content %> 
 
   
-  <%# Bottom metadata and context section %>
+  <%# START Bottom of card %>
   <section class="text-sm flex gap-2 justify-between">
-    <%# Context buttons %>
+
+    <%# START Context buttons %>
     <section class="flex gap-3">
-    <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border border-gray-300 text-gray-600">
-      - less context -
-    </button>
+      <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border border-gray-300 text-gray-600">
+        - less context -
+      </button>
 
-    <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border border-gray-300 text-gray-600">
-      + more context +
-    </button>
+      <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border border-gray-300 text-gray-600">
+        + more context +
+      </button>
     </section>
+    <%# END Context buttons %>
 
-    <%# Spaced-repetition scoring buttons TODO: move it to separate partial %>
-    <%# FIXME: shorten annotation.annotation_repetition.annotation_id
+    <%# START Spaced-repetition scoring buttons %>
+    <%# TODO: move this to it's own partial
+        FIXME: shorten annotation.annotation_repetition.annotation_id
         FIXME: the whole thing could be thrown in a partial/helper with arguments. %>
     <% if annotation.annotation_repetition.next_repetition_date == nil or annotation.annotation_repetition.next_repetition_date <= Date.today %>
-    <section class="flex text-gray-500 border border-gray-300">
-    <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 0 } },
-       class: "text-xs px-3 py-1 bg-gray-50" %>
+      <section class="flex text-gray-500 border border-gray-300">
+        <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 0 } },
+           class: "text-xs px-3 py-1 bg-gray-50" %>
 
-    <%= button_to "1", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 1 } },
-       class: "text-xs px-3 py-1 bg-gray-100" %>
+        <%= button_to "1", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 1 } },
+           class: "text-xs px-3 py-1 bg-gray-100" %>
 
-    <%= button_to "2", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 2 } },
-       class: "text-xs px-3 py-1 bg-gray-200" %>
+        <%= button_to "2", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 2 } },
+           class: "text-xs px-3 py-1 bg-gray-200" %>
 
-    <%= button_to "3", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 3 } },
-       class: "text-xs px-3 py-1 bg-gray-300" %>
+        <%= button_to "3", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 3 } },
+           class: "text-xs px-3 py-1 bg-gray-300" %>
       
-    <%= button_to "4", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 4 } },
-       class: "text-xs text-gray-100 px-3 py-1 bg-gray-400" %>
+        <%= button_to "4", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 4 } },
+           class: "text-xs text-gray-100 px-3 py-1 bg-gray-400" %>
 
-    <%= button_to "5", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-       method: :put, params: { annotation_repetition: { score: 5 } },
-       class: "text-xs text-white px-3 py-1 bg-gray-500" %>
-    </section>
+        <%= button_to "5", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
+           method: :put, params: { annotation_repetition: { score: 5 } },
+           class: "text-xs text-white px-3 py-1 bg-gray-500" %>
+      </section>
     <% end %>
     <%# END of spaced repetition scoring part %>
 
-
     <section class="flex gap-3">
-    <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
-
-    <%= link_to annotation, class:"timestamp" do %>
-        <%= time_ago_in_words(annotation.timestamp) %> ago
-    <% end %>
+      <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
+      <%= link_to annotation, class:"timestamp" do %>
+          <%= time_ago_in_words(annotation.timestamp) %> ago
+      <% end %>
     </section>
-    
-
   </section>
-  
+  <%# END Bottom metadata and context section %>
 </div>
+<%# END Outermost container of card %> 
