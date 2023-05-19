@@ -1,7 +1,7 @@
 <%# Full-featured card: showing book metadata, context can be expanded. %>
 <%# START Outermost container of card %> 
 <div data-controller="context" data-context-index-value="0"
-     class="p-6 mb-8 shadow-md border">
+     class=" p-6 mb-8 shadow-md border">
 
   <%# START Top of card: Author and Table of Contents %> 
   <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
@@ -9,6 +9,9 @@
       <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
       by <%= annotation.book.author %>
     </span>
+    <%# Highlight color indicator %>
+    <div class="mx-2 grow w-14 h-3 border-b-2 <%= color_to_tailwind_border(annotation.color) %>">
+    </div>
 
     <%# Show current highlight's chapter info, if nested, then show all in order: %>
     <span>
