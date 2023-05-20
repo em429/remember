@@ -27,7 +27,7 @@ export default class extends Controller {
       // in two places: here and in the _full_card partial.
 
       // Hide the less and more buttons if we run out of context objects
-      this.more_buttonTarget.hidden = this.indexValue == 2
+      this.more_buttonTarget.hidden = this.indexValue == 4
       this.less_buttonTarget.hidden = this.indexValue == 0
 
     })

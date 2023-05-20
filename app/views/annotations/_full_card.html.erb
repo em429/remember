@@ -40,6 +40,16 @@
   <p data-context-target="excerpt" class="mb-6 card-text">
     <%= show_context(annotation, 800) %>
   </p>
+
+  <%# Excerpt Index 3: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 1200) %>
+  </p>
+
+  <%# Excerpt Index 4: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 1600) %>
+  </p>
   <%# END Main highlight content %> 
 
   
@@ -48,11 +58,13 @@
 
     <%# START Context buttons %>
     <section class="flex gap-3">
-      <button data-action="context#show_less" data-context-target="less_button" class="text-xs px-2 border border-gray-300 text-gray-600">
+      <button data-action="context#show_less" data-context-target="less_button"
+        class="text-xs px-2 border border-gray-300 text-gray-600">
         - less context -
       </button>
 
-      <button data-action="context#show_more" data-context-target="more_button" class="text-xs px-2 border border-gray-300 text-gray-600">
+      <button data-action="context#show_more" data-context-target="more_button"
+        class="text-xs px-2 border border-gray-300 text-gray-600">
         + more context +
       </button>
     </section>
@@ -93,12 +105,14 @@
     <% end %>
     <%# END of spaced repetition scoring part %>
 
+    <%# START Tag and Timestamp %>
     <section class="flex gap-3">
       <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
       <%= link_to annotation, class:"timestamp" do %>
           <%= time_ago_in_words(annotation.timestamp) %> ago
       <% end %>
     </section>
+    <%# END Tag and Timestamp %>
   </section>
   <%# END Bottom metadata and context section %>
 </div>
