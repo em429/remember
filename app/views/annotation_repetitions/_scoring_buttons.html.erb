@@ -1,0 +1,29 @@
+<% if next_due == nil or next_due <= Date.today %>
+  <section class="flex text-gray-500 border border-gray-300">
+    <%= button_to "0", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 0 } },
+       class: "text-xs px-3 py-1 bg-gray-50" %>
+
+    <%= button_to "1", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 1 } },
+       class: "text-xs px-3 py-1 bg-gray-100" %>
+
+    <%= button_to "2", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 2 } },
+       class: "text-xs px-3 py-1 bg-gray-200" %>
+
+    <%= button_to "3", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 3 } },
+       class: "text-xs px-3 py-1 bg-gray-300" %>
+  
+    <%= button_to "4", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 4 } },
+       class: "text-xs px-3 py-1 text-gray-100 bg-gray-400" %>
+
+    <%= button_to "5", annotation_repetition_path(id),
+       method: :put, params: { annotation_repetition: { score: 5 } },
+       class: "text-xs px-3 py-1 text-white bg-gray-500" %>
+  </section>
+<% elsif next_due > Date.today %>
+  <span class="text-gray-400"> due <%= next_due %> </span>
+<% end %>

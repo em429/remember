@@ -71,38 +71,9 @@
     <%# END Context buttons %>
 
     <%# START Spaced-repetition scoring buttons %>
-    <%# TODO: move this to it's own partial
-        FIXME: shorten annotation.annotation_repetition.annotation_id
-        FIXME: the whole thing could be thrown in a partial/helper with arguments. %>
-    <% if annotation.annotation_repetition.next_repetition_date == nil or annotation.annotation_repetition.next_repetition_date <= Date.today %>
-      <section class="flex text-gray-500 border border-gray-300">
-        <%= button_to "0", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 0 } },
-           class: "text-xs px-3 py-1 bg-gray-50" %>
-
-        <%= button_to "1", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 1 } },
-           class: "text-xs px-3 py-1 bg-gray-100" %>
-
-        <%= button_to "2", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 2 } },
-           class: "text-xs px-3 py-1 bg-gray-200" %>
-
-        <%= button_to "3", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 3 } },
-           class: "text-xs px-3 py-1 bg-gray-300" %>
-      
-        <%= button_to "4", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 4 } },
-           class: "text-xs text-gray-100 px-3 py-1 bg-gray-400" %>
-
-        <%= button_to "5", annotation_repetition_path(annotation.annotation_repetition.annotation_id),
-           method: :put, params: { annotation_repetition: { score: 5 } },
-           class: "text-xs text-white px-3 py-1 bg-gray-500" %>
-      </section>
-    <% elsif annotation.annotation_repetition.next_repetition_date > Date.today %>
-      <span class="text-gray-400"> due <%= annotation.annotation_repetition.next_repetition_date %> </span>
-    <% end %>
+    <%= render 'annotation_repetitions/scoring_buttons',
+       id: annotation.id,
+       next_due: annotation.annotation_repetition.next_repetition_date %>
     <%# END of spaced repetition scoring part %>
 
     <%# START Tag and Timestamp %>
@@ -113,7 +84,9 @@
       <% end %>
     </section>
     <%# END Tag and Timestamp %>
+
   </section>
   <%# END Bottom metadata and context section %>
+
 </div>
 <%# END Outermost container of card %> 
