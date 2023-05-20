@@ -1,6 +1,6 @@
 class Annotation < ApplicationRecord
   belongs_to :book
-  has_one :annotation_repetition
+  has_one :annotation_repetition, dependent: :destroy
 
   def self.ransackable_associations(auth_object = nil)
     ["annotation_repetition", "book"]
