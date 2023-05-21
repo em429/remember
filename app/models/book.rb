@@ -7,6 +7,10 @@ class Book < ApplicationRecord
   has_one_attached :epub
   has_one_attached :cover
 
+  ## Validations
+  # TODO: add more validations
+  validates :title, uniqueness: { scope: :author }
+
   def self.ransackable_associations(auth_object = nil)
     ["annotations"]
   end
