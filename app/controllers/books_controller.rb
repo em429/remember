@@ -29,6 +29,7 @@ class BooksController < ApplicationController
       end
       redirect_to @book, notice: 'Book added'
     else
+      flash.now[:alert] = @book.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
