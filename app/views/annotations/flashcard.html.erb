@@ -3,3 +3,9 @@
 <% @annotations.each do |a| %>
   <%= render_full_card(a) %>
 <% end %>
+
+<div class="">
+  <span class="text-gray-400 font-bold">
+    Scored today: <%= AnnotationRepetition.scored_today.count %>
+  </span>
+</div>
