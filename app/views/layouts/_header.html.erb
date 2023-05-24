@@ -13,18 +13,18 @@
 <nav class="flex items-center text-xl justify-between">
   <div class="space-x-8 font-bold">
     <span class="space-x-1">
-      <%= nav_link_to "All", annotations_path %>
+      <%= nav_link_to "All", flashcards_path %>
       <span class="text-gray-300"><%= current_user.annotations.count %></span>
     </span>
 
     <span class="space-x-1">
-      <%= nav_link_to "Due", flashcard_due_annotations_path %>
-      <span class="text-gray-300"><%= current_user.annotations.due_cards.count %></span>
+      <%= nav_link_to "Due", due_flashcards_path %>
+      <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
     </span>
 
     <span class="space-x-1">
-      <%= nav_link_to "Unscored", flashcard_unscored_annotations_path %>
-      <span class="text-gray-300"><%= current_user.annotations.unscored_cards.count %></span>
+      <%= nav_link_to "Unscored", unscored_flashcards_path %>
+      <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
     </span>
 
   </div>

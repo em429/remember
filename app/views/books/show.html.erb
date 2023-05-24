@@ -58,7 +58,7 @@
       </div>
     <% end %>
     <% @annotations.each do |a| %>
-      <%= render_simple_card(a) %>
+      <%= render 'annotations/card', annotation: a unless a.highlighted_text.blank? %>
     <% end %>
   </div>
   <%# END Right side: Annotations %>

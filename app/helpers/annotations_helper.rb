@@ -1,10 +1,9 @@
 module AnnotationsHelper
-  def render_simple_card(annotation)
-    render 'annotations/simple_card', annotation: annotation unless annotation.highlighted_text.blank?
-  end
-
-  def render_full_card(annotation)
-    render 'annotations/full_card', annotation: annotation unless annotation.highlighted_text.blank?
+  def render_flashcard(c)
+    unless c.annotation.highlighted_text.blank?
+      render 'flashcards/card',
+      flashcard: c, annotation: c.annotation
+    end
   end
 
   # Displays notes if there are any

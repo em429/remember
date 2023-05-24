@@ -1,5 +1,12 @@
 <div class="mb-8">
-  <%= render_full_card(@annotation) %>
+
+  <%# TODO: Improve this view %>
+  <%= render 'annotations/card',
+    annotation: @annotation unless @annotation.highlighted_text.blank? %>
+  
+  <div class="italic text-gray-500 w-full text-right">
+    from <%= @annotation.toc_family_titles %> of <%= link_to @annotation.book.title, @annotation.book, class: "link" %>
+  </div>
 </div>
 
 <%# Display notes if there are any %>

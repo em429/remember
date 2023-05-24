@@ -1,36 +1,5 @@
 class AnnotationsController < ApplicationController
 
-  # TODO: merge flashcard_due and unscored? The only difference is the scope + order
-  def flashcard_due
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @query = current_user.annotations.due_cards.ransack(params[:q])
-    # @q = current_user.flashcards.due.ransack(params[:q])
-
-    scope = @query.result(distinct: true).order_by_due_first
-    @pagy, @annotations = pagy(scope, items: 1)
-
-    render :flashcard
-  end
-
-  def flashcard_unscored
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @query = current_user.annotations.unscored_cards.ransack(params[:q])
-    # @q = current_user.flashcards.unscored.ransack(params[:q])
-
-    scope = @query.result(distinct: true).order_by_random
-    @pagy, @annotations = pagy(scope, items: 1)
-
-    render :flashcard
-  end
-
-  def index
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @query = current_user.annotations.all.ransack(params[:q])
-
-    scope = @query.result(distinct: true)
-    @pagy, @annotations = pagy(scope, items: 10)
-  end
-
   def show
     @annotation = current_user.annotations.find(params[:id])
   end

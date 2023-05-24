@@ -10,22 +10,7 @@ class Annotation < ApplicationRecord
     ["highlighted_text", "notes", "timestamp", "toc_family_titles", "updated_at"]
   end
 
-  # These are safeguard filters that come before ransack:
-  # FIXME: ?? move the below scopes to AnnotationRepetition (and rename that to Flashcard..)
-  #  It means changes in controller too!
-  scope :unscored_cards, -> { # Cards that haven't been scored yet
-    joins(:flashcard).where("next_repetition_date IS NULL") }
-
-  scope :due_cards, -> { # Cards that are either due today, or are overdue
-    joins(:flashcard).where("next_repetition_date <= ?", Date.today) }
-
-  scope :order_by_due_first, -> {
-    order("flashcard.next_repetition_date ASC")
-  }
-  scope :order_by_random, -> { order("RANDOM()") }
-
   validates :highlighted_text, presence: true, allow_blank: false
-
   
   def chapters
     if toc_family_titles.present?
