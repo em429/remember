@@ -1,10 +1,12 @@
 class AnnotationsController < ApplicationController
 
+  # TODO: merge flashcard_due and fresh? The only difference is the scope + order
   def flashcard_due
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @q = current_user.annotations.filter_by_due.ransack(params[:q])
+    @query = current_user.annotations.due_cards.ransack(params[:q])
+    # @q = current_user.flashcards.due.ransack(params[:q])
 
-    scope = @q.result(distinct: true).order_by_due_first
+    scope = @query.result(distinct: true).order_by_due_first
     @pagy, @annotations = pagy(scope, items: 1)
 
     render :flashcard
@@ -12,9 +14,10 @@ class AnnotationsController < ApplicationController
 
   def flashcard_fresh
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @q = current_user.annotations.filter_by_fresh.ransack(params[:q])
+    @query = current_user.annotations.fresh_cards.ransack(params[:q])
+    # @q = current_user.flashcards.unscored.ransack(params[:q])
 
-    scope = @q.result(distinct: true).order_by_random
+    scope = @query.result(distinct: true).order_by_random
     @pagy, @annotations = pagy(scope, items: 1)
 
     render :flashcard
@@ -22,10 +25,9 @@ class AnnotationsController < ApplicationController
 
   def index
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @q = current_user.annotations.all.ransack(params[:q])
-    #@q.sorts = "RANDOM()" if @q.sorts.empty?
+    @query = current_user.annotations.all.ransack(params[:q])
 
-    scope = @q.result(distinct: true)
+    scope = @query.result(distinct: true)
     @pagy, @annotations = pagy(scope, items: 10)
   end
 
