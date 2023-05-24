@@ -71,9 +71,9 @@
     <%# END Context buttons %>
 
     <%# START Spaced-repetition scoring buttons %>
-    <%= render 'annotation_repetitions/scoring_buttons',
+    <%= render 'flashcards/scoring_buttons',
        id: annotation.id,
-       next_due: annotation.annotation_repetition.next_repetition_date %>
+       next_due: annotation.flashcard.next_repetition_date %>
     <%# END of spaced repetition scoring part %>
 
     <%# START Tag and Timestamp %>

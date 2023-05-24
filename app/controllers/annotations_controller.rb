@@ -1,6 +1,6 @@
 class AnnotationsController < ApplicationController
 
-  # TODO: merge flashcard_due and fresh? The only difference is the scope + order
+  # TODO: merge flashcard_due and unscored? The only difference is the scope + order
   def flashcard_due
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.annotations.due_cards.ransack(params[:q])
@@ -12,9 +12,9 @@ class AnnotationsController < ApplicationController
     render :flashcard
   end
 
-  def flashcard_fresh
+  def flashcard_unscored
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @query = current_user.annotations.fresh_cards.ransack(params[:q])
+    @query = current_user.annotations.unscored_cards.ransack(params[:q])
     # @q = current_user.flashcards.unscored.ransack(params[:q])
 
     scope = @query.result(distinct: true).order_by_random
@@ -59,8 +59,8 @@ class AnnotationsController < ApplicationController
         next
       end
 
-      ## Create an AnnotationRepetition row with the default values
-      AnnotationRepetition.create!(annotation_id: annotation.id, interval: 0, easiness_factor: 2.5)
+      ## Create a Flashcard row with the default values
+      Flashcard.create!(annotation_id: annotation.id, interval: 0, easiness_factor: 2.5)
     end
     redirect_to book_path(params[:book_id])
   end

@@ -20,12 +20,12 @@ Rails.application.routes.draw do
 
 
   resources :annotations, only: [ :index, :show ] do
-    get 'flashcard_fresh', on: :collection, to: 'annotations#flashcard_fresh'
+    get 'flashcard_unscored', on: :collection, to: 'annotations#flashcard_unscored'
     get 'flashcard_due', on: :collection, to: 'annotations#flashcard_due'
     post 'import', on: :collection, to: 'annotations#import'
   end
 
-  resources :annotation_repetitions, only: [ :update ]
+  resources :flashcards, only: [ :update ]
 
   # URL aliases, must map to an existing canonical URL.
   # This is strictly for aesthetics, use the canonical paths in code, always.
