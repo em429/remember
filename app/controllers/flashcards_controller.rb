@@ -51,7 +51,7 @@ class FlashcardsController < ApplicationController
 
     @flashcard.save
 
-    redirect_back(fallback_location: annotations_path)
+    redirect_back(fallback_location: flashcards_path)
 
   end
 
