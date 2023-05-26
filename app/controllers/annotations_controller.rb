@@ -4,6 +4,17 @@ class AnnotationsController < ApplicationController
     @annotation = current_user.annotations.find(params[:id])
   end
 
+  def star
+    @annotation = current_user.annotations.find(params[:id])
+    if params[:star] == "1"
+      @annotation.add_star
+    else
+      @annotation.remove_star
+    end
+
+    redirect_back(fallback_location: annotation_path(params[:id]))
+  end
+
   # FIXME: move this to a job
   def import
     metadata_hashes = calibre_metadata_to_json(params[:opf_file])

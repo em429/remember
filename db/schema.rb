@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_125944) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_104732) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_125944) do
     t.datetime "updated_at", null: false
     t.string "toc_family_titles"
     t.string "color", default: "yellow"
+    t.boolean "starred", default: false
     t.index ["book_id"], name: "index_annotations_on_book_id"
     t.index ["highlighted_text"], name: "index_annotations_on_highlighted_text", unique: true
   end

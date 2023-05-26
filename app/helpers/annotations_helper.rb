@@ -6,6 +6,18 @@ module AnnotationsHelper
     end
   end
 
+  def button_to_star(annotation)
+    if annotation.starred
+      button_to star_annotation_path(id: annotation.id, star: 0) do
+        render 'svgs/star', fill: "fill-yellow-300"
+      end
+    else
+      button_to star_annotation_path(id: annotation.id, star: 1) do
+        render 'svgs/star'
+      end
+    end
+  end
+
   # Displays notes if there are any
   def display_notes(annotation)
     render 'annotations/notes', annotation: annotation if annotation.notes

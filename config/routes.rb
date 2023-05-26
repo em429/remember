@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :annotations, only: [ :show ] do
     post 'import', on: :collection, to: 'annotations#import'
+    post 'star', on: :member, to: 'annotations#star'
   end
 
   resources :flashcards, only: [ :index, :update ] do

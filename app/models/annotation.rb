@@ -20,4 +20,16 @@ class Annotation < ApplicationRecord
       nil
     end
   end
+
+  def add_star
+    update(starred: true)
+    save
+  end
+
+  def remove_star
+    update(starred: false)
+    save
+  end
+
+  
 end
