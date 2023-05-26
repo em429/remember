@@ -56,6 +56,7 @@ group :development, :test do
   gem "faker"
 
   gem "magic_test"
+  gem "erb-formatter"
 end
 
 group :development do
