@@ -4,8 +4,8 @@
   <%= render 'annotations/card',
     annotation: @annotation unless @annotation.highlighted_text.blank? %>
   
-  <div class="italic text-gray-500 w-full text-right">
-    from <%= @annotation.toc_family_titles %> of <%= link_to @annotation.book.title, @annotation.book, class: "link" %>
+  <div class="text-gray-500 w-full text-right">
+    from <span class="font-medium"><%= @annotation.chapters.to_sentence %></span> of <%= link_to @annotation.book.title, @annotation.book, class: "link italic" %>
   </div>
 </div>
 
