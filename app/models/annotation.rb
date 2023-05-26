@@ -12,6 +12,7 @@ class Annotation < ApplicationRecord
 
   validates :highlighted_text, presence: true, allow_blank: false
   
+  # Return the chapters as an array
   def chapters
     if toc_family_titles.present?
       JSON.parse(toc_family_titles)
