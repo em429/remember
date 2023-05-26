@@ -25,4 +25,9 @@ class Flashcard < ApplicationRecord
     where("next_repetition_date IS NOT NULL").where(updated_at: Time.current.all_day)
   }
 
+  # The default "unscored card" attributes are 0 for interval and 2.5 for easiness factor
+  def self.create_with_defaults(annotation)
+    create!(annotation_id: annotation.id, interval: 0, easiness_factor: 2.5)
+  end
+
 end
