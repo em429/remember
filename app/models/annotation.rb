@@ -2,6 +2,8 @@ class Annotation < ApplicationRecord
   belongs_to :book
   has_one :flashcard, dependent: :destroy
 
+  validates :highlighted_text, presence: true, allow_blank: false
+
   def self.ransackable_associations(auth_object = nil)
     ["flashcard", "book"]
   end
@@ -10,7 +12,6 @@ class Annotation < ApplicationRecord
     ["highlighted_text", "notes", "timestamp", "toc_family_titles", "updated_at"]
   end
 
-  validates :highlighted_text, presence: true, allow_blank: false
 
   # Imports annotations from a Calibre metadata.opf file into db and creates "unscored"
   # Flashcard rows as well for each Annotation.
