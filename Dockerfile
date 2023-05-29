@@ -1,90 +1,73 @@
-# syntax = docker/dockerfile:experimental
-ARG RUBY_VERSION=2.7.3
-ARG VARIANT=jemalloc-slim
-FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
+# syntax = docker/dockerfile:1
 
-ARG NODE_VERSION=16
-ARG BUNDLER_VERSION=2.3.9
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.1.0
+FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-jemalloc-slim as base
 
-ARG RAILS_ENV=production
-ENV RAILS_ENV=${RAILS_ENV}
+LABEL fly_launch_runtime="rails"
 
-ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_LOG_TO_STDOUT true
+# Rails app lives here
+WORKDIR /rails
 
-ARG BUNDLE_WITHOUT=development:test
-ARG BUNDLE_PATH=vendor/bundle
-ENV BUNDLE_PATH ${BUNDLE_PATH}
-ENV BUNDLE_WITHOUT ${BUNDLE_WITHOUT}
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1"
 
-RUN mkdir /app
-WORKDIR /app
-RUN mkdir -p tmp/pids
+# Update gems and bundler
+RUN gem update --system --no-document && \
+    gem install -N bundler
 
-SHELL ["/bin/bash", "-c"]
 
-RUN curl https://get.volta.sh | bash
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
-ENV BASH_ENV ~/.bashrc
-ENV VOLTA_HOME /root/.volta
-ENV PATH $VOLTA_HOME/bin:/usr/local/bin:$PATH
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential pkg-config
 
-RUN volta install node@${NODE_VERSION} && volta install yarn
+# Install application gems
+COPY --link Gemfile Gemfile.lock ./
+RUN bundle install && \
+    bundle exec bootsnap precompile --gemfile && \
+    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
-FROM base as build_deps
+# Copy application code
+COPY --link . .
 
-ARG DEV_PACKAGES="git build-essential libpq-dev wget vim curl gzip xz-utils libsqlite3-dev"
-ENV DEV_PACKAGES ${DEV_PACKAGES}
+# Precompile bootsnap code for faster boot times
+RUN bundle exec bootsnap precompile app/ lib/
 
-RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y ${DEV_PACKAGES} \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
-FROM build_deps as gems
 
-RUN gem install -N bundler -v ${BUNDLER_VERSION}
-
-COPY Gemfile* ./
-RUN bundle install &&  rm -rf vendor/bundle/ruby/*/cache
-
-FROM build_deps as node_modules
-
-COPY package*json ./
-COPY yarn.* ./
-
-RUN if [ -f "yarn.lock" ]; then \
-    yarn install; \
-    elif [ -f "package-lock.json" ]; then \
-    npm install; \
-    else \
-    mkdir node_modules; \
-    fi
-
+# Final stage for app image
 FROM base
 
-ARG PROD_PACKAGES="postgresql-client file vim curl gzip libsqlite3-0"
-ENV PROD_PACKAGES=${PROD_PACKAGES}
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libsqlite3-0 && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=prod-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y \
-    ${PROD_PACKAGES} \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails /rails
 
-COPY --from=gems /app /app
-COPY --from=node_modules /app/node_modules /app/node_modules
+# Run and own only the runtime files as a non-root user for security
+RUN useradd rails --create-home --shell /bin/bash && \
+    mkdir /data && \
+    chown -R rails:rails db log storage tmp /data
 
-ENV SECRET_KEY_BASE 1
+# Deployment options
+ENV DATABASE_URL="sqlite3:///data/production.sqlite3" \
+    RAILS_LOG_TO_STDOUT="1" \
+    RAILS_SERVE_STATIC_FILES="true"
 
-COPY . .
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-RUN bundle exec rails assets:precompile
-
-ENV PORT 8080
-
-ARG SERVER_COMMAND="bundle exec puma -C config/puma.rb"
-ENV SERVER_COMMAND ${SERVER_COMMAND}
-CMD ${SERVER_COMMAND}
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+VOLUME /data
+CMD ["./bin/rails", "server"]

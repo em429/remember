@@ -98,6 +98,8 @@ GEM
       reline (>= 0.3.1)
     debug_inspector (1.1.0)
     diff-lcs (1.5.0)
+    dockerfile-rails (1.4.0)
+      rails
     e2mmap (0.1.0)
     epub-cfi (0.1.2)
     epub-parser (0.4.6)
@@ -306,6 +308,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dockerfile-rails (>= 1.4)
   epub-parser (~> 0.4.6)
   erb-formatter
   factory_bot_rails

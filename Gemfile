@@ -95,3 +95,5 @@ gem "pagy", "~> 6.0"
 
 # Sorting & Filtering
 gem "ransack"
+
+gem "dockerfile-rails", ">= 1.4", :group => :development
