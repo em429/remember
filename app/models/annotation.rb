@@ -9,7 +9,7 @@ class Annotation < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["highlighted_text", "notes", "timestamp", "toc_family_titles", "updated_at"]
+    ["starred", "highlighted_text", "notes", "timestamp", "toc_family_titles", "updated_at"]
   end
 
 
