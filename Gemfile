@@ -84,6 +84,8 @@ group :test do
   # gem 'webdrivers'
 end
 
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
 # Essentials
 gem "tailwindcss-rails", "~> 2.0"
 
@@ -96,4 +98,4 @@ gem "pagy", "~> 6.0"
 # Sorting & Filtering
 gem "ransack"
 
-gem "dockerfile-rails", ">= 1.4", :group => :development
+gem "rss"

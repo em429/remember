@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     get 'due', on: :collection, to: 'flashcards#show_due'
   end
 
+  resources :news_feed, only: [ :index ]
+
   # URL aliases, must map to an existing canonical URL.
   # This is strictly for aesthetics, use the canonical paths in code, always.
   get 'signup', to: 'users#new'
