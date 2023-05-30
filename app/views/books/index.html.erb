@@ -1,32 +1,37 @@
-<h1 class="mb-12 font-bold text-4xl">Annotated Books</h1>
+<h1 class="mb-6 font-bold text-4xl">Annotated Books</h1>
 
-  <div class="">
-      <% @books.each do |book| %>
-        <div class="mb-12 border p-8 shadow-md gap-8 flex justify-between">
-          
-          <%# Left side: book details, random highlight, tag %>
-          <div class="grow">
-            <%= link_to book.title, book, class: "font-medium text-2xl" %>
-            <section class="mb-6 mt-2 ">
-              <span class="text-sm">by <%= book.author %></span>
-            </section>
-            <section class="mb-6 text-md text-gray-600 bg-gray-50">
-              <h5 class="pt-2 pl-3 pb-2 smallcaps bg-gray-100">Random Highlight</h5>
-              <p class="pb-3 px-3 pt-2  italic"><%= random_highlight(book).truncate(200) %></p>
-            </section>
-            <section class="tag">
-              <%= fiction_or_not_tag(book) %>
-            </section>
-          </div>
-
-          <%# Right side: book cover image %>
-          <section class="max-w-[150px]">
-            <%= link_to book do %>
-              <%= book_cover(book) %>
-            <% end %>
-          </section>
-          
-        </div >
-        
-      <% end %>
+<div>
+  <div class="w-full font-bold mb-2 text-right"> 
+    <%= link_to "+ Add Book", new_book_path %>
   </div>
+  <% @books.each do |book| %>
+    <div class="mb-12 border p-8 shadow-md gap-8 flex justify-between">
+
+      <%# Left side: book details, random highlight, tag %>
+      <div class="grow">
+        <%= link_to book.title, book, class: "font-medium text-2xl" %>
+        <section class="mb-6 mt-2 ">
+          <span class="text-sm">by
+            <%= book.author %></span>
+        </section>
+        <section class="mb-6 text-md text-gray-600 bg-gray-50">
+          <h5 class="pt-2 pl-3 pb-2 smallcaps bg-gray-100">Random Highlight</h5>
+          <p class="pb-3 px-3 pt-2 italic"><%= random_highlight(book).truncate(200) %></p>
+        </section>
+        <section class="tag">
+          <%= fiction_or_not_tag(book) %>
+        </section>
+      </div>
+
+      <%# Right side: book cover image %>
+      <section class="max-w-[150px]">
+        <%= link_to book do %>
+          <%= book_cover(book) %>
+        <% end %>
+      </section>
+
+    </div>
+
+  <% end %>
+
+</div>
