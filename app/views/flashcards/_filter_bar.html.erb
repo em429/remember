@@ -17,14 +17,14 @@
     <div>
       <span class="myform-label">Fiction</span>
       <div class="h-11 p-2">
-        <%= f.check_box :annotation_book_fiction_true, class: "myform-checkbox" %>
+        <%= f.radio_button :annotation_book_fiction_true, 1, class: "myform-radio" %>
       </div>
     </div>
 
     <div>
       <span class="myform-label">Non-fiction</span>
       <div class="h-11 p-2">
-        <%= f.check_box :annotation_book_fiction_false, class: "myform-checkbox" %>
+        <%= f.radio_button :annotation_book_fiction_true, 0, class: "myform-radio" %>
       </div>
     </div>
 
