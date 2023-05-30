@@ -28,6 +28,11 @@
         <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
       </span>
 
+      <span class="space-x-1">
+        <%= nav_link_to "Starred", annotation_stars_path %>
+        <span class="text-gray-300"><%= current_user.annotations.starred.count %></span>
+      </span>
+
     </div>
     <div class="space-x-8 font-bold">
       <%= nav_link_to "Books", books_path %>

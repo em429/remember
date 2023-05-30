@@ -4,6 +4,10 @@ class Annotation < ApplicationRecord
 
   validates :highlighted_text, presence: true, allow_blank: false
 
+  scope :starred, -> {
+    where("starred == true")
+  }
+
   def self.ransackable_associations(auth_object = nil)
     ["flashcard", "book"]
   end

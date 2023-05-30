@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   end
 
 
+  resources :annotation_stars, only: [ :index, :create, :update ]
+
+
   resources :annotations, only: [ :show ] do
     post 'import', on: :collection, to: 'annotations#import'
-    post 'star', on: :member, to: 'annotations#star'
   end
 
   resources :flashcards, only: [ :index, :update ] do
