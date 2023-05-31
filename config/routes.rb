@@ -19,12 +19,11 @@ Rails.application.routes.draw do
   end
 
 
+  resources :annotations, only: [ :show ]
   resources :annotation_stars, only: [ :index, :create, :update ]
 
 
-  resources :annotations, only: [ :show ] do
-    post 'import', on: :collection, to: 'annotations#import'
-  end
+  resources :annotation_imports, only: [ :create ]
 
   resources :flashcards, only: [ :index, :update ] do
     get 'unscored', on: :collection, to: 'flashcards#show_unscored'
