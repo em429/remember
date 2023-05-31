@@ -4,13 +4,12 @@ Rails.application.routes.draw do
   ## Static, content pages
   resource :intro_page, only: [ :show ]
 
-
-  resources :users, except: [ :index ]
-
-
+  ## Users & Sessions
+  # except: index
+  resources :users, only: [ :new, :create, :show, :edit, :update, :destroy ]
   resource :session, only: [ :new, :create, :destroy ]
 
-
+  ## Books
   resources :books do
     # Add plaintext nested inside member to keep it's param as id, not book_id
     member do
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
   end
 
 
+  ## Annotations & Flashcards
   resources :annotations, only: [ :show ]
   resources :annotation_stars, only: [ :index, :create, :update ]
 
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get 'due', on: :collection, to: 'flashcards#show_due'
   end
 
+  ## News feeds
   resources :news_feed, only: [ :index ]
 
   # URL aliases, must map to an existing canonical URL.
