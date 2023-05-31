@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'content_pages#intro'
+  root 'intro_page#show'
 
-  get 'intro', to: 'content_pages#intro'
+  ## Static, content pages
+  resource :intro_page, only: [ :show ]
 
 
   resources :users, except: [ :index ]
