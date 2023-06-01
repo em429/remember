@@ -9,6 +9,7 @@ class Book < ApplicationRecord
 
   ## Validations
   # TODO: add more validations
+  validates :title, :author, :epub, presence: true
   validates :title, uniqueness: { scope: :author }
 
   def self.ransackable_associations(auth_object = nil)
