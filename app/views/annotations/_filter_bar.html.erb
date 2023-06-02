@@ -1,3 +1,9 @@
+<%# FIXME: I couldn't figure out yet how no to duplicate this filter_bar between flashcards and annotations.
+      The problem comes from filtering using ransack predicates, that by default map to the associations as 
+      :association_column -- so if I pass in a @flashcard, it will be :annotation_column, but if I pass in a
+      @annotation, it will be simply :column. I tried doin an include/join but didn't work.
+
+ %>
 <section class="mb-8 mt-[-40px] p-3 bg-gray-50">
   <%= search_form_for @query, url: request.params, class: "flex justify-between" do |f| %>
   <div class="flex space-x-6 ">
