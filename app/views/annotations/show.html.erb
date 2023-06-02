@@ -1,17 +1,5 @@
-<div class="mb-8">
 
-  <%# TODO: Improve this view %>
-  <%= unless @annotation.highlighted_text.blank?
-    render "annotations/card", annotation: @annotation
-  end %>
 
-  <div class="text-gray-500 w-full text-right">
-    from
-    <span class="font-medium"><%= @annotation.chapters.to_sentence %></span>
-    of
-    <%= link_to @annotation.book.title, @annotation.book, class: "link italic" %>
-  </div>
-</div>
-
+<%= render_annotation(@annotation) %> 
 <%# Display notes if there are any %>
 <%= display_notes(@annotation) %>

@@ -18,15 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
-
   ## Annotations & Flashcards
-  resources :annotations, only: [ :show ]
-
-
+  resources :annotations, only: [ :index, :show ]
   resources :annotation_stars, only: [ :index, :update ]
   resources :annotation_imports, only: [ :create ]
 
-  resources :flashcards, only: [ :index, :update ] do
+  resources :flashcards, only: [ :update ] do
     get 'unscored', on: :collection, to: 'flashcards#show_unscored'
     get 'due', on: :collection, to: 'flashcards#show_due'
   end

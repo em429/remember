@@ -2,30 +2,26 @@ require 'spaced_repetition'
 
 class FlashcardsController < ApplicationController
 
-  def index
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
-    @query = current_user.flashcards.all.ransack(params[:q])
-
-    scope = @query.result(distinct: true)
-    @pagy, @flashcards = pagy(scope, items: 10)
-  end
-
+  # TODO: refactor
   def show_due
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.flashcards.due.ransack(params[:q])
 
     scope = @query.result(distinct: true).order_by_due_first
     @pagy, @flashcards = pagy(scope, items: 1)
+    @card = @flashcards.first
 
     render :show
   end
 
+  # TODO: refactor
   def show_unscored
     @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.flashcards.unscored.ransack(params[:q])
 
     scope = @query.result(distinct: true).order_by_random
     @pagy, @flashcards = pagy(scope, items: 1)
+    @card = @flashcards.first
 
     render :show
   end

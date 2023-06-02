@@ -1,0 +1,43 @@
+<section class="mb-8 mt-[-40px] p-3 bg-gray-50">
+  <%= search_form_for @query, url: request.params, class: "flex justify-between" do |f| %>
+  <div class="flex space-x-6 ">
+
+    <div>
+      <%= f.label :book_title_eq, "Title", class: "myform-label" %>
+      <%= f.select :book_title_eq, @book_titles,
+         { selected: "" }, { class: "h-11 myform-select" } %>
+    </div>
+
+    <div>
+      <%= f.label :book_author_cont, "Author", class: "myform-label" %>
+      <%= f.search_field :book_author_cont, class: "border border-gray-300" %>
+    </div>
+
+    <div>
+      <span class="myform-label">Fiction</span>
+      <div class="h-11 p-2">
+        <%= f.radio_button :book_fiction_true, 1, class: "myform-radio" %>
+      </div>
+    </div>
+
+    <div>
+      <span class="myform-label">Non-fiction</span>
+      <div class="h-11 p-2">
+        <%= f.radio_button :book_fiction_true, 0, class: "myform-radio" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flex items-end">
+    <%= f.submit "Filter", class: "h-11 text-xs px-4 py-2 bg-gray-50 border border-gray-300 " %>
+  </div>
+
+  <% end %>
+
+  <div class="mt-3">
+    Current filter returns <%= @pagy.count %> items total
+  </div>
+
+
+</section>

@@ -1,11 +1,23 @@
 <%= render "filter_bar" %>
 
-<% @flashcards.each do |card| %>
-  <%= render_flashcard(card) %>
-<% end %>
+<% if @card.present? %>
+  <%= render_annotation(@card.annotation) %>
 
-<div class="mb-14">
-  <span class="text-gray-400 font-bold">
-    Scored today: <%= Flashcard.scored_today.count %>
-  </span>
-</div>
+  <div class="flex w-fit mx-auto mb-6">
+    <%= render 'flashcards/scoring_buttons',
+       id: @card.annotation.id,
+       next_due: @card.next_repetition_date
+    %>
+  </div>
+
+  <div class="w-fit m-auto mb-14">
+    <span class="text-gray-400 font-bold">
+      Scored today: <%= Flashcard.scored_today.count %>
+    </span>
+  </div>
+
+<% elsif current_page?(controller: 'flashcards', action: 'show_due') %>
+  <h2 class="font-bold text-2xl">No cards are due!</h2>
+<% else %>
+  <h2 class="font-bold text-2xl">No more unscored flashcards!</h2>
+<% end %>

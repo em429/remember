@@ -1,12 +1,91 @@
-<!-- Simple card, showing just the content and timestamp -->
-<div class="p-6 mb-8 shadow-md border " >
-  <p class="card-text mb-6">
-    <%= show_context(annotation, 300) %>
+<%# Full-featured card: showing book metadata, context can be expanded. %>
+<%# START Outermost container of card %> 
+<div data-controller="context" data-context-index-value="0" class="p-6 mb-8 shadow-md border">
+
+  <%# START Top of card: Author and Table of Contents %> 
+  <section class="mb-6 text-sm text-gray-500 flex gap-2 justify-between">
+    <span>
+      <%= link_to annotation.book.title, annotation.book, class: "text-gray-800" %>
+      by <%= annotation.book.author %>
+    </span>
+
+    <%# Highlight color indicator %>
+    <div class="mx-2 grow w-14 h-3 border-b-2 <%= color_to_tailwind_border(annotation.color) %>">
+    </div>
+
+    <%# Show current highlight's chapter info, if nested, then show all in order: %>
+    <span>
+      <% annotation.chapters&.each_with_index do |a, index| %>
+        <span><%= a %></span> 
+        <% unless index == annotation.chapters.size - 1  %>
+           &bull;
+         <% end %>
+      <% end %>
+    </span>
+  </section>
+  <%# END Top of card %> 
+
+  <%# START Main highlight content %> 
+  <%# Excerpt Index 0: Shown by default, the highlighted text, without extra context %>
+  <p class="mb-6 card-text" data-context-target="excerpt">
+    <%= annotation.highlighted_text %>
   </p>
-  <div class="flex justify-between">
-    <%= link_to annotation do %>
-      <%= time_ago_in_words(annotation.timestamp) %> ago
-    <% end %>
-    <%= button_to_star(annotation) %>
-  </div>
+
+  <%# Excerpt Index 1: Hidden by default, context excerpt with radius of 400 %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 400) %>
+  </p>
+
+  <%# Excerpt Index 2: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 800) %>
+  </p>
+
+  <%# Excerpt Index 3: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 1200) %>
+  </p>
+
+  <%# Excerpt Index 4: Hidden by default, even more context using excerpt %>
+  <p data-context-target="excerpt" class="mb-6 card-text">
+    <%= show_context(annotation, 1600) %>
+  </p>
+  <%# END Main highlight content %> 
+
+  
+  <%# START Bottom of card %>
+  <section class="text-sm flex gap-2 justify-between">
+
+    <%# START Context buttons %>
+    <section class="flex gap-3">
+      <button data-action="context#show_less" data-context-target="less_button"
+        class="text-xs px-2 border border-gray-300 text-gray-600">
+        - less context -
+      </button>
+
+      <button data-action="context#show_more" data-context-target="more_button"
+        class="text-xs px-2 border border-gray-300 text-gray-600">
+        + more context +
+      </button>
+    </section>
+    <%# END Context buttons %>
+
+    <%# Star/Unstar button %>
+    <div class="inline-block align-bottom w-5 h-5">
+      <%= button_to_star(annotation) %>
+    </div>
+
+    <%# START Tag and Timestamp %>
+    <section class="flex gap-3">
+      <div class="tag"><%= fiction_or_not_tag(annotation.book) %></div>
+      <%= link_to annotation, class:"timestamp" do %>
+          <%= time_ago_in_words(annotation.timestamp) %> ago
+      <% end %>
+    </section>
+    <%# END Tag and Timestamp %>
+
+  </section>
+  <%# END Bottom metadata and context section %>
+
 </div>
+<%# END Outermost container of card %> 
