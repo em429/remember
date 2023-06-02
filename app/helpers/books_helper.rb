@@ -1,4 +1,9 @@
 module BooksHelper
+
+  def book_titles_for_select
+    [[ "Any", "" ]] + Book.all.pluck(:title)
+  end
+
   # TODO: implement as enum (fiction, non, paper, article..etc)
   def fiction_or_not_tag(book)
     if book.fiction

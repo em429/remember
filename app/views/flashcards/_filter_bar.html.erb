@@ -5,7 +5,7 @@
     <div>
       <%= f.label :annotation_book_title_eq, "Title", class: "myform-label" %>
       <%#= f.search_field :book_title_start %>
-      <%= f.select :annotation_book_title_eq, @book_titles,
+      <%= f.select :annotation_book_title_eq, book_titles_for_select,
          { selected: "" }, { class: "h-11 myform-select" } %>
     </div>
 

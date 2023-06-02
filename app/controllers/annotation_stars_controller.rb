@@ -1,7 +1,5 @@
 class AnnotationStarsController < ApplicationController
   def index
-    # TODO extract this select invocation for @book_titles somewhere
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.annotations.starred.ransack(params[:q])
 
     scope = @query.result(distinct: true)

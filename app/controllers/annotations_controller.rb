@@ -5,7 +5,6 @@ class AnnotationsController < ApplicationController
   end
 
   def index
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.annotations.all.ransack(params[:q])
 
     scope = @query.result(distinct: true)

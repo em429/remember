@@ -4,7 +4,6 @@ class FlashcardsController < ApplicationController
 
   # TODO: refactor
   def show_due
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.flashcards.due.ransack(params[:q])
 
     scope = @query.result(distinct: true).order_by_due_first
@@ -16,7 +15,6 @@ class FlashcardsController < ApplicationController
 
   # TODO: refactor
   def show_unscored
-    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.flashcards.unscored.ransack(params[:q])
 
     scope = @query.result(distinct: true).order_by_random

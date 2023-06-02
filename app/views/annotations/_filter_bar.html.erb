@@ -4,7 +4,7 @@
 
     <div>
       <%= f.label :book_title_eq, "Title", class: "myform-label" %>
-      <%= f.select :book_title_eq, @book_titles,
+      <%= f.select :book_title_eq, book_titles_for_select,
          { selected: "" }, { class: "h-11 myform-select" } %>
     </div>
 
