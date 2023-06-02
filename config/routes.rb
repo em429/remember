@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 
   ## Annotations & Flashcards
   resources :annotations, only: [ :show ]
-  resources :annotation_stars, only: [ :index, :create, :update ]
 
 
+  resources :annotation_stars, only: [ :index, :update ]
   resources :annotation_imports, only: [ :create ]
 
   resources :flashcards, only: [ :index, :update ] do

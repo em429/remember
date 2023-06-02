@@ -1,13 +1,16 @@
 class AnnotationStarsController < ApplicationController
   def index
-    #@book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
+    # TODO extract this select invocation for @book_titles somewhere
+    @book_titles = [[ "Any", "" ]] + Book.all.pluck(:title)
     @query = current_user.annotations.starred.ransack(params[:q])
 
     scope = @query.result(distinct: true)
     @pagy, @annotations = pagy(scope, items: 10)
+
+    render 'annotations/index'
   end
 
-  def create
+  def update
     @annotation = current_user.annotations.find(params[:id])
     if params[:star] == "1"
       @annotation.add_star
@@ -16,9 +19,6 @@ class AnnotationStarsController < ApplicationController
     end
 
     redirect_back(fallback_location: annotation_path(params[:id]))
-  end
-
-  def update
   end
 
 end
