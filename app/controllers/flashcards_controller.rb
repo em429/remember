@@ -2,26 +2,20 @@ require 'spaced_repetition'
 
 class FlashcardsController < ApplicationController
 
-  # TODO: refactor
-  def show_due
-    @query = current_user.flashcards.due.ransack(params[:q])
-
-    scope = @query.result(distinct: true).order_by_due_first
-    @pagy, @flashcards = pagy(scope, items: 1)
-    @card = @flashcards.first
-
-    render :show
-  end
-
-  # TODO: refactor
-  def show_unscored
-    @query = current_user.flashcards.unscored.ransack(params[:q])
-
-    scope = @query.result(distinct: true).order_by_random
-    @pagy, @flashcards = pagy(scope, items: 1)
-    @card = @flashcards.first
-
-    render :show
+  def index
+    if request.path == unscored_flashcards_path
+      @query = current_user.flashcards.unscored.ransack(params[:q])
+      scope = @query.result(distinct: true).order_by_random
+      @pagy, @flashcards = pagy(scope, items: 1)
+      @card = @flashcards.first
+    elsif request.path == due_flashcards_path
+      @query = current_user.flashcards.due.ransack(params[:q])
+      scope = @query.result(distinct: true).order_by_due_first
+      @pagy, @flashcards = pagy(scope, items: 1)
+      @card = @flashcards.first
+    else
+      redirect_to due_flashcards_path
+    end
   end
 
   def update

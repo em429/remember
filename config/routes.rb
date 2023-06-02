@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   resources :annotation_stars, only: [ :index, :update ]
   resources :annotation_imports, only: [ :create ]
 
-  resources :flashcards, only: [ :update ] do
-    get 'unscored', on: :collection, to: 'flashcards#show_unscored'
-    get 'due', on: :collection, to: 'flashcards#show_due'
+  resources :flashcards, only: [ :update, :index ] do
+    get 'unscored', on: :collection, to: 'flashcards#index'
+    get 'due', on: :collection, to: 'flashcards#index'
   end
 
   ## News feeds
