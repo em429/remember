@@ -1,7 +1,7 @@
 require 'rss'
 require 'open-uri'
 
-class NewsFeed < ApplicationRecord
+class RssFeed < ApplicationRecord
   validates :title, :url, presence: true
 
   def fetch_feed

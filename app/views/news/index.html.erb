@@ -1,0 +1,10 @@
+<div class="mb-6">
+  <%= link_to "RSS Feeds", rss_feeds_path, class: "link" %> 
+</div>
+
+<div class="space-y-8 mb-14">
+  <% RssFeed.all.each do |feed| %>
+    <%= render 'feed', feed: feed %>
+  <% end %>
+</div>
+

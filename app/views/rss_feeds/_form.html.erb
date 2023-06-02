@@ -1,0 +1,29 @@
+<%= form_with(model: rss_feed) do |form| %>
+
+  <% if rss_feed.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium mt-3">
+      <h2><%= pluralize(rss_feed.errors.count, "error") %> prohibited this feed from being saved:</h2>
+
+      <ul>
+        <% rss_feed.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "block shadow  border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :url %>
+    <%= form.text_field :url, class: "block shadow  border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn-lg" %>
+  </div>
+  
+<% end %>

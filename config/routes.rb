@@ -28,8 +28,10 @@ Rails.application.routes.draw do
     get 'due', on: :collection, to: 'flashcards#index'
   end
 
-  ## News feeds
-  resources :news_feed, only: [ :index ]
+  ## News
+  # except: show
+  resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ]
+  resources :news, only: [ :index ]
 
   # URL aliases, must map to an existing canonical URL.
   # This is strictly for aesthetics, use the canonical paths in code, always.
@@ -38,6 +40,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  get 'news', to: 'news_feed#index'
+  get 'news', to: 'news#index'
 
 end

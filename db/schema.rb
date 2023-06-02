@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_221307) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_191456) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,13 +77,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_221307) do
     t.index ["annotation_id"], name: "index_flashcards_on_annotation_id"
   end
 
-  create_table "news_feeds", force: :cascade do |t|
+  create_table "rss_feeds", force: :cascade do |t|
     t.string "title"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_news_feeds_on_title", unique: true
-    t.index ["url"], name: "index_news_feeds_on_url", unique: true
+    t.index ["title"], name: "index_rss_feeds_on_title", unique: true
+    t.index ["url"], name: "index_rss_feeds_on_url", unique: true
   end
 
   create_table "users", force: :cascade do |t|
