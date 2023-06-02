@@ -16,7 +16,7 @@
         </section>
         <section class="mb-6 text-md text-gray-600 bg-gray-50">
           <h5 class="pt-2 pl-3 pb-2 smallcaps bg-gray-100">Random Highlight</h5>
-          <p class="pb-3 px-3 pt-2 italic"><%= random_highlight(book).truncate(200) %></p>
+          <p class="pb-3 px-3 pt-2 italic"><%= book.random_highlight.truncate(200) %></p>
         </section>
         <section class="tag">
           <%= fiction_or_not_tag(book) %>
