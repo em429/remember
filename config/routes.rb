@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :annotation_stars, only: [ :index, :update ]
   resources :annotation_imports, only: [ :create ]
 
-  # [?] Possible refactor
   resources :flashcards, only: [ :update ]
   resources :unscored_flashcards, only: [ :index ]
   resources :due_flashcards, only: [ :index ]
