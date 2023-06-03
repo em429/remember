@@ -12,8 +12,10 @@ class AnnotationStarsController < ApplicationController
     @annotation = current_user.annotations.find(params[:id])
     if params[:star] == "1"
       @annotation.add_star
+      flash[:notice] = "Succesfully starred"
     else
       @annotation.remove_star
+      flash[:notice] = "Successfully unstarred"
     end
 
     redirect_back(fallback_location: annotation_path(params[:id]))
