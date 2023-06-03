@@ -20,14 +20,13 @@ Rails.application.routes.draw do
   resources :annotation_stars, only: [ :index, :update ]
   resources :annotation_imports, only: [ :create ]
 
-  resources :flashcards, only: [ :update, :index ] do
-    get 'unscored', on: :collection, to: 'flashcards#index'
-    get 'due', on: :collection, to: 'flashcards#index'
-  end
+  # [?] Possible refactor
+  resources :flashcards, only: [ :update ]
+  resources :unscored_flashcards, only: [ :index ]
+  resources :due_flashcards, only: [ :index ]
 
   ## News
-  # except: show
-  resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ]
+  resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
   resources :news, only: [ :index ]
 
   # URL aliases, must map to an existing canonical URL.
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'news', to: 'news#index'
+  get 'flashcards', to: redirect('/due_flashcards')
 
   ## Content page routes. These are not resource based, each page's name coressponds to
   ## a controller action on ContentPagesController

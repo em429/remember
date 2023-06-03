@@ -3,19 +3,7 @@ require 'spaced_repetition'
 class FlashcardsController < ApplicationController
 
   def index
-    if request.path == unscored_flashcards_path
-      @query = current_user.flashcards.unscored.ransack(params[:q])
-      scope = @query.result(distinct: true).order_by_random
-      @pagy, @flashcards = pagy(scope, items: 1)
-      @card = @flashcards.first
-    elsif request.path == due_flashcards_path
-      @query = current_user.flashcards.due.ransack(params[:q])
-      scope = @query.result(distinct: true).order_by_due_first
-      @pagy, @flashcards = pagy(scope, items: 1)
-      @card = @flashcards.first
-    else
-      redirect_to due_flashcards_path
-    end
+    redirect_to due_flashcards_path
   end
 
   def update
