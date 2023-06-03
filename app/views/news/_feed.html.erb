@@ -1,10 +1,8 @@
-<% fetched_feed = feed.fetch_feed %>
-
 <div class="p-4 bg-gray-50 border border-1">
   <h2 class="mb-2 font-bold text-2xl">
     <%= link_to feed.title, edit_rss_feed_path(feed) %>
   </h2>
-  <% fetched_feed.items.each do |item| %>
+  <% feed.cached.items.each do |item| %>
     <ul>
       <li class="mb-1">
         <!-- item.comments links to discussion item.link links to original url
@@ -19,4 +17,5 @@
       </li>
     </ul>
   <% end %>
+
 </div>
