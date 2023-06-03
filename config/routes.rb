@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  root 'intro_page#show'
-
-  ## Static, content pages
-  resource :intro_page, only: [ :show ]
+  root 'content_pages#about'
 
   ## Users & Sessions
   # except: index
@@ -42,4 +39,9 @@ Rails.application.routes.draw do
 
   get 'news', to: 'news#index'
 
+  ## Content page routes. These are not resource based, each page's name coressponds to
+  ## a controller action on ContentPagesController
+  get '/about', to: 'content_pages#about'
+
 end
+
