@@ -4,7 +4,7 @@
       @annotation, it will be simply :column. I tried doin an include/join but didn't work.
 
  %>
-<section class="mb-8 mt-[-40px] p-3 bg-gray-50">
+<div class="p-4 mb-8 bg-gray-50 border border-1">
   <%= search_form_for @query, url: request.params, class: "flex justify-between" do |f| %>
   <div class="flex space-x-6 ">
 
@@ -41,9 +41,9 @@
 
   <% end %>
 
-  <div class="mt-3">
-    Current filter returns <%= @pagy.count %> items total
+  <div class="mt-3 text-xs text-gray-600">
+    Current filter returns <%= @pagy.count %> annotations total
   </div>
 
 
-</section>
+</div>
