@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   ## News
   resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
   resources :rss_feed_fetches, only: [ :create ]
+  # The 'news' resource functions as a dashboard of various rss_feeds
   resources :news, only: [ :index ]
 
   # URL aliases, must map to an existing canonical URL.
@@ -44,4 +45,3 @@ Rails.application.routes.draw do
   get '/about', to: 'content_pages#about'
 
 end
-
