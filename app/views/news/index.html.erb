@@ -18,7 +18,7 @@
     <%= render 'rss_feed', feed: feed, limit: 5 %>
   <% end %>
   <% RssFeed.where("url like 'https://www.reddit%'").each do |feed| %>
-    <%= render 'reddit_rss_feed', feed: feed, limit: 10 %>
+    <%= render 'reddit_rss_feed', feed: feed, limit: 5 %>
   <% end %>
 </div>
 
