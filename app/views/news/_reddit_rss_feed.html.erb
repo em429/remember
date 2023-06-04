@@ -20,8 +20,7 @@
           <!-- item.comments links to discussion item.link links to original
           url item.pubDate is what it sound like -->
           <%= link_to item.link.href, class: "font-mono text-gray-600" do %>
-             published
-            <%#= item.pubDate.strftime("%a, %F") %>
+            <%= item.published.content.strftime("%a, %F") %>
           <% end %>
           <%= link_to item.link.href, class: "link" do %>
             <%= item.title.content %>
