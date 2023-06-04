@@ -11,8 +11,14 @@
 </div>
 
 <div class="space-y-8 mb-14">
-  <% RssFeed.all.each do |feed| %>
-    <%= render 'feed', feed: feed %>
+  <% RssFeed.where("url like 'https://lobste%'").each do |feed| %>
+    <%= render 'rss_feed', feed: feed, limit: 5 %>
+  <% end %>
+  <% RssFeed.where("url like 'https://hnrss%'").each do |feed| %>
+    <%= render 'rss_feed', feed: feed, limit: 5 %>
+  <% end %>
+  <% RssFeed.where("url like 'https://www.reddit%'").each do |feed| %>
+    <%= render 'reddit_rss_feed', feed: feed, limit: 10 %>
   <% end %>
 </div>
 

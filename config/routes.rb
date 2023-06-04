@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   ## News
   resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
+  resources :rss_feed_fetches, only: [ :create ]
   resources :news, only: [ :index ]
 
   # URL aliases, must map to an existing canonical URL.

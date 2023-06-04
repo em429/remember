@@ -4,13 +4,16 @@ require 'open-uri'
 class RssFeed < ApplicationRecord
   validates :title, :url, presence: true
 
-  # Either fetches the feed, or returns the cached version
+  def fetch
+    URI.open(url) do |rss|
+      feed = RSS::Parser.parse(rss)
+      Rails.cache.write("#{cache_key_with_version}/cached_feed", feed, expires_in: 6.hours)
+    end 
+  end
+
+  # Return the cached version, without fetching it
   def cached
-    Rails.cache.fetch("#{cache_key_with_version}/cached_feed", expires_in: 6.hours) do
-      URI.open(url) do |rss|
-        feed = RSS::Parser.parse(rss)
-      end 
-    end    
+    Rails.cache.fetch("#{cache_key_with_version}/cached_feed", expires_in: 6.hours)
   end
 
 end
