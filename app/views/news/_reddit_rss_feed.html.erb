@@ -1,0 +1,39 @@
+<%# Takes 'limit' as a parameter %>
+
+<% refresh_button = button_to "refresh", rss_feed_fetches_path(id: feed.id), class: "link" %>
+
+<div class="p-4 bg-gray-50 border border-1">
+    <div class="flex space-x-4 justify-between">
+    <h2 class="mb-2 font-bold text-2xl">
+      <%= link_to feed.title, edit_rss_feed_path(feed) %>
+    </h2>
+    <%= refresh_button %>
+  </div>
+  <% if feed.cached.present? %>
+    <% if feed.cached.items.count == 0  %>
+      This feed didn't return any items
+    <% end %>
+
+    <% feed.cached.items.first(limit).each do |item| %>
+      <ul>
+        <li class="mb-1">
+          <!-- item.comments links to discussion item.link links to original
+          url item.pubDate is what it sound like -->
+          <%= link_to item.link.href, class: "font-mono text-gray-600" do %>
+             published
+            <%#= item.pubDate.strftime("%a, %F") %>
+          <% end %>
+          <%= link_to item.link.href, class: "link" do %>
+            <%= item.title.content %>
+          <% end %>
+
+        </li>
+      </ul>
+    <% end %>
+  <% else %>
+    <span class="text-xl text-gray-500">
+      This feed hasn't been fetched
+    </span>
+  <% end %>
+
+</div>
