@@ -11,23 +11,28 @@
 </nav>
 
 <% unless current_user.blank? %>
-  <nav class="flex items-center text-xl justify-between">
-    <div class="space-x-8 font-bold">
+  <nav class="flex items-baseline text-xl justify-between">
 
-      <span class="space-x-1">
-        <%= nav_link_to "Due", due_flashcards_path %>
-        <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
-      </span>
+    <div class="p-4 font-bold bg-gray-50 border border-1">
+      <span class="block mb-2">Flashcards</span>
+      <div class="space-x-4">
+        <span class="space-x-1 text-gray-500">
+          <%= nav_link_to "Due", due_flashcards_path %>
+          <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
+        </span>
 
-      <span class="space-x-1">
-        <%= nav_link_to "Unscored", unscored_flashcards_path %>
-        <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
-      </span>
-
+        <span class="space-x-1 text-gray-500">
+          <%= nav_link_to "Unscored", unscored_flashcards_path %>
+          <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
+        </span>
+      </div>
     </div>
     <div class="space-x-8 font-bold">
       <%= nav_link_to "Books", books_path %>
       <%= nav_link_to "News", news_path %>
     </div>
+
+
+    
   </nav>
 <% end %>
