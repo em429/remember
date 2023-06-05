@@ -1,12 +1,25 @@
 <h1 class="mb-10 text-3xl font-bold">English Words</h1>
 <div class="mb-14 grid grid-cols-5 gap-4">
-  <% @english_words.each do |word|  %>
-    <div class="flex justify-between py-1 px-2 bg-gray-50 border text-sm">
-      <%= link_to word.word.truncate(18), english_word_path(word) %>
-      <span class="text-gray-300">
-        <%= button_to "x", english_word_path(word), method: :delete,
-          form: { data: { turbo_confirm: "Are you sure?" } } %>
-      </span>
-    </div>
+
+  <% @english_words.each do |word| %>
+
+    <% if word.cached_wordnet_definition.present? %>
+      <%= render "word_tag",
+      word: word,
+      tag_style: "bg-purple-200 border-purple-600 text-purple-800",
+      delete_label_style: "text-purple-400" %>
+
+    <%# An empty string value behind the key in the cache means the lookup was unsuccessful. %>
+    <%# FIXME: fix this ambivalent error state by adapting rich Result objects %>
+    <% elsif word.cached_wordnet_definition == "" %>
+      <%= render "word_tag",
+      word: word,
+      tag_style: "bg-yellow-200 border-yellow-600 text-yellow-800",
+      delete_label_style: "text-yellow-500" %>
+    <% else %>
+      <%= render "word_tag", word: word %>
+    <% end %>
+
   <% end %>
+
 </div>

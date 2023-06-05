@@ -1,0 +1,24 @@
+<div
+  class="
+    <%= local_assigns[:tag_style] %>
+    flex
+    justify-between
+    py-1
+    px-2
+    bg-gray-50
+    border
+    text-sm
+  "
+>
+  <%= link_to word.word.truncate(18), english_word_path(word) %>
+  <span class="<%= local_assigns[:delete_label_style] %> text-gray-300">
+    <%= button_to "x",
+    english_word_path(word),
+    method: :delete,
+    form: {
+      data: {
+        turbo_confirm: "Are you sure?"
+      }
+    } %>
+  </span>
+</div>
