@@ -16,8 +16,10 @@
     </span>
   </div>
 
-<% elsif current_page?(controller: 'flashcards', action: 'show_due') %>
-  <h2 class="font-bold text-2xl">No cards are due!</h2>
+<% elsif current_page?(controller: 'due_flashcards') and current_user.flashcards.due.count == 0 %>
+  <h2 class="font-bold text-2xl">No more due cards :)</h2>
+<% elsif current_page?(controller: 'unscored_flashcards') and current_user.flashcards.unscored.count == 0 %>
+  <h2 class="font-bold text-2xl">You scored all the new cards :)</h2>
 <% else %>
-  <h2 class="font-bold text-2xl">No more unscored flashcards!</h2>
+  <h2 class="font-bold text-2xl">Current filter doesn't return any cards, try adjusting it</h2>
 <% end %>
