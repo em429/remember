@@ -9,11 +9,11 @@ module AnnotationsHelper
   def button_to_star(annotation)
     if annotation.starred
       button_to annotation_star_path(id: annotation.id, star: 0), method: :patch do
-        render 'svgs/star', fill: "fill-yellow-300"
+        render 'svgs/star', fill: "fill-gray-400", stroke: "stroke-gray-400"
       end
     else
       button_to annotation_star_path(id: annotation.id, star: 1), method: :patch do
-        render 'svgs/star'
+        render 'svgs/star', stroke: "stroke-gray-400"
       end
     end
   end
