@@ -2,28 +2,29 @@
   <div class="flex text-gray-500 border border-gray-300">
     <%= button_to "0", flashcard_path(id),
        method: :put, params: { flashcard: { score: 0 } },
-       class: "text-xs px-3 py-1 bg-gray-50" %>
+       class: "px-3 py-1 font-bold text-xl bg-gray-50" %>
 
     <%= button_to "1", flashcard_path(id),
        method: :put, params: { flashcard: { score: 1 } },
-       class: "text-xs px-3 py-1 bg-gray-100" %>
+       class: "px-3 py-1 font-bold text-xl bg-gray-100" %>
 
     <%= button_to "2", flashcard_path(id),
        method: :put, params: { flashcard: { score: 2 } },
-       class: "text-xs px-3 py-1 bg-gray-200" %>
+       class: "px-3 py-1 font-bold text-xl bg-gray-200" %>
 
     <%= button_to "3", flashcard_path(id),
        method: :put, params: { flashcard: { score: 3 } },
-       class: "text-xs px-3 py-1 bg-gray-300" %>
+       class: "px-3 py-1 font-bold text-xl bg-gray-300" %>
   
     <%= button_to "4", flashcard_path(id),
        method: :put, params: { flashcard: { score: 4 } },
-       class: "text-xs px-3 py-1 text-gray-100 bg-gray-400" %>
+       class: "px-3 py-1 font-bold text-xl text-gray-100 bg-gray-400" %>
 
     <%= button_to "5", flashcard_path(id),
        method: :put, params: { flashcard: { score: 5 } },
-       class: "text-xs px-3 py-1 text-white bg-gray-500" %>
+       class: "px-3 py-1 font-bold text-xl text-white bg-gray-500" %>
   </div>
 <% elsif next_due > Date.today %>
   <span class="text-gray-400"> due <%= next_due %> </span>
 <% end %>
+  
