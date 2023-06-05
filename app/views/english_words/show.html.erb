@@ -1,0 +1,17 @@
+<div class="p-6 border border-2 bg-white border-gray-800 drop-shadow-lg">
+  <div class="font-bold text-3xl text-gray-700">
+      <%= @english_word.word %>
+  </div>
+  <div>
+    <p class="whitespace-pre text-lg">
+    <% if @english_word.wordnet_definition.present? %>
+      <%= @english_word.wordnet_definition %>
+      <%# TODO: add thesaurus on click %>
+      <%#= @english_word.moby_thesaurus %>
+    <% else %>
+      Couldn't look up word in dictionary
+    <% end %>
+    </p>
+  </div>
+
+</div>

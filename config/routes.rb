@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :unscored_flashcards, only: [ :index ]
   resources :due_flashcards, only: [ :index ]
 
+  ## Words
+  resources :english_words#, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
+
   ## News
   resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
   resources :rss_feed_fetches, only: [ :create ]
