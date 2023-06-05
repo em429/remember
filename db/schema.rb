@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_191456) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_200444) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,6 +65,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_191456) do
     t.integer "user_id"
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "english_words", force: :cascade do |t|
+    t.string "word"
+    t.text "definition_wordnet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word"], name: "index_english_words_on_word", unique: true
   end
 
   create_table "flashcards", force: :cascade do |t|
