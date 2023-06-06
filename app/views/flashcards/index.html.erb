@@ -1,12 +1,11 @@
-<%= render "flashcards/filter_bar" %>
+<%= render "flashcards/filter_bar", query: @query, pagy: @pagy %>
 
 <% if @card.present? %>
   <%= render_annotation(@card.annotation) %>
 
   <div class="flex w-fit mx-auto mb-6">
     <%= render 'flashcards/scoring_buttons',
-       id: @card.annotation.id,
-       next_due: @card.next_repetition_date
+       card: @card
     %>
   </div>
 
