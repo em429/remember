@@ -10,11 +10,12 @@ class AnnotationStarsController < ApplicationController
 
   def update
     @annotation = current_user.annotations.find(params[:id])
-    if params[:star] == "1"
-      @annotation.add_star
+
+    @annotation.toggle!(:starred)
+
+    if @annotation.starred
       flash[:notice] = "Succesfully starred"
     else
-      @annotation.remove_star
       flash[:notice] = "Successfully unstarred"
     end
 

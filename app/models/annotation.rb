@@ -36,6 +36,7 @@ class Annotation < ApplicationRecord
 
   # Imports annotations from a Calibre metadata.opf file into db and creates "unscored"
   # Flashcard rows as well for each Annotation.
+  # FIXME: Move to AnnotationBatchImporter.new.batch_import(book_id, opf_file) style code in a 'service' folder or similar
   def self.batch_import(book_id, opf_file)
     metadata_hashes = calibre_metadata_to_json(opf_file)
     metadata_hashes.each do |hash|
@@ -75,16 +76,6 @@ class Annotation < ApplicationRecord
     else
       nil
     end
-  end
-
-  def add_star
-    update(starred: true)
-    save
-  end
-
-  def remove_star
-    update(starred: false)
-    save
   end
   
 end
