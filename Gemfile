@@ -57,6 +57,8 @@ group :development, :test do
 
   gem "magic_test"
   gem "erb-formatter"
+
+  gem 'annotate'
 end
 
 group :development do
