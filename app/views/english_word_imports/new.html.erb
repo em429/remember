@@ -1,0 +1,11 @@
+<div class="mb-6">
+  <h2 class="mb-2 text-3xl font-bold">Import English Words</h2>
+  <p class="text-gray-700">Paste in words below, one word per line. Duplicates will be removed.</p>
+</div>
+<div class="w-60 mb-14">
+<%= form_with url: english_word_imports_path do |f| %> 
+  <%= f.label :wordlist, nil, class: "text-xl font-semibold mb-1 block" %>
+  <%= f.text_area :wordlist, rows: "13", class:"mb-4 w-60", autofocus: true %>
+  <%= f.submit "import words", class: "btn block w-full py-4 text-xl font-bold uppercase text-gray-700" %>
+<% end %>
+</div>

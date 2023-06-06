@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   ## Words
   resources :english_words#, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
+  resources :english_word_imports, only: [ :new, :create ]
 
   ## News
   resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
@@ -48,3 +49,4 @@ Rails.application.routes.draw do
   get '/about', to: 'content_pages#about'
 
 end
+
