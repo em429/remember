@@ -1,4 +1,6 @@
-<%# Takes 'limit' as a parameter %>
+<%# Reddit-specific Rss Feed summary display component %>
+<%# feed:: expects an instance of RssFeed %>
+<%# limit:: how many of the returned items to display %>
 
 <% refresh_button = button_to "refresh", rss_feed_fetches_path(id: feed.id), class: "link" %>
 

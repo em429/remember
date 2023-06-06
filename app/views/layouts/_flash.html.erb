@@ -1,3 +1,8 @@
+<%# Flash component %>
+<%# message:: string to display in flash %>
+
+<%# TODO add flash_type:: change styling based on alert/notice %>
+
 <% flash.each do |flash_type, message| %>
   <%# IMPORTANT: The animation is set-up in the flash stimulus controller.
       We explicitly remove the DOM element when the animation is over, to

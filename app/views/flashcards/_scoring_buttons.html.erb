@@ -1,3 +1,9 @@
+<%# Flashcard Scoring Button component %>
+<%# card:: expected to be Flashcard instance %>
+
+<% next_due = card.next_repetition_date %>
+<% id = card.id %>
+
 <% if next_due == nil or next_due <= Date.today %>
   <div class="flex text-gray-500 border border-gray-300">
     <%= button_to "0", flashcard_path(id),
