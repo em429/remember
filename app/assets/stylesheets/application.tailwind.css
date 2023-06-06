@@ -43,7 +43,7 @@
   }
 
   .btn {
-    @apply py-1 px-2 bg-gray-200 border border-gray-300 ;
+    @apply cursor-pointer border-2 p-2 h-fit uppercase font-bold  text-gray-700 text-xs ;
   }
 
   .btn-lg {
