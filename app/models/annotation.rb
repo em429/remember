@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: annotations
+#
+#  id                :integer          not null, primary key
+#  highlighted_text  :text
+#  notes             :text
+#  start_cfi         :string
+#  end_cfi           :string
+#  book_id           :integer          not null
+#  timestamp         :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  toc_family_titles :string
+#  color             :string           default("yellow")
+#  starred           :boolean          default(FALSE)
+#
 class Annotation < ApplicationRecord
   belongs_to :book
   has_one :flashcard, dependent: :destroy

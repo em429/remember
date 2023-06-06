@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: flashcards
+#
+#  id                   :integer          not null, primary key
+#  annotation_id        :integer          not null
+#  next_repetition_date :date
+#  interval             :integer
+#  easiness_factor      :float
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
 class Flashcard < ApplicationRecord
   belongs_to :annotation
   # TODO add validations

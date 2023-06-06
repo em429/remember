@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: books
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  author     :string
+#  plaintext  :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  fiction    :boolean          default(FALSE)
+#  user_id    :integer
+#
 class Book < ApplicationRecord
   ## Relations
   belongs_to :user

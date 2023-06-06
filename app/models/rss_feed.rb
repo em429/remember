@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: rss_feeds
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rss'
 require 'open-uri'
 

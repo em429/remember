@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: english_words
+#
+#  id                 :integer          not null, primary key
+#  word               :string
+#  definition_wordnet :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
 class EnglishWord < ApplicationRecord
 
     def fetch_wordnet_definition
