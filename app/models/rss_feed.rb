@@ -24,7 +24,7 @@ class RssFeed < ApplicationRecord
     end 
   end
 
-  # Return the cached version, without fetching it
+  # Return the cached version, without refresh
   def cached
     Rails.cache.fetch("#{cache_key_with_version}/cached_feed", expires_in: 6.hours)
   end
