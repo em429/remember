@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_04_200444) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_224956) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_200444) do
   create_table "flashcards", force: :cascade do |t|
     t.integer "annotation_id", null: false
     t.date "next_repetition_date"
-    t.integer "interval"
-    t.float "easiness_factor"
+    t.integer "interval", default: 0
+    t.float "easiness_factor", default: 2.5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["annotation_id"], name: "index_flashcards_on_annotation_id"
