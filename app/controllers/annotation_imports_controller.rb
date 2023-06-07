@@ -1,6 +1,9 @@
 class AnnotationImportsController < ApplicationController
   def create
-    Annotation.batch_import(params[:book_id], params[:opf_file])
-    redirect_to book_path(params[:book_id])
+
+    @book = Book.find(params[:book_id])
+    import = AnnotationImporter.new.import(params[:opf_file], @book)
+    redirect_to book_path(@book)
+
   end
 end
