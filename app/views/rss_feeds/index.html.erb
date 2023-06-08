@@ -5,8 +5,8 @@
 <% @rss_feed.each do |feed| %>
 
   <div class="mb-4">
-    <span class="font-bold"><%= feed.title %></span>
-    <span class="link"><%= link_to feed.url %></span>
+    <div class="font-bold"><%= feed.title %></div>
+    <div class="link"><%= link_to feed.url %></div>
     <div class="flex space-x-2 text-gray-500">
       <%= link_to "Edit", edit_rss_feed_path(feed), class: "" %>
       <%= button_to "Delete", rss_feed_path(feed), method: :delete,
