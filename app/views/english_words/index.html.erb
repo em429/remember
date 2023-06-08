@@ -3,9 +3,7 @@
     <h1 class="mb-2 text-3xl font-bold">English Words</h1>
     <p class="text-gray-600">You looked up these <%= @english_words.count %> words while reading:</p>
   </div>
-  <div class="border-2 p-2 h-fit uppercase font-bold  text-gray-700 text-xs">
-  <%= link_to "Import Words", new_english_word_import_path %>
-  </div>
+  <%= link_to "+ Import Words", new_english_word_import_path, class: "btn" %>
 </div>
 
 <div class="mb-14 grid grid-cols-5 gap-4">

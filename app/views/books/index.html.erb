@@ -1,7 +1,7 @@
 <div class="mb-10 flex space-x-10 justify-between items-baseline font-bold">
   <h1 class="font-bold text-4xl">Annotated Books</h1>
 
-  <div class="flex space-x-8">
+  <div class="flex space-x-8 items-center">
     <span class="space-x-1">
       <%= nav_link_to "All Annotations", annotations_path %>
     <span class="text-gray-300"><%= current_user.annotations.count %></span>
@@ -10,7 +10,7 @@
       <%= nav_link_to "Starred", annotation_stars_path %>
       <span class="text-gray-300"><%= current_user.annotations.starred.count %></span>
     </span>
-    <%= link_to "+ Add Book", new_book_path %>
+    <%= link_to "+ Add Book", new_book_path, class: "btn" %>
   </div>
 
 </div>

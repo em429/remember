@@ -1,13 +1,14 @@
-<div class="mb-6">
-  <h2 class="text-3xl font-bold mb-2">News Dashboard</h2>
-  <p class="text-gray-600">
-    This page is designed to be a cherry-picked list of the top links across the link aggregators I frequent.
-    It collects the highest scoring and most commented posts.
-  </p>
-</div>
-
-<div class="mb-6">
-  <%= link_to "RSS Feed Settings", rss_feeds_path, class: "link" %> 
+<div class="mb-6 flex space-x-10 justify-between">
+  <div>
+    <h2 class="text-3xl font-bold mb-2">News Dashboard</h2>
+    <p class="text-gray-600">
+      This page is designed to be a cherry-picked list of the top links across the link aggregators I frequent.
+      It collects the highest scoring and most commented posts.
+    </p>
+  </div>
+  <div>
+    <%= link_to "Settings", rss_feeds_path, class: "btn" %>
+  </div>
 </div>
 
 <div class="space-y-8 mb-14">
