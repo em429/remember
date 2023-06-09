@@ -10,7 +10,7 @@
 
   <% @english_words.each do |word| %>
 
-    <% if word.cached_wordnet_definition.present? %>
+    <% if word.definition_wordnet.present? %>
       <%= render "word_tag",
       word: word,
       tag_style: "bg-purple-200 border-purple-600 text-purple-800",
@@ -18,7 +18,7 @@
 
     <%# An empty string value behind the key in the cache means the lookup was unsuccessful. %>
     <%# FIXME: fix this ambivalent error state by adapting rich Result objects %>
-    <% elsif word.cached_wordnet_definition == "" %>
+    <% elsif word.definition_wordnet == "" %>
       <%= render "word_tag",
       word: word,
       tag_style: "bg-yellow-200 border-yellow-600 text-yellow-800",

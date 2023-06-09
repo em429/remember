@@ -1,21 +1,33 @@
-<div class="p-6 border border-2 bg-white border-gray-800 drop-shadow-lg">
+<div class="mb-14 p-6 border border-2 bg-white border-gray-800 drop-shadow-lg">
   <div class="flex justify-between">
     <div class="font-bold text-3xl text-gray-700">
         <%= @english_word.word %>
     </div>
-    <div class="text-sm smallcaps">
+    <div class="flex justify-between gap-2 text-xs uppercase">
       <%= link_to "edit", edit_english_word_path(@english_word) %>
+
+      <%= button_to "delete",
+      english_word_path(@english_word),
+      class: "uppercase text-red-500",
+      method: :delete,
+      form: {
+        data: {
+          turbo_confirm: "Are you sure?"
+        }
+      } %>
+
     </div>
   </div>
 
   <div>
     <p class="whitespace-pre text-lg">
-    <% if @english_word.fetch_wordnet_definition.blank? %>
-      Couldn't find word in dictionary
+    <% if @english_word.definition_wordnet.blank? %>
+      Couldn't find in Wordnet Dictionary
     <% else %>
-      <%= @english_word.fetch_wordnet_definition %>
+      <%= @english_word.definition_wordnet %>
       <%# TODO: add thesaurus on click %>
-      <%#= @english_word.moby_thesaurus %>
+      <%#= EnglishDictLookup.new(@english_word).thesaurus %>
+      <%= @english_word.cached_thesaurus %>
     <% end %>
     </p>
   </div>
