@@ -3,10 +3,9 @@ class EnglishWordImportsController < ApplicationController
   end
 
   def create
-    EnglishWord.import_wordlist(params[:wordlist])
+    EnglishWordImporter.new(params[:wordlist]).import
 
     redirect_to english_words_path, notice: "Successfully imported"
- 
    
   end
 

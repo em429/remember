@@ -26,12 +26,6 @@ class EnglishWord < ApplicationRecord
       end
     end
 
-    # FIXME: move to a service class?
-    def self.import_wordlist(wordlist)
-      wordlist.each_line do |word|
-        create!(word: word.strip())
-        rescue ActiveRecord::RecordNotUnique
-          next
       end
     end
 
