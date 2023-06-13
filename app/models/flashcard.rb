@@ -11,8 +11,22 @@
 #  updated_at           :datetime         not null
 #
 class Flashcard < ApplicationRecord
+
+# TODO: refactor model to use polymorphic associations, so a flashcard can contain any
+#       'flashcardable' tables.
+#
+# example: https://www.youtube.com/watch?v=qF51M95YnaA
+# 
+#       belongs_to :flashcardable, polymorphic: true
+#    
+#     then in Annotation:
+#       
+#       has_one :flashcard, as: :flashcardable 
+# 
+
+# TODO: add validations
+  
   belongs_to :annotation
-  # TODO add validations
 
   def self.ransackable_attributes(auth_object = nil)
     ["annotation_id", "created_at", "easiness_factor", "id", "interval", "next_repetition_date", "updated_at"]
