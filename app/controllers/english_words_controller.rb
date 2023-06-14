@@ -6,7 +6,10 @@ class EnglishWordsController < ApplicationController
   def show
     @english_word = EnglishWord.find(params[:id])
 
-    EnglishDictLookup.new(@english_word).fetch_wordnet_definition
+    if not @english_word.definition_wordnet.present?
+      EnglishWordDictService.new(@english_word).save_wordnet_result
+    end
+
   end
 
   def destroy

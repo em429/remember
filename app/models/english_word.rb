@@ -11,9 +11,12 @@
 class EnglishWord < ApplicationRecord
 
     def cached_thesaurus
-      Rails.cache.fetch "#{cache_key_with_version}/cached_thesaurus", expires_in: 100.hours do
-        EnglishDictLookup.new(self).thesaurus
-      end
+      Rails.cache.fetch "#{cache_key_with_version}/cached_thesaurus"
+    end
+
+    def refresh_cached_thesaurus 
+      result = EnglishWordDictService.new(self).query_thesaurus
+      Rails.cache.write "#{cache_key_with_version}/cached_thesaurus", result, expires_in: 100.hours
     end
 
 end

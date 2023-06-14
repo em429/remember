@@ -20,16 +20,26 @@
   </div>
 
   <div>
-    <p class="whitespace-pre text-lg">
     <% if @english_word.definition_wordnet.blank? %>
-      Couldn't find in Wordnet Dictionary
+    <%# TODO: move this blank check from here, deal with worndnet returning blank in a more deliberate, obvious way %>
+      <p>Couldn't find in Wordnet Dictionary</p>
     <% else %>
-      <%= @english_word.definition_wordnet %>
-      <%# TODO: add thesaurus on click %>
-      <%#= EnglishDictLookup.new(@english_word).thesaurus %>
-      <%= @english_word.cached_thesaurus %>
+
+      <p class="whitespace-pre text-lg">
+        <%= @english_word.definition_wordnet %>
+      </p>
+
+      <hr class="mb-6">
+
+      <% if @english_word.cached_thesaurus.present? %>
+        <p class="whitespace-pre text-lg">
+          <%= @english_word.cached_thesaurus %>
+        </p>
+      <% else %>
+        <%= button_to "query thesaurus", english_word_thesaurus_lookups_path(id: @english_word), class: "btn"  %>
+      <% end %>
+
     <% end %>
-    </p>
   </div>
 
 </div>

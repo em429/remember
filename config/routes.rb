@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   ## Words
   resources :english_words#, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
   resources :english_word_imports, only: [ :new, :create ]
+  resources :english_word_thesaurus_lookups, only: [ :create ]
 
   ## News
   resources :rss_feeds, only: [ :index, :new, :create, :edit, :update, :destroy ] # except :show
