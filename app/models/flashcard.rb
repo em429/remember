@@ -23,9 +23,7 @@ class Flashcard < ApplicationRecord
 #       
 #       has_one :flashcard, as: :flashcardable 
 # 
-
-# TODO: add validations
-  
+ 
   belongs_to :annotation
 
   def self.ransackable_attributes(auth_object = nil)

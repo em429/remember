@@ -6,6 +6,13 @@
   <%= link_to "+ Import Words", new_english_word_import_path, class: "btn" %>
 </div>
 
+<div class="mb-4 p-2 space-x-4 bg-gray-50 text-sm border">
+  <span class="font-medium">Sort by:</span>
+  <%= sort_link(@query, :word) %>
+  <%= sort_link(@query, :created_at) %>
+</div>
+
+
 <div class="mb-14 grid grid-cols-5 gap-4">
 
   <% @english_words.each do |word| %>

@@ -10,13 +10,17 @@
 #
 class EnglishWord < ApplicationRecord
 
-    def cached_thesaurus
-      Rails.cache.fetch "#{cache_key_with_version}/cached_thesaurus"
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "definition_wordnet", "id", "updated_at", "word"]
+  end
 
-    def refresh_cached_thesaurus 
-      result = EnglishWordDictService.new(self).query_thesaurus
-      Rails.cache.write "#{cache_key_with_version}/cached_thesaurus", result, expires_in: 100.hours
-    end
+  def cached_thesaurus
+    Rails.cache.fetch "#{cache_key_with_version}/cached_thesaurus"
+  end
+
+  def refresh_cached_thesaurus 
+    result = EnglishWordDictService.new(self).query_thesaurus
+    Rails.cache.write "#{cache_key_with_version}/cached_thesaurus", result, expires_in: 100.hours
+  end
 
 end

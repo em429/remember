@@ -7,7 +7,13 @@
 %>
 
 <div class="p-4 mb-8 bg-gray-50 border border-1">
-  <%= search_form_for query, url: request.params, class: "flex justify-between" do |f| %>
+  <%= search_form_for query, url: request.params, class: "justify-between" do |f| %>
+
+  <div class="mb-2">
+    <%= f.label :highlighted_text_cont, "Highlight contains..", class: "myform-label" %>
+    <%= f.search_field :highlighted_text_cont, class:"" %>
+  </div>
+
   <div class="flex space-x-6 items-center">
 
     <div>
@@ -38,13 +44,13 @@
 				<span class="text-xs font-semibold uppercase">Nonfiction</span>
       <% end %>
 		</div>
-  </div>
+
+    <%= f.submit "Go", class: " text-xs px-4 bg-gray-50 border border-gray-300 " %>
 
   </div>
 
-  <div class="flex items-end">
-    <%= f.submit "Filter", class: "h-11 text-xs px-4 py-2 bg-gray-50 border border-gray-300 " %>
   </div>
+
 
   <% end %>
 

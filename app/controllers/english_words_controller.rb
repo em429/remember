@@ -1,6 +1,7 @@
 class EnglishWordsController < ApplicationController
   def index
-    @english_words = EnglishWord.all
+    @query = EnglishWord.all.ransack(params[:q])
+    @english_words = @query.result
   end
 
   def show
