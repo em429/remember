@@ -46,9 +46,14 @@ RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 FROM base
 
 # Install packages needed for deployment
+# Install runtime packages
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libsqlite3-0 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+RUN apt-get update -qq && apt-get install dictd && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
