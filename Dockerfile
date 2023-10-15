@@ -51,7 +51,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libsqlite3-0 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-RUN apt-get update -qq && apt-get install dictd && \
+RUN apt-get update -qq && apt-get install -y dictd && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 
