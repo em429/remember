@@ -1,33 +1,34 @@
-<nav class="mb-10 flex justify-between">
+<nav class="mb-2 flex justify-between">
 
   <%= link_to "re-mem-ber",
   root_path,
-  class: "px-2 border border-4 border-dashed border-gray-300" %>
+  class: "text-sm px-2 py-1 border border-4 border-dashed border-gray-300" %>
 
-  <div class="space-x-8 font-bold justify-self-end">
+  <div class="text-xs md:text-sm font-bold justify-self-end">
     <%= render_account_dropdown %>
   </div>
 
 </nav>
 
 <% unless current_user.blank? %>
-  <nav class="flex items-baseline text-xl justify-between">
+  <nav class="flex items-baseline text-md justify-between">
 
-    <div class="p-4 font-bold bg-gray-50 border border-1">
-      <span class="block mb-2">Flashcards</span>
-      <div class="space-x-4">
-        <span class="space-x-1 text-gray-500">
+    <div class="p-4 text-sm font-bold bg-gray-50 border border-1">
+
+        <div class="gap-1 text-gray-500">
           <%= nav_link_to "Due", due_flashcards_path %>
           <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
-        </span>
+        </div>
 
-        <span class="space-x-1 text-gray-500">
+        <div class="gap-1 text-gray-500">
           <%= nav_link_to "Unscored", unscored_flashcards_path %>
           <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
-        </span>
-      </div>
+        </div>
+
+      
     </div>
-    <div class="space-x-8 font-bold">
+
+    <div class="flex gap-4 font-bold">
       <%= nav_link_to "Books", books_path %>
       <%= nav_link_to "Words", english_words_path %>
       <%= nav_link_to "News", news_path %>

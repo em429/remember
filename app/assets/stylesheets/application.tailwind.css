@@ -19,19 +19,19 @@
   .content_page a { @apply text-slate-500 underline }
 
   .myform-label {
-    @apply block mb-2 text-xs font-medium text-gray-900 dark:text-white; 
+    @apply block mb-2 text-xs font-medium text-gray-900;
   }
   .myform-select {
-    @apply mr-5 bg-white border border-gray-300 text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+    @apply mr-5 bg-white border border-gray-300 text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
   }
   .myform-radio {
-    @apply w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+    @apply w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 focus:ring-2;
   }
   .myform-checkbox {
     @apply w-4 h-4 text-blue-600 bg-white border-gray-300;
   }
   .myform-radio-label {
-    @apply w-full mx-2 text-xs font-medium text-gray-900 dark:text-gray-300;
+    @apply w-full mx-2 text-xs font-medium text-gray-900;
   }
 
   .tag {
@@ -56,7 +56,7 @@
     white-space: pre-line;
     /* IMPORTANT: The negative margin below is set to compensate for the effect of
        the pre-line white space setting above. */
-    @apply mt-[-25px] text-gray-700 text-lg;
+    @apply mt-[-25px] text-gray-700 text-sm md:text-lg;
   }
 
   .smallcaps { font-variant: small-caps; }

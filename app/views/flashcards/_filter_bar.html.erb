@@ -6,45 +6,42 @@
            ransack form attributes until I figure out a way to make it reusable.
 %>
 
-<div class="p-4 mb-8 bg-gray-50 border border-1">
-  <%= search_form_for query, url: request.params, class: "flex justify-between" do |f| %>
-  <div class="flex space-x-6 items-center">
+<div class="p-3 md:p-4 mb-8 bg-gray-50 border border-1">
+  <%= search_form_for query, url: request.params, class: "" do |f| %>
+    <div class="flex gap-4 items-stretch">
 
-    <div>
-      <%= f.label :annotation_book_title_eq, "Title", class: "myform-label" %>
-      <%#= f.search_field :book_title_start %>
-      <%= f.select :annotation_book_title_eq, book_titles_for_select,
-         { selected: "" }, { class: "h-11 myform-select" } %>
+      <div>
+        <%= f.label :annotation_book_title_eq, "Title", class: "myform-label" %>
+        <%#= f.search_field :book_title_start %>
+        <%= f.select :annotation_book_title_eq, book_titles_for_select,
+          { selected: "" }, { class: "myform-select" } %>
+      </div>
+
+      <div>
+        <%= f.label :annotation_book_author_cont, "Author", class: "myform-label" %>
+        <%= f.search_field :annotation_book_author_cont, class: "h-min border border-gray-300" %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :annotation_book_author_cont, "Author", class: "myform-label" %>
-      <%= f.search_field :annotation_book_author_cont, class: "border border-gray-300" %>
+    <div class="flex mt-4 justify-between items-stretch">
+      <div class="flex gap-2">
+        <%= f.radio_button :annotation_book_fiction_true, 1, class: "hidden peer", id: "radio_1" %>
+        <%= f.label :annotation_book_fiction_true, for: "radio_1",
+          class: "peer-checked:border-blue-400 peer-checked:text-gray-800 text-gray-400 p-2 border-2 border-gray-200 cursor-pointer" do %>
+          <span class="text-xs font-semibold uppercase">Fiction</span>
+        <% end %>
+        
+        <%= f.radio_button :annotation_book_fiction_true, 0, class: "hidden peer", id: "radio_2" %>
+        <%= f.label :annotation_book_fiction_true, for: "radio_2",
+          class: "peer-checked:border-blue-400 peer-checked:text-gray-800 text-gray-400 p-2 border-2 border-gray-200 cursor-pointer" do %>
+          <span class="text-xs font-semibold uppercase">Nonfiction</span>
+        <% end %>
+      </div>
+
+      <%= f.submit "Filter", class: "inline-block text-xs px-4 pt-2 pb-2 bg-gray-50 border-2 border-gray-300 " %>
+
     </div>
-   
-  <div class="flex mt-6 space-x-2 justify-between">
-		<div>
-      <%= f.radio_button :annotation_book_fiction_true, 1, class: "hidden peer", id: "radio_1" %>
-      <%= f.label :annotation_book_fiction_true, for: "radio_1",
-        class: "peer-checked:border-blue-400 peer-checked:text-gray-800 text-gray-400 p-2 border-2 border-gray-200 cursor-pointer" do %>
-				<span class="text-xs font-semibold uppercase">Fiction</span>
-      <% end %>
-		</div>
 
-		<div>
-      <%= f.radio_button :annotation_book_fiction_true, 0, class: "hidden peer", id: "radio_2" %>
-      <%= f.label :annotation_book_fiction_true, for: "radio_2",
-        class: "peer-checked:border-blue-400 peer-checked:text-gray-800 text-gray-400 p-2 border-2 border-gray-200 cursor-pointer" do %>
-				<span class="text-xs font-semibold uppercase">Nonfiction</span>
-      <% end %>
-		</div>
-  </div>
-
-  </div>
-
-  <div class="flex items-end">
-    <%= f.submit "Filter", class: "h-11 text-xs px-4 py-2 bg-gray-50 border border-gray-300 " %>
-  </div>
 
   <% end %>
 

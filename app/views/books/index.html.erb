@@ -1,7 +1,6 @@
 <div class="mb-10 flex space-x-10 justify-between items-baseline font-bold">
-  <h1 class="font-bold text-4xl">Annotated Books</h1>
 
-  <div class="flex space-x-8 items-center">
+  <div class="px-3 flex space-x-8 items-center">
     <span class="space-x-1">
       <%= nav_link_to "All Annotations", annotations_path %>
     <span class="text-gray-300"><%= current_user.annotations.count %></span>
@@ -17,15 +16,30 @@
 
 <div>
   <% @books.each do |book| %>
-    <div class="mb-12 border p-8 shadow-md gap-8 flex justify-between">
+    <div class="mb-12 border p-3 md:p-8 shadow-md">
+      
 
-      <%# Left side: book details, random highlight, tag %>
-      <div class="grow">
-        <%= link_to book.title, book, class: "font-medium text-2xl" %>
-        <section class="mb-6 mt-2 ">
-          <span class="text-sm">by
-            <%= book.author %></span>
-        </section>
+ 
+        <div class="flex gap-4 mb-4">
+          <section class="max-w-[100px] md:max-w-[150px]">
+            <%= link_to book do %>
+              <%= book_cover(book) %>
+            <% end %>
+          </section>
+
+
+          <div>
+            <%= link_to book.title, book, class: "font-medium text-2xl" %>
+            <section class="mb-6 mt-2 ">
+              <span class="text-sm">by
+                <%= book.author %></span>
+            </section>
+          </div>
+
+
+        </div>
+
+
         <section class="mb-6 text-md text-gray-600 bg-gray-50">
           <h5 class="pt-2 pl-3 pb-2 smallcaps bg-gray-100">Random Highlight</h5>
           <p class="pb-3 px-3 pt-2 italic"><%= book.random_highlight.truncate(200) %></p>
@@ -33,14 +47,7 @@
         <section class="tag">
           <%= fiction_or_not_tag(book) %>
         </section>
-      </div>
 
-      <%# Right side: book cover image %>
-      <section class="max-w-[150px]">
-        <%= link_to book do %>
-          <%= book_cover(book) %>
-        <% end %>
-      </section>
 
     </div>
 
