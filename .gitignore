@@ -40,3 +40,5 @@ core
 .devenv
 .direnv
 english_uniq.txt
+
+production.sqlite
