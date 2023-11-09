@@ -4,9 +4,9 @@
 
 <% refresh_button = button_to "refresh", rss_feed_fetches_path(id: feed.id), class: "link" %>
 
-<div class="p-4 bg-gray-50 border border-1">
+<div class="p-4 bg-gray-50 border border-1 text-sm">
     <div class="flex space-x-4 justify-between">
-    <h2 class="mb-2 font-bold text-2xl">
+    <h2 class="mb-2 font-bold text-xl">
       <%= link_to feed.title, edit_rss_feed_path(feed) %>
     </h2>
     <%= refresh_button %>
@@ -18,12 +18,13 @@
 
     <% feed.cached.items.first(limit).each do |item| %>
       <ul>
-        <li class="mb-1">
+        <li class="mb-3">
           <!-- item.comments links to discussion item.link links to original
           url item.pubDate is what it sound like -->
-          <%= link_to item.comments, class: "font-mono text-gray-600" do %>
-            <%= item.pubDate.strftime("%a, %F") %>
+          <%= link_to item.comments, class: "text-xs font-mono text-gray-600" do %>
+            <%= item.pubDate.strftime("%a,%F") %>
           <% end %>
+          <br>
           <%= link_to item.link, class: "link" do %>
             <%= item.title %>
           <% end %>
@@ -32,7 +33,7 @@
       </ul>
     <% end %>
   <% else %>
-    <span class="text-xl text-gray-500">
+    <span class="text-md text-gray-500">
       This feed hasn't been fetched
     </span>
   <% end %>

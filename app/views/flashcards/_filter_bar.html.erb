@@ -8,20 +8,19 @@
 
 <div class="p-3 md:p-4 mb-8 bg-gray-50 border border-1">
   <%= search_form_for query, url: request.params, class: "" do |f| %>
-    <div class="flex gap-4 items-stretch">
 
-      <div>
+      <div class="mb-2 ">
         <%= f.label :annotation_book_title_eq, "Title", class: "myform-label" %>
         <%#= f.search_field :book_title_start %>
         <%= f.select :annotation_book_title_eq, book_titles_for_select,
           { selected: "" }, { class: "myform-select" } %>
       </div>
 
-      <div>
+      <div class="">
         <%= f.label :annotation_book_author_cont, "Author", class: "myform-label" %>
-        <%= f.search_field :annotation_book_author_cont, class: "h-min border border-gray-300" %>
+        <%= f.search_field :annotation_book_author_cont, class: "border border-gray-300" %>
       </div>
-    </div>
+
 
     <div class="flex mt-4 justify-between items-stretch">
       <div class="flex gap-2">

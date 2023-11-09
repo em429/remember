@@ -1,10 +1,21 @@
-<nav class="mb-2 flex justify-between">
+<nav class="flex items-center justify-between mb-4">
+    <% unless current_user.blank? %>
+      <div class="p-4 text-sm font-bold bg-gray-50 border border-1">
+        <div class=" flex gap-2 text-gray-500">
+          <div>
+            <%= nav_link_to "Due", due_flashcards_path %>
+            <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
+          </div>
 
-  <%= link_to "re-mem-ber",
-  root_path,
-  class: "text-sm px-2 py-1 border border-4 border-dashed border-gray-300" %>
-
-  <div class="text-xs md:text-sm font-bold justify-self-end">
+          <div>
+            <%= nav_link_to "Unscored", unscored_flashcards_path %>
+            <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
+            </div>
+          </div>
+      </div>
+    <% end %>
+    
+  <div class="text-xs md:text-sm font-bold">
     <%= render_account_dropdown %>
   </div>
 
@@ -13,20 +24,6 @@
 <% unless current_user.blank? %>
   <nav class="flex items-baseline text-md justify-between">
 
-    <div class="p-4 text-sm font-bold bg-gray-50 border border-1">
-
-        <div class="gap-1 text-gray-500">
-          <%= nav_link_to "Due", due_flashcards_path %>
-          <span class="text-gray-300"><%= current_user.flashcards.due.count %></span>
-        </div>
-
-        <div class="gap-1 text-gray-500">
-          <%= nav_link_to "Unscored", unscored_flashcards_path %>
-          <span class="text-gray-300"><%= current_user.flashcards.unscored.count %></span>
-        </div>
-
-      
-    </div>
 
     <div class="flex gap-4 font-bold">
       <%= nav_link_to "Books", books_path %>

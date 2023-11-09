@@ -3,9 +3,9 @@
 <div data-controller="dropdown" class="relative">
   
     <button data-action="dropdown#toggle click@window->dropdown#hide"
-            class="flex items-center justify-between w-full py-2 pl-3 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 md:w-auto"
+            class="flex items-center w-full py-2 pl-3 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 md:w-auto"
     >
-      logged in as <%= current_user.email %> <%= render 'svgs/chevron-down' %>
+      <%= current_user.email %> <%= render 'svgs/chevron-down' %>
     </button>
     
   <div

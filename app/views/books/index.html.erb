@@ -1,17 +1,18 @@
-<div class="mb-10 flex space-x-10 justify-between items-baseline font-bold">
+<div class="mb-10 flex justify-between items-baseline font-bold">
 
-  <div class="px-3 flex space-x-8 items-center">
+  <div class="flex gap-3 items-center">
     <span class="space-x-1">
       <%= nav_link_to "All Annotations", annotations_path %>
-    <span class="text-gray-300"><%= current_user.annotations.count %></span>
+      <span class="text-gray-300"><%= current_user.annotations.count %></span>
     </span>
+
     <span class="space-x-1">
       <%= nav_link_to "Starred", annotation_stars_path %>
       <span class="text-gray-300"><%= current_user.annotations.starred.count %></span>
     </span>
-    <%= link_to "+ Add Book", new_book_path, class: "btn" %>
-  </div>
 
+  </div>
+ <%= link_to "+ Add Book", new_book_path, class: "btn" %>
 </div>
 
 <div>

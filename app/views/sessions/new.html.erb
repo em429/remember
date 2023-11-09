@@ -1,34 +1,35 @@
-<h1 class="mb-8 text-4xl font-bold">Log in</h1>
 
-<%= form_with(url: login_path) do |form| %>
+  <h1 class="mb-8 text-4xl font-bold">Log in</h1>
 
-  <div class="mb-5">
-    <%= form.label :email %>
-    <%= form.text_field :email,
-        class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-  </div>
+  <%= form_with(url: login_path) do |form| %>
 
-  <div class="my-5">
-    <%= form.label :password %>
-    <%= form.password_field :password,
-        class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
-  </div>
+    <div class="mb-5">
+      <%= form.label :email %>
+      <%= form.text_field :email,
+          class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.submit "Log in", class: "btn" %>
-  </div>
+    <div class="my-5">
+      <%= form.label :password %>
+      <%= form.password_field :password,
+          class: 'block shadow border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    </div>
 
-  <p>New user? <%= link_to "Sign up now!", signup_path,
-     class: "link" %></p>
-  
-<% end %>
+    <div class="my-5">
+      <%= form.submit "Log in", class: "btn" %>
+    </div>
 
-<section class="mt-14 p-6 bg-gray-100">
-  <h4 class="mb-4 text-xl font-bold">What's this?</h4>
-  <p class="mb-4">
-    A tool for reviewing and integrating book highlights, using context discovery and spaced-repetition.
-  </p>
-  <p>
-    For more info, please see the <a class="link" href="<%= about_path %>">introduction</a> and the project's <a class="link" href="https://github.com/qirpi/remember">github page</a>.
-  </p>
-</section>
+    <p>New user? <%= link_to "Sign up now!", signup_path,
+      class: "link" %></p>
+    
+  <% end %>
+
+  <section class="mt-14 p-3 md:p-6 bg-gray-100">
+    <h4 class="mb-4 text-xl font-bold">What's this?</h4>
+    <p class="mb-4">
+      A tool for reviewing and integrating book highlights, using context discovery and spaced-repetition.
+    </p>
+    <p>
+      For more info, please see the <a class="link" href="<%= about_path %>">introduction</a> and the project's <a class="link" href="https://github.com/qirpi/remember">github page</a>.
+    </p>
+  </section>
