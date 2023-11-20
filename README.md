@@ -1,3 +1,7 @@
+### Experimental, WIP Software! Use at your own risk!
+
+I've reached the point where it serves 90% of my intended use case. It's nowhere near complete or very stable. It can serve as a good starting off point for your own system, don't expect much more from it!
+
 <img src="https://mem.cool/assets/remember1-4cc77497bf45b1d358f1c0d8fc3a5b1de567e4eefa2b4bd7bc3e0f8985acf8b5.png" width="400px"></img>
 
 See all the stuff you ever highlighted from books and articles in one feed, with a spaced-repetition algorithm.
